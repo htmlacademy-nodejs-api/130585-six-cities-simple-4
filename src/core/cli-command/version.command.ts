@@ -1,3 +1,4 @@
+import chalk from 'chalk';
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 
@@ -15,6 +16,6 @@ export default class VersionCommand implements CliCommandInterface {
   }
 
   public async execute(): Promise<void> {
-    console.log(this.readVersion());
+    console.log(`${chalk.green.bold('✔')} Версия программы: ${chalk.hex('#318495').bold(this.readVersion())}`);
   }
 }
