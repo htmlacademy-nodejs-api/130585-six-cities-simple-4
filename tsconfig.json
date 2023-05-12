@@ -18,6 +18,7 @@
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
     "sourceMap": true,
+    "baseUrl": ".",
     "outDir": "./dist",
     "emitDecoratorMetadata": true,
     "types": [
@@ -25,7 +26,13 @@
     ],
     "lib": [
       "ESNext"
-    ]
+    ],
+    "paths": {
+      "@app/*": ["./src/app/*"],
+      "@core/*": ["./src/core/*"],
+      "@appTypes/*": ["./src/types/*"],
+      "@utils/*": ["./src/utils/*"],
+    },
   },
   "include": [
     "src/**/*.ts"
