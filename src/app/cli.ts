@@ -1,27 +1,26 @@
-import { CliCommandInterface } from '../core/cli-command/cli-command.interface.js';
+import { CliCommandInterface } from '@core/cli-command/cli-command.interface.js';
 
-type ParsedCommand = {
-  [key: string]: string[];
-}
+type ParsedCommands = Record<string, string[]>;
+type RegisteredCommands = Record<string, CliCommandInterface>;
 
 export default class CLIApplication {
-  private commands: {[key: string]: CliCommandInterface} = {};
+  private commands: RegisteredCommands = {};
   private defaultCommand = '--help';
 
-  private parseCommand(args: string[]): ParsedCommand {
+  private parseCommand(args: string[]): ParsedCommands {
     let command = '';
 
-    return args.reduce((parsedCommand, arg) => {
+    return args.reduce((parsedCommands, arg) => {
       if (arg.startsWith('--')) {
-        parsedCommand[arg] = [];
+        parsedCommands[arg] = [];
         command = arg;
 
       } else if (command && arg) {
-        parsedCommand[command].push(arg);
+        parsedCommands[command].push(arg);
       }
 
-      return parsedCommand;
-    }, {} as ParsedCommand);
+      return parsedCommands;
+    }, {} as ParsedCommands);
   }
 
   public getCommand(commandName: string): CliCommandInterface {

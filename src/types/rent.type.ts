@@ -1,13 +1,13 @@
-import { RentCity } from './rent-city.enum.js';
-import { RentType } from './rent-type.enum.js';
-import { RentFacility } from './rent-facility.enum.js';
+import { RentCity } from './rent-city.type.js';
+import { RentType } from './rent-type.type.js';
+import { RentFacility } from './rent-facility.type.js';
 import { Coords } from './coords.type.js';
 
 export type Rent = {
   title: string,
   description: string,
   createAt: Date,
-  city: RentCity,
+  city: RentCity | undefined,
   preview: string,
   images: string[],
   isPremium: boolean,

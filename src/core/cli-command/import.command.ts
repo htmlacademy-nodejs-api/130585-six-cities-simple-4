@@ -20,9 +20,9 @@ export default class ImportCommand implements CliCommandInterface {
       }
 
       console.log(`
-      ${chalk.red.bold('!')} Не удалось импортировать данные из файла по причине:
-          «${chalk.italic(err.message)}»
-      `);
+        ${chalk.red.bold('!')} Не удалось импортировать данные из файла по причине:
+            «${chalk.italic(err.message)}»
+        `);
     }
   }
 }
