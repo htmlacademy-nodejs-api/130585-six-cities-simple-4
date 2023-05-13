@@ -10,7 +10,7 @@ export default class CLIApplication {
   private parseCommand(args: string[]): ParsedCommands {
     let command = '';
 
-    return args.reduce((parsedCommands, arg) => {
+    return args.reduce<ParsedCommands>((parsedCommands, arg) => {
       if (arg.startsWith('--')) {
         parsedCommands[arg] = [];
         command = arg;
@@ -20,7 +20,7 @@ export default class CLIApplication {
       }
 
       return parsedCommands;
-    }, {} as ParsedCommands);
+    }, {});
   }
 
   public getCommand(commandName: string): CliCommandInterface {
