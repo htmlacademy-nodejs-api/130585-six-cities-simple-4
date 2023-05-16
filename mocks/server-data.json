@@ -1,0 +1,72 @@
+{
+  "rent_data": {
+    "titles": [
+      "Semi-detached house",
+      "Small cute flat",
+      "House from your dream",
+      "Apartment for daily rent",
+      "1-bedroom apartment",
+      "Office area",
+      "2-bedrooms with huge terrace"
+    ],
+    "descriptions": [
+      "Two-story house in the quiet city neighbourhood.",
+      "Cosy 1-bedroom apartment in the city center. Comfortable for 1-2 persons.",
+      "Pretty little nest for long/short rent during all year. Utility bills and common expenses included.",
+      "Living space for short rent on this summer. Without pets. The sea is nearby.",
+      "Only for long rent 1+ year. We will prepare all the necessary furniture. 1 deposit required. utility bills are not included.",
+      "A part of landlord's house with backyard attached. A quite place for family with children.",
+      "Strict-designed apartments for working person. In the city business area. All amenities are within walking distance. For long period only."
+    ],
+    "cities": [
+      "Paris",
+      "Cologne",
+      "Brussels",
+      "Amsterdam",
+      "Hamburg",
+      "Dusseldorf"
+    ],
+    "previews": [
+      "https://placehold.co/400x600/CCCCCC/FFF.png",
+      "https://placehold.co/400x600/DAF2B6/FFF.png",
+      "https://placehold.co/400x600/B6F2E3/FFF.png",
+      "https://placehold.co/400x600/B6D3F2/FFF.png",
+      "https://placehold.co/400x600/CAB6F2/FFF.png",
+      "https://placehold.co/400x600/F2B6F2/FFF.png",
+      "https://placehold.co/400x600/F2B6D7/FFF.png"
+    ],
+    "images": [
+      "https://placehold.co/1500x1000/CCCCCC/FFF.png?text=photo-1",
+      "https://placehold.co/1500x1000/CCCCCC/FFF.png?text=photo-2",
+      "https://placehold.co/1500x1000/CCCCCC/FFF.png?text=photo-3",
+      "https://placehold.co/1500x1000/CCCCCC/FFF.png?text=photo-4",
+      "https://placehold.co/1500x1000/CCCCCC/FFF.png?text=photo-5",
+      "https://placehold.co/1500x1000/CCCCCC/FFF.png?text=photo-6",
+      "https://placehold.co/1500x1000/CCCCCC/FFF.png?text=photo-7"
+    ],
+    "types": [
+      "apartment",
+      "house",
+      "room",
+      "hotel"
+    ],
+    "facilities": [
+      "Breakfast",
+      "Air conditioning",
+      "Laptop friendly workspace",
+      "Baby seat",
+      "Washer",
+      "Towels",
+      "Fridge"
+    ],
+    "authors": [
+      "author1@example.com",
+      "author2@example.com",
+      "author3@example.com",
+      "author4@example.com",
+      "author5@example.com",
+      "author6@example.com",
+      "author7@example.com"
+    ]
+  }
+}
