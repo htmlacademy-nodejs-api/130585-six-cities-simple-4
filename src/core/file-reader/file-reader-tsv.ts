@@ -1,27 +1,41 @@
-import { readFileSync } from 'node:fs';
+import { createReadStream } from 'node:fs';
+import EventEmitter from 'node:events';
 
 import { FileReaderInterface } from './file-reader.interface.js';
-import type { Rent } from '@appTypes/rent.type.js';
-import { parseRent } from '@utils/index.js';
+import { CHUNK_SIZE, ENCODING_UTF8 } from '@const/common.js';
 
-export default class FileReaderTSV implements FileReaderInterface {
-  private rawData = '';
-  private readonly encoding = 'utf8';
-
-  constructor(public file: string) {}
-
-  public read(): void {
-    this.rawData = readFileSync(this.file, { encoding: this.encoding });
+export default class FileReaderTSV extends EventEmitter implements FileReaderInterface {
+  constructor(public file: string) {
+    super();
   }
 
-  public toArray(): Rent[] {
-    if (!this.rawData) {
-      return [];
+  public async read(): Promise<void> {
+    const stream = createReadStream(this.file, {
+      highWaterMark: CHUNK_SIZE['16KB'],
+      encoding: ENCODING_UTF8,
+    });
+
+    let data = '';
+    let nextLineStart = -1;
+    let importedRowCount = 0;
+
+    this.emit('start', this.file);
+
+    for await (const chunk of stream) {
+      data += chunk.toString();
+      nextLineStart = data.indexOf('\n');
+
+      while (nextLineStart >= 0) {
+        const completeRow = data.slice(0, nextLineStart + 1);
+
+        data = data.slice(++nextLineStart);
+        importedRowCount++;
+        nextLineStart = data.indexOf('\n');
+
+        this.emit('line', completeRow);
+      }
     }
 
-    return this.rawData
-      .split('\n')
-      .filter((row) => row.trim() !== '')
-      .map((rentString) => parseRent(rentString));
+    this.emit('end', importedRowCount);
   }
 }
