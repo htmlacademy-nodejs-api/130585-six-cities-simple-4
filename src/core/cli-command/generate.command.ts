@@ -20,6 +20,8 @@ export default class GenerateCommand implements CliCommandInterface {
       await fileWriterTsv.write(generator.generate());
     }
 
+    fileWriterTsv.end();
+
     showSuccess({
       text: 'Файл %% создан',
       replacer: this.file,

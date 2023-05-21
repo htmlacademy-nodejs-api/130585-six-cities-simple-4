@@ -22,4 +22,10 @@ export default class FileWriterTsv implements FileWriterInterface {
     }
     return Promise.resolve();
   }
+
+  public end(): void {
+    if (!this.stream.writableEnded) {
+      this.stream.end();
+    }
+  }
 }
