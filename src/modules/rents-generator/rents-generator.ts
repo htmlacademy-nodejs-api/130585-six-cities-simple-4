@@ -3,14 +3,10 @@ import { MockRent } from '@appTypes/mock-rent.type.js';
 import { getRandomNumberFromInterval, getRandomItem, getRandomItems, getRandomDate, getRandomBoolean } from '@utils/index.js';
 import {
   RENT_DAYS_BEFORE,
-  RENT_RATING_MIN,
-  RENT_RATING_MAX,
-  RENT_ROOMS_MIN,
-  RENT_ROOMS_MAX,
-  RENT_GUESTS_MIN,
-  RENT_GUESTS_MAX,
-  RENT_PRICE_MIN,
-  RENT_PRICE_MAX
+  RENT_RATING,
+  RENT_ROOMS,
+  RENT_GUESTS,
+  RENT_PRICE
 } from '@const/common.js';
 
 export class RentsGenerator implements RentsGeneratorInterface {
@@ -24,11 +20,11 @@ export class RentsGenerator implements RentsGeneratorInterface {
     const preview = getRandomItem<string>(this.mockData.previews ?? []);
     const images = getRandomItems<string>(this.mockData.images ?? []).join(';');
     const isPremium = getRandomBoolean();
-    const rating = getRandomNumberFromInterval(RENT_RATING_MIN, RENT_RATING_MAX, 1);
+    const rating = getRandomNumberFromInterval(RENT_RATING.MIN, RENT_RATING.MAX, 1);
     const type = getRandomItem<string>(this.mockData.types ?? []);
-    const rooms = getRandomNumberFromInterval(RENT_ROOMS_MIN, RENT_ROOMS_MAX);
-    const guests = getRandomNumberFromInterval(RENT_GUESTS_MIN, RENT_GUESTS_MAX);
-    const price = getRandomNumberFromInterval(RENT_PRICE_MIN, RENT_PRICE_MAX);
+    const rooms = getRandomNumberFromInterval(RENT_ROOMS.MIN, RENT_ROOMS.MAX);
+    const guests = getRandomNumberFromInterval(RENT_GUESTS.MIN, RENT_GUESTS.MAX);
+    const price = getRandomNumberFromInterval(RENT_PRICE.MIN, RENT_PRICE.MAX);
     const facilities = getRandomItems<string>(this.mockData.facilities ?? []).join(';');
     const author = getRandomItem<string>(this.mockData.authors ?? []);
 

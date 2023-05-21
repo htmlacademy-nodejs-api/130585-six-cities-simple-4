@@ -1,6 +1,6 @@
 import { WriteStream, createWriteStream } from 'node:fs';
 import { FileWriterInterface } from '@core/file-writer/file-writer.interface.js';
-import { CHUNK_SIZE_64KB, ENCODING_UTF8 } from '@const/common.js';
+import { CHUNK_SIZE, ENCODING_UTF8 } from '@const/common.js';
 
 export default class FileWriterTsv implements FileWriterInterface {
   private stream: WriteStream;
@@ -10,7 +10,7 @@ export default class FileWriterTsv implements FileWriterInterface {
       flags: 'w',
       encoding: ENCODING_UTF8,
       autoClose: true,
-      highWaterMark: CHUNK_SIZE_64KB,
+      highWaterMark: CHUNK_SIZE['64KB'],
     });
   }
 
