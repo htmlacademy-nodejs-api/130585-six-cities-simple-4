@@ -7,5 +7,9 @@ export function getTypedServerField<T>(serverValue: string, checkedArray: readon
 }
 
 export function getCoordsByCity (city: City | undefined): Coords | undefined {
-  return city === undefined ? undefined : CITY_COORDS[city];
+  if (!city) {
+    return;
+  }
+
+  return CITY_COORDS[city];
 }
