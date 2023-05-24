@@ -1,28 +1,32 @@
-export const CHUNK_SIZE = {
-  '16KB': 2 ** 14,
-  '64KB': 2 ** 16,
-};
+export const enum ChunkSize {
+  '16KB'= 2 ** 14,
+  '64KB'= 2 ** 16,
+}
 
-export const ENCODING_UTF8 = 'utf8';
+export const enum Encoding {
+  Utf8 = 'utf8',
+}
 
-export const RENT_DAYS_BEFORE = 10;
+export const enum RentDays {
+  Before = 10,
+}
 
-export const RENT_RATING = {
-  MIN: 1,
-  MAX: 5,
-};
+export const enum RentRating {
+  Min= 1,
+  Max = 5,
+}
 
-export const RENT_ROOMS = {
-  MIN: 1,
-  MAX: 8,
-};
+export const enum RentRooms {
+  Min= 1,
+  Max = 8,
+}
 
-export const RENT_GUESTS = {
-  MIN: 1,
-  MAX: 10,
-};
+export const enum RentGuests {
+  Min= 1,
+  Max = 10,
+}
 
-export const RENT_PRICE = {
-  MIN: 100,
-  MAX: 10000,
-};
+export const enum RentPrice {
+  Min= 100,
+  Max = 10000,
+}
