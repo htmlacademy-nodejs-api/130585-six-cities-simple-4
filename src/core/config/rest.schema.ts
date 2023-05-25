@@ -54,6 +54,6 @@ export const configRestSchema = convict<RestSchema>({
     doc: 'Название БД (MongoDB)',
     format: String,
     env: 'DB_NAME',
-    default: 'six_sities_mongodb',
+    default: 'six_sities',
   },
 });
