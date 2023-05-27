@@ -1,7 +1,7 @@
 import { RentsGeneratorInterface } from './rents-generator.interface.js';
 import { MockRent } from '@appTypes/mock-rent.type.js';
 import { getRandomNumberFromInterval, getRandomItem, getRandomItems, getRandomDate, getRandomBoolean } from '@utils/index.js';
-import { RentDays, RentRating, RentRooms, RentGuests, RentPrice } from '@const/common.js';
+import { RentDays, RentRating, RentRooms, RentGuests, RentPrice } from '@const/validation.js';
 
 export class RentsGenerator implements RentsGeneratorInterface {
   constructor(private readonly mockData: MockRent) {}
