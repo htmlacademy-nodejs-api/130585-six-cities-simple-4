@@ -1,7 +1,6 @@
 import { City } from './city.type.js';
 import { RentType } from './rent-type.type.js';
 import { RentFacility } from './rent-facility.type.js';
-import { Coords } from './coords.type.js';
 
 export type Rent = {
   title: string,
@@ -18,5 +17,4 @@ export type Rent = {
   price: number,
   facilities: RentFacility[],
   author: string,
-  coords: Coords | undefined,
 };

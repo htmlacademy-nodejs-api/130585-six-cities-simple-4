@@ -5,4 +5,6 @@ export const AppComponent = {
   DBClientInterface: Symbol.for('DBClientInterface'),
   UserServiceInterface: Symbol.for('UserServiceInterface'),
   UserModel: Symbol.for('UserModel'),
+  CityServiceInterface: Symbol.for('CityServiceInterface'),
+  CityModel: Symbol.for('CityModel'),
 } as const;
