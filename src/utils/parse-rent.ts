@@ -3,10 +3,11 @@ import type { Rent } from '@appTypes/rent.type.js';
 import { cities, CityName } from '@appTypes/city.type.js';
 import { rentFacilities, RentFacility } from '@appTypes/rent-facility.type.js';
 import { rentTypes, RentType } from '@appTypes/rent-type.type.js';
+import { userTypes, UserType } from '@appTypes/user-type.type.js';
 
 export const parseRent = (rentString: string): Rent => {
   const [
-    title, description, createAt, cityString, preview, images, isPremium, rating, type, rooms, guests, price, facilities, author,
+    title, description, createAt, cityString, preview, images, isPremium, rating, type, rooms, guests, price, facilities, name, email, avatar, userType
   ] = rentString.replace('\n', '').split('\t');
 
   const cityName = getTypedServerField<CityName>(cityString, cities);
@@ -32,6 +33,11 @@ export const parseRent = (rentString: string): Rent => {
         .map((facility) => getTypedServerField<RentFacility>(facility, rentFacilities))
         .filter((facility): facility is RentFacility => facility !== undefined)
       : [],
-    author,
+    author: {
+      name,
+      email,
+      avatar,
+      type: getTypedServerField<UserType>(userType, userTypes),
+    },
   };
 };

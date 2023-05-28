@@ -20,7 +20,7 @@ export class CityEntity extends defaultClasses.TimeStamps implements City {
   public name!: CityName;
 
   @prop({
-    type: () => String,
+    type: () => Object,
     required: true,
   })
   public coords!: Coords;

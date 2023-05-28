@@ -1,6 +1,7 @@
 import { City } from './city.type.js';
 import { RentType } from './rent-type.type.js';
 import { RentFacility } from './rent-facility.type.js';
+import { User } from '@appTypes/user.type.js';
 
 export type Rent = {
   title: string,
@@ -16,5 +17,5 @@ export type Rent = {
   guests: number,
   price: number,
   facilities: RentFacility[],
-  author: string,
+  author: Omit<User, 'pass'>,
 };

@@ -6,5 +6,8 @@ export type MockRent = {
   images: string[],
   types: string[],
   facilities: [],
-  authors: string[],
+  emails: string[],
+  names: string[],
+  avatars: string[],
+  userTypes: string[],
 };

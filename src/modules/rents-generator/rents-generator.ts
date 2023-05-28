@@ -1,6 +1,12 @@
 import { RentsGeneratorInterface } from './rents-generator.interface.js';
 import { MockRent } from '@appTypes/mock-rent.type.js';
-import { getRandomNumberFromInterval, getRandomItem, getRandomItems, getRandomDate, getRandomBoolean } from '@utils/index.js';
+import {
+  getRandomNumberFromInterval,
+  getRandomItem,
+  getRandomItems,
+  getRandomDate,
+  getRandomBoolean,
+} from '@utils/index.js';
 import { RentDays, RentRating, RentRooms, RentGuests, RentPrice } from '@const/validation.js';
 
 export class RentsGenerator implements RentsGeneratorInterface {
@@ -20,7 +26,10 @@ export class RentsGenerator implements RentsGeneratorInterface {
     const guests = getRandomNumberFromInterval(RentGuests.Min, RentGuests.Max);
     const price = getRandomNumberFromInterval(RentPrice.Min, RentPrice.Max);
     const facilities = getRandomItems<string>(this.mockData.facilities ?? []).join(';');
-    const author = getRandomItem<string>(this.mockData.authors ?? []);
+    const name = getRandomItem<string>(this.mockData.names ?? []);
+    const email = getRandomItem<string>(this.mockData.emails ?? []);
+    const avatar = getRandomItem<string>(this.mockData.avatars ?? []);
+    const userType = getRandomItem<string>(this.mockData.userTypes ?? []);
 
     return [
       title,
@@ -36,7 +45,10 @@ export class RentsGenerator implements RentsGeneratorInterface {
       guests,
       price,
       facilities,
-      author,
+      name,
+      email,
+      avatar,
+      userType,
     ].join('\t');
   }
 }

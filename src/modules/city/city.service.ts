@@ -28,7 +28,11 @@ export default class CityService implements CityServiceInterface {
     return this.cityModel.findOne({ name: cityName }).exec();
   }
 
-  public async findByCityNameOrCreate(dto: CreateCityDto, cityName: string): Promise<DocumentType<CityEntity>> {
+  public async findByCityNameOrCreate(dto: CreateCityDto, cityName: string | undefined): Promise<DocumentType<CityEntity> | null> {
+    if (cityName === undefined) {
+      return null;
+    }
+
     const existedCity = await this.findByCityName(cityName);
 
     if (existedCity) {

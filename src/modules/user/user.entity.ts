@@ -37,7 +37,7 @@ export class UserEntity extends defaultClasses.TimeStamps implements User {
     type: () => String,
     required: true,
   })
-  public type!: UserType;
+  public type!: UserType | undefined;
 
   @prop({
     required: true,

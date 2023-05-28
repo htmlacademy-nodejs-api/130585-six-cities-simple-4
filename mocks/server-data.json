@@ -59,7 +59,7 @@
       "Towels",
       "Fridge"
     ],
-    "authors": [
+    "emails": [
       "author1@example.com",
       "author2@example.com",
       "author3@example.com",
@@ -67,6 +67,28 @@
       "author5@example.com",
       "author6@example.com",
       "author7@example.com"
+    ],
+    "names": [
+      "Apollon Belveder",
+      "Mia Sudzuki",
+      "Dionisis Apo",
+      "Ivanis Ioannides",
+      "Michael Cho",
+      "Slava Doyouneed",
+      "I am"
+    ],
+    "avatars": [
+      "https://placehold.co/500x500/E7A6EC/FFF.png?text=user-1",
+      "https://placehold.co/500x500/E7A6EC/FFF.png?text=user-2",
+      "https://placehold.co/500x500/E7A6EC/FFF.png?text=user-3",
+      "https://placehold.co/500x500/E7A6EC/FFF.png?text=user-4",
+      "https://placehold.co/500x500/E7A6EC/FFF.png?text=user-5",
+      "https://placehold.co/500x500/E7A6EC/FFF.png?text=user-6",
+      "https://placehold.co/500x500/E7A6EC/FFF.png?text=user-7"
+    ],
+    "userTypes": [
+      "general",
+      "pro"
     ]
   }
 }
