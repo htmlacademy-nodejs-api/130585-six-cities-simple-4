@@ -6,7 +6,7 @@ export type Rent = {
   title: string,
   description: string,
   createAt: Date,
-  city: City | undefined,
+  city: City,
   preview: string,
   images: string[],
   isPremium: boolean,

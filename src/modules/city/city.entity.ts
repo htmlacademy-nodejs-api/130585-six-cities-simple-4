@@ -8,17 +8,19 @@ export interface CityEntity extends defaultClasses.Base {}
 
 @modelOptions({
   schemaOptions: {
-    collection: 'users',
+    collection: 'cities',
   },
 })
 export class CityEntity extends defaultClasses.TimeStamps implements City {
   @prop({
+    type: () => String,
     unique: true,
     required: true,
   })
   public name!: CityName;
 
   @prop({
+    type: () => String,
     required: true,
   })
   public coords!: Coords;
