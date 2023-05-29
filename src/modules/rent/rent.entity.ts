@@ -45,6 +45,7 @@ export class RentEntity extends defaultClasses.TimeStamps {
   public preview!: string;
 
   @prop({
+    type: () => [String],
     required: true,
     default: [],
   })
@@ -90,6 +91,7 @@ export class RentEntity extends defaultClasses.TimeStamps {
   public price!: number;
 
   @prop({
+    type: () => [String],
     required: true,
   })
   public facilities!: RentFacility[];

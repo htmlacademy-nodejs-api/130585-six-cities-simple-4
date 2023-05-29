@@ -3,6 +3,14 @@ import { prop, modelOptions, defaultClasses, getModelForClass } from '@typegoose
 import { City, CityName } from '@appTypes/city.type.js';
 import { Coords } from '@appTypes/coords.type.js';
 
+class CityCoordsEntity {
+  @prop()
+  public lat?: number;
+
+  @prop()
+  public long?: number;
+}
+
 // for type merging of interface and class UserEntity
 export interface CityEntity extends defaultClasses.Base {}
 
@@ -20,8 +28,10 @@ export class CityEntity extends defaultClasses.TimeStamps implements City {
   public name!: CityName;
 
   @prop({
-    type: () => Object,
+    type: () => CityCoordsEntity,
     required: true,
+    default: {},
+    _id: false,
   })
   public coords!: Coords;
 }
