@@ -19,8 +19,7 @@ import ConfigService from '@core/config/config.service.js';
 import MongoClientService from '@core/db-client/mongo-client.service.js';
 import FileReaderTSV from '@core/file-reader/file-reader-tsv.js';
 import { parseRent, getMongoURI } from '@utils/index.js';
-
-const DEFAULT_USER_PASSWORD = '123456';
+import { DEFAULT_USER_PASSWORD } from '@const/db.js';
 
 export default class ImportCommand implements CliCommandInterface {
   public readonly name = '--import';
