@@ -18,7 +18,7 @@ import ConsoleLoggerService from '@core/logger/console.service.js';
 import ConfigService from '@core/config/config.service.js';
 import MongoClientService from '@core/db-client/mongo-client.service.js';
 import FileReaderTSV from '@core/file-reader/file-reader-tsv.js';
-import { parseRent, showSuccess, showError, getMongoURI } from '@utils/index.js';
+import { parseRent, getMongoURI } from '@utils/index.js';
 
 const DEFAULT_USER_PASSWORD = '123456';
 
@@ -59,11 +59,7 @@ export default class ImportCommand implements CliCommandInterface {
   }
 
   private handleStart(file: string) {
-    showSuccess({
-      icon: '→',
-      text: 'Начато чтение файла %%:',
-      replacer: file,
-    });
+    this.logger.debug(`Начато чтение файла ${file}:`);
   }
 
   private async handleLine(line: string, resolve: () => void) {
@@ -74,10 +70,7 @@ export default class ImportCommand implements CliCommandInterface {
   }
 
   private handleEnd(count: number) {
-    showSuccess({
-      text: '%%  строк прочитано',
-      replacer: String(count),
-    });
+    this.logger.debug(`${count} строк прочитано`);
     this.DBService.disconnect();
   }
 
@@ -103,10 +96,7 @@ export default class ImportCommand implements CliCommandInterface {
       await fileReader.read();
 
     } catch (err) {
-      showError({
-        text: 'Не удалось импортировать данные из файла по причине:',
-        error: err,
-      });
+      this.logger.error('Не удалось импортировать данные из файла по причине:', err);
     }
   }
 }

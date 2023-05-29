@@ -4,7 +4,7 @@ import { RentsGenerator } from '@modules/rents-generator/rents-generator.js';
 import FileWriterTsv from '@core/file-writer/file-writer-tsv.js';
 import { CliCommandInterface } from './cli-command.interface.js';
 import type { MockRent } from '@appTypes/mock-rent.type.js';
-import { showError, showSuccess } from '@utils/index.js';
+import { showError, showInfo } from '@utils/index.js';
 
 export default class GenerateCommand implements CliCommandInterface {
   public readonly name = '--generate';
@@ -22,7 +22,7 @@ export default class GenerateCommand implements CliCommandInterface {
 
     fileWriterTsv.end();
 
-    showSuccess({
+    showInfo({
       text: 'Файл %% создан',
       replacer: this.file,
     });
@@ -37,7 +37,7 @@ export default class GenerateCommand implements CliCommandInterface {
     try {
       this.initialData = await got.get(url).json();
 
-      showSuccess({
+      showInfo({
         text: 'Данные по адресу %% запрошены',
         replacer: url,
       });
