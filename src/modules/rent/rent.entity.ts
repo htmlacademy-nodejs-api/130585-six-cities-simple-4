@@ -2,6 +2,7 @@ import { prop, modelOptions, defaultClasses, getModelForClass, Ref } from '@type
 
 import { RentType, rentTypes } from '@appTypes/rent-type.type.js';
 import { RentFacility, rentFacilities } from '@appTypes/rent-facility.type.js';
+import { RentEntityType } from '@appTypes/rent.type.js';
 import { CityEntity } from '@modules/city/city.entity.js';
 import { UserEntity } from '@modules/user/user.entity.js';
 import { RentRating, RentRooms, RentGuests, RentPrice } from '@const/validation.js';
@@ -14,7 +15,7 @@ export interface RentEntity extends defaultClasses.Base {}
     collection: 'rents',
   },
 })
-export class RentEntity extends defaultClasses.TimeStamps {
+export class RentEntity extends defaultClasses.TimeStamps implements RentEntityType {
   @prop({
     required: true,
     trim: true,

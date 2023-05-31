@@ -2,6 +2,9 @@ import { City } from './city.type.js';
 import { RentType } from './rent-type.type.js';
 import { RentFacility } from './rent-facility.type.js';
 import { User } from '@appTypes/user.type.js';
+import { Ref } from '@typegoose/typegoose';
+import { CityEntity } from '@modules/city/city.entity';
+import { UserEntity } from '@modules/user/user.entity';
 
 export type Rent = {
   title: string,
@@ -19,4 +22,9 @@ export type Rent = {
   facilities: RentFacility[],
   author: User,
   commentCount: number,
+};
+
+export type RentEntityType = Omit<Rent, 'city' | 'author'> & {
+  city: Ref<CityEntity>,
+  author: Ref<UserEntity>,
 };
