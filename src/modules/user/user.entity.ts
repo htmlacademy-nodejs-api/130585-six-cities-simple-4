@@ -1,7 +1,7 @@
 import { prop, modelOptions, defaultClasses, getModelForClass } from '@typegoose/typegoose';
 
 import { User } from '@appTypes/user.type.js';
-import { UserType } from '@appTypes/user-type.type.js';
+import { UserType, userTypes } from '@appTypes/user-type.type.js';
 import { createSHA256 } from '@utils/index.js';
 
 // for type merging of interface and class UserEntity
@@ -31,28 +31,38 @@ export class UserEntity extends defaultClasses.TimeStamps implements User {
   @prop({
     default: '',
   })
-  public avatar: string;
+  public avatar?: string;
 
   @prop({
     type: () => String,
     required: true,
+    validate: {
+      validator: (type: UserType | undefined) => [...userTypes, undefined].includes(type),
+      message: `Тип пользователя не входят в список разрешенных: ${userTypes.join(', ')}, undefined!`
+    }
   })
   public type!: UserType | undefined;
 
   @prop({
     required: true,
   })
-  public pass: string;
+  private pass?: string;
 
-  constructor(userData: User, salt: string) {
+  constructor(userData: User) {
     super();
 
-    this.salt = salt;
     this.name = userData.name;
     this.email = userData.email;
     this.avatar = userData.avatar;
     this.type = userData.type;
-    this.pass = createSHA256(userData.pass, salt);
+  }
+
+  public setPassword(pass: string, salt: string) {
+    this.pass = createSHA256(pass, salt);
+  }
+
+  public getPassword() {
+    return this.pass;
   }
 }
 

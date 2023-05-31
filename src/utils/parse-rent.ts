@@ -7,7 +7,7 @@ import { userTypes, UserType } from '@appTypes/user-type.type.js';
 
 export const parseRent = (rentString: string): Rent => {
   const [
-    title, description, createAt, cityString, preview, images, isPremium, rating, type, rooms, guests, price, facilities, name, email, avatar, userType
+    title, description, createdAt, cityString, preview, images, isPremium, rating, type, rooms, guests, price, facilities, name, email, avatar, userType
   ] = rentString.replace('\n', '').split('\t');
 
   const cityName = getTypedServerField<CityName>(cityString, cities);
@@ -15,7 +15,7 @@ export const parseRent = (rentString: string): Rent => {
   return {
     title,
     description,
-    createAt: new Date(createAt),
+    createdAt: new Date(createdAt),
     city: {
       name: cityName,
       coords: getCoordsByCity(cityName),
@@ -39,5 +39,6 @@ export const parseRent = (rentString: string): Rent => {
       avatar,
       type: getTypedServerField<UserType>(userType, userTypes),
     },
+    commentCount: 0,
   };
 };

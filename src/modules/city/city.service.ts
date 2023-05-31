@@ -29,7 +29,7 @@ export default class CityService implements CityServiceInterface {
   }
 
   public async findByCityNameOrCreate(dto: CreateCityDto, cityName: string | undefined): Promise<DocumentType<CityEntity> | null> {
-    if (cityName === undefined) {
+    if (!cityName) {
       return null;
     }
 

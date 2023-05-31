@@ -6,7 +6,7 @@ import { User } from '@appTypes/user.type.js';
 export type Rent = {
   title: string,
   description: string,
-  createAt: Date,
+  createdAt: Date,
   city: City,
   preview: string,
   images: string[],
@@ -17,5 +17,6 @@ export type Rent = {
   guests: number,
   price: number,
   facilities: RentFacility[],
-  author: Omit<User, 'pass'>,
+  author: User,
+  commentCount: number,
 };

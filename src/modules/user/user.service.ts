@@ -18,9 +18,10 @@ export default class UserService implements UserServiceInterface {
   ) {}
 
   public async create(dto: CreateUserDto): Promise<DocumentType<UserEntity>> {
-    const user = new UserEntity(dto, this.config.get('SALT'));
-    const createdUser = await this.userModel.create(user);
+    const user = new UserEntity(dto);
+    user.setPassword(dto.pass, this.config.get('SALT'));
 
+    const createdUser = await this.userModel.create(user);
     this.logger.info(`Создан новый пользователь: ${user.email}`);
 
     return createdUser;

@@ -15,7 +15,7 @@ export class RentsGenerator implements RentsGeneratorInterface {
   public generate(): string {
     const title = getRandomItem<string>(this.mockData.titles ?? []);
     const description = getRandomItem<string>(this.mockData.descriptions ?? []);
-    const createAt = getRandomDate(RentDays.Before);
+    const createdAt = getRandomDate(RentDays.Before);
     const city = getRandomItem<string>(this.mockData.cities ?? []);
     const preview = getRandomItem<string>(this.mockData.previews ?? []);
     const images = getRandomItems<string>(this.mockData.images ?? []).join(';');
@@ -34,7 +34,7 @@ export class RentsGenerator implements RentsGeneratorInterface {
     return [
       title,
       description,
-      createAt,
+      createdAt,
       city,
       preview,
       images,

@@ -5,7 +5,7 @@ import { RentFacility } from '@appTypes/rent-facility.type.js';
 export default class CreateRentDto {
   public title!: string;
   public description!: string;
-  public createAt!: Date;
+  public createdAt!: Date;
   public city!: City;
   public preview!: string;
   public images!: string[];

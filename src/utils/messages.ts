@@ -20,7 +20,7 @@ export const showError = ({text, error, args}: ErrorMessageParams) => {
   if (error instanceof Error) {
     errorMessage = error.message;
 
-  } else if (args && args[0] && args[0] instanceof Error) {
+  } else if (args?.[0] && args[0] instanceof Error) {
     errorMessage = args[0].message;
   }
 
@@ -29,7 +29,7 @@ export const showError = ({text, error, args}: ErrorMessageParams) => {
       «${chalk.italic(errorMessage)}»
   `);
 
-  if (args && args.length) {
+  if (args?.length) {
     console.error(...args);
   }
 };
@@ -39,7 +39,7 @@ export const showInfo = ({text, replacer, icon, args, method}: SuccessMessagePar
   ${chalk.green.bold(`${ icon || '✔' }`)} ${replacer ? text.replace('%%', chalk.hex('#318495').bold(replacer)) : text}
   `);
 
-  if (args && args.length) {
+  if (args?.length) {
     console[method || 'log'](...args);
   }
 };

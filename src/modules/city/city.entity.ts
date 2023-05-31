@@ -1,6 +1,6 @@
 import { prop, modelOptions, defaultClasses, getModelForClass } from '@typegoose/typegoose';
 
-import { City, CityName } from '@appTypes/city.type.js';
+import { City, CityName, cities } from '@appTypes/city.type.js';
 import { Coords } from '@appTypes/coords.type.js';
 
 class CityCoordsEntity {
@@ -24,6 +24,10 @@ export class CityEntity extends defaultClasses.TimeStamps implements City {
     type: () => String,
     unique: true,
     required: true,
+    validate: {
+      validator: (cityName: CityName) => cities.includes(cityName),
+      message: `Название города не входит в список разрешенных: ${cities.join(', ')}!`
+    }
   })
   public name!: CityName;
 
