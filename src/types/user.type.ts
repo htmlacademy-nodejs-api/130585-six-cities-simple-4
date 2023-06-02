@@ -4,6 +4,5 @@ export type User = {
   name: string;
   email: string;
   avatar?: string;
-  type: UserType;
-  pass: string,
+  type: UserType | undefined;
 };

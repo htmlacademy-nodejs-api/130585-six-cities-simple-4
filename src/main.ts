@@ -1,23 +1,22 @@
 import 'reflect-metadata';
 import { Container } from 'inversify';
-import { LoggerInterface } from '@core/logger/logger.interface.js';
-import { ConfigInterface } from '@core/config/config.interface.js';
-import { RestSchema } from '@core/config/rest.schema.js';
+
 import { AppComponent } from '@appTypes/app-component.enum.js';
-import { PinoService } from '@core/logger/pino.service.js';
-import ConfigService from '@core/config/config.service.js';
 import RESTApplication from '@app/rest.js';
+import { createRESTApplicationContainer } from '@app/rest.container.js';
+import { createUserContainer } from '@modules/user/user.container.js';
+import { createCityContainer } from '@modules/city/city.container.js';
+import { createRentContainer } from '@modules/rent/rent.container.js';
 
 async function boostrap() {
-  const container = new Container();
+  const mainContainer = Container.merge(
+    createRESTApplicationContainer(),
+    createUserContainer(),
+    createCityContainer(),
+    createRentContainer(),
+  );
 
-  container.bind<RESTApplication>(AppComponent.RESTApplication).to(RESTApplication).inSingletonScope();
-  container.bind<LoggerInterface>(AppComponent.LoggerInterface).to(PinoService).inSingletonScope();
-  container.bind<ConfigInterface<RestSchema>>(AppComponent.ConfigInterface).to(ConfigService).inSingletonScope();
-
-  const RESTApp = container.get<RESTApplication>(AppComponent.RESTApplication);
-
-  await RESTApp.init();
+  await mainContainer.get<RESTApplication>(AppComponent.RESTApplication).init();
 }
 
 boostrap();

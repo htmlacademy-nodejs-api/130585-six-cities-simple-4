@@ -1,3 +1,5 @@
+import 'reflect-metadata';
+
 import { CliCommandInterface } from '@core/cli-command/cli-command.interface.js';
 
 type ParsedCommands = Record<string, string[]>;

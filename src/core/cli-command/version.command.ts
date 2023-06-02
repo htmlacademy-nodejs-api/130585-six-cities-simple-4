@@ -2,7 +2,7 @@ import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 
 import { CliCommandInterface } from './cli-command.interface.js';
-import { showError, showSuccess } from '@utils/index.js';
+import { showError, showInfo } from '@utils/index.js';
 import { Encoding } from '@const/common.js';
 
 export default class VersionCommand implements CliCommandInterface {
@@ -19,7 +19,7 @@ export default class VersionCommand implements CliCommandInterface {
     try {
       const version = this.readVersion();
 
-      showSuccess({
+      showInfo({
         text: 'Версия программы: %%',
         replacer: String(version),
       });

@@ -1,7 +1,13 @@
 import { RentsGeneratorInterface } from './rents-generator.interface.js';
 import { MockRent } from '@appTypes/mock-rent.type.js';
-import { getRandomNumberFromInterval, getRandomItem, getRandomItems, getRandomDate, getRandomBoolean } from '@utils/index.js';
-import { RentDays, RentRating, RentRooms, RentGuests, RentPrice } from '@const/common.js';
+import {
+  getRandomNumberFromInterval,
+  getRandomItem,
+  getRandomItems,
+  getRandomDate,
+  getRandomBoolean,
+} from '@utils/index.js';
+import { RentDays, RentRating, RentRooms, RentGuests, RentPrice } from '@const/validation.js';
 
 export class RentsGenerator implements RentsGeneratorInterface {
   constructor(private readonly mockData: MockRent) {}
@@ -9,7 +15,7 @@ export class RentsGenerator implements RentsGeneratorInterface {
   public generate(): string {
     const title = getRandomItem<string>(this.mockData.titles ?? []);
     const description = getRandomItem<string>(this.mockData.descriptions ?? []);
-    const createAt = getRandomDate(RentDays.Before);
+    const createdAt = getRandomDate(RentDays.Before);
     const city = getRandomItem<string>(this.mockData.cities ?? []);
     const preview = getRandomItem<string>(this.mockData.previews ?? []);
     const images = getRandomItems<string>(this.mockData.images ?? []).join(';');
@@ -20,12 +26,15 @@ export class RentsGenerator implements RentsGeneratorInterface {
     const guests = getRandomNumberFromInterval(RentGuests.Min, RentGuests.Max);
     const price = getRandomNumberFromInterval(RentPrice.Min, RentPrice.Max);
     const facilities = getRandomItems<string>(this.mockData.facilities ?? []).join(';');
-    const author = getRandomItem<string>(this.mockData.authors ?? []);
+    const name = getRandomItem<string>(this.mockData.names ?? []);
+    const email = getRandomItem<string>(this.mockData.emails ?? []);
+    const avatar = getRandomItem<string>(this.mockData.avatars ?? []);
+    const userType = getRandomItem<string>(this.mockData.userTypes ?? []);
 
     return [
       title,
       description,
-      createAt,
+      createdAt,
       city,
       preview,
       images,
@@ -36,7 +45,10 @@ export class RentsGenerator implements RentsGeneratorInterface {
       guests,
       price,
       facilities,
-      author,
+      name,
+      email,
+      avatar,
+      userType,
     ].join('\t');
   }
 }

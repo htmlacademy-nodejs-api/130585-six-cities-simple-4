@@ -1,4 +1,4 @@
-import type { City } from '@appTypes/city.type.js';
+import type { CityName } from '@appTypes/city.type.js';
 import type { Coords } from '@appTypes/coords.type.js';
 import { CITY_COORDS } from '@const/city-coords.js';
 
@@ -6,7 +6,7 @@ export function getTypedServerField<T>(serverValue: string, checkedArray: readon
   return checkedArray.find((item) => item === serverValue);
 }
 
-export function getCoordsByCity (city: City | undefined): Coords | undefined {
+export function getCoordsByCity (city: CityName | undefined): Coords | undefined {
   if (!city) {
     return;
   }
