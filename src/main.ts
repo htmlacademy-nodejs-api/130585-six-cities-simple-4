@@ -7,6 +7,7 @@ import { createRESTApplicationContainer } from '@app/rest.container.js';
 import { createUserContainer } from '@modules/user/user.container.js';
 import { createCityContainer } from '@modules/city/city.container.js';
 import { createRentContainer } from '@modules/rent/rent.container.js';
+import { createCommentContainer } from '@modules/comment/comment.container.js';
 
 async function boostrap() {
   const mainContainer = Container.merge(
@@ -14,6 +15,7 @@ async function boostrap() {
     createUserContainer(),
     createCityContainer(),
     createRentContainer(),
+    createCommentContainer(),
   );
 
   await mainContainer.get<RESTApplication>(AppComponent.RESTApplication).init();

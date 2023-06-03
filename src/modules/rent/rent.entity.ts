@@ -30,11 +30,6 @@ export class RentEntity extends defaultClasses.TimeStamps implements RentEntityT
 
   @prop({
     required: true,
-  })
-  public createdAt!: Date;
-
-  @prop({
-    required: true,
     ref: CityEntity,
     _id: false,
   })
