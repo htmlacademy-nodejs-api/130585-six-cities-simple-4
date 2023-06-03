@@ -41,4 +41,8 @@ export default class CityService implements CityServiceInterface {
 
     return this.create(dto);
   }
+
+  public async find(): Promise<DocumentType<CityEntity>[]> {
+    return this.cityModel.find();
+  }
 }
