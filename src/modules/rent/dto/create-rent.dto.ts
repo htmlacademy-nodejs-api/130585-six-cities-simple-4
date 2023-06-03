@@ -10,7 +10,6 @@ export default class CreateRentDto {
   public preview!: string;
   public images!: string[];
   public isPremium!: boolean;
-  public rating!: number;
   public type!: RentType | undefined;
   public rooms!: number;
   public guests!: number;
