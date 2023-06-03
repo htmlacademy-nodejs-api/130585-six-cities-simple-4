@@ -3,9 +3,9 @@ import { inject, injectable } from 'inversify';
 
 import { RentServiceInterface } from '@modules/rent/rent-service.interface.js';
 import { RentEntity } from '@modules/rent/rent.entity.js';
-import { AppComponent } from '@appTypes/app-component.enum';
-import { LoggerInterface } from '@core/logger/logger.interface';
-import CreateRentDto from '@modules/rent/dto/create-rent.dto';
+import { AppComponent } from '@appTypes/app-component.enum.js';
+import { LoggerInterface } from '@core/logger/logger.interface.js';
+import CreateRentDto from '@modules/rent/dto/create-rent.dto.js';
 
 @injectable()
 export class RentService implements RentServiceInterface {
@@ -23,6 +23,6 @@ export class RentService implements RentServiceInterface {
   }
 
   public async findById(rentId: string): Promise<DocumentType<RentEntity> | null> {
-    return this.rentModel.findById(rentId).exec();
+    return this.rentModel.findById(rentId).populate(['author', 'city']).exec();
   }
 }
