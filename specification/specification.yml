@@ -1,0 +1,664 @@
+openapi: 3.0.0
+info:
+  title: API сервер для учебного проекта «Шесть городов»
+  description: |-
+    * Список ресурсов и маршрутов сервера «Шесть городов»
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+  version: 2.0.0
+paths:
+  /cities:
+    post:
+      tags:
+        - cities
+      summary: Создание города
+      description: Создает город на основе переданных данных
+      requestBody:
+        description: Информация о городе
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CityCreate'
+        required: true
+      responses:
+        '201':
+          description: Город создан. Объект города
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/City'
+
+        '409':
+          description: Город с таким названием уже существует
+
+    get:
+      tags:
+        - cities
+      summary: Список городов
+      description: Возвращает список городов
+      responses:
+        '201':
+          description: Города получены. Массив объектов городов
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cities'
+
+  /users/signup:
+    post:
+      tags:
+        - users
+      summary: Регистрация пользователя
+      description: Регистрирует нового пользователя
+      requestBody:
+        description: Информация для создания нового пользователя
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserCreate'
+        required: true
+      responses:
+        '201':
+          description: Пользователь зарегистрирован. Объект пользователя.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+
+        '409':
+          description: Пользователь с таким email уже существует
+
+  /users/login:
+    post:
+      tags:
+        - users
+      summary: Авторизация пользователя
+      description: Авторизует пользователя на основе логина и пароля
+      requestBody:
+        description: Логин и пароль зарегистрированного пользователя
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserLogin'
+        required: true
+      responses:
+        '201':
+          description: Пользователь авторизован. Объект пользователя
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+
+        '409':
+          description: Пользователя с таким email не существует
+
+  /users/{userId}:
+    get:
+      tags:
+        - users
+      summary: Информация о пользователе
+      description: Возвращает информацию по авторизованному пользователю
+      responses:
+        '200':
+          description: Объект пользователя.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+
+        '409':
+          description: Пользователя с таким id не существует
+
+  /users/{userId}/avatar:
+    post:
+      tags:
+        - users
+      summary: Загрузка изображения аватара пользователя
+      description: Загружает изображение аватара пользователя. Изображение аватара должно быть в формате `png` или `jpg`
+      requestBody:
+        description: Файл изображения
+        content:
+          image/*:
+            schema:
+              $ref: '#/components/schemas/UserAvatar'
+        required: true
+      responses:
+        '200':
+          description: Объект аватара пользователя
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserAvatarUrl'
+
+  /rents:
+    post:
+      tags:
+        - rents
+      summary: Создание предложения об аренде
+      description: Создает предложение об аренде на основе переданных данных
+      requestBody:
+        description: Информация о предложении об аренде
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RentCreate'
+        required: true
+      responses:
+        '201':
+          description: Предложение создано. Объект предложения об аренде
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Rent'
+
+    get:
+      tags:
+        - rents
+      summary: Список предложений об аренде
+      description: Возвращает предложений об аренде
+      responses:
+        '201':
+          description: Предложения получены. Массив объектов предложений об аренде
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Rents'
+
+  /rents/{rentId}:
+    get:
+      tags:
+        - rents
+      summary: Предложение об аренде
+      description: Возвращает информацию о предложении об аренде
+      responses:
+        '201':
+          description: Предложение получено. Объект предложений об аренде
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Rents'
+        '409':
+          description: Предложения с таким id не существует
+
+    patch:
+      tags:
+        - rents
+      summary: Редактирование предложения об аренде
+      description: Редактирует поля предложения об аренде на основе переданных данных
+      requestBody:
+        description: Информация о предложении об аренде
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RentUpdate'
+        required: true
+      responses:
+        '201':
+          description: Предложение отредактировано. Объект предложения об аренде
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Rent'
+
+    delete:
+      tags:
+        - rents
+      summary: Удаление предложения об аренде
+      responses:
+        '201':
+          description: Предложение удалено
+        '409':
+          description: Предложение не найдено
+        '403':
+          description: Доступ к предложению запрещен
+
+  /rents/{rentId}/comments:
+    get:
+      tags:
+        - rents
+        - comments
+      summary: Список комментариев к предложению об аренде
+      description: Возвращает комментарии к предложению об аренде
+      responses:
+        '201':
+          description: Предложение получено. Массив объектов комментариев
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Comments'
+
+    post:
+      tags:
+        - rents
+        - comments
+      summary: Комментарий к предложению об аренде
+      description: Создает комментарий к предложению об аренде
+      requestBody:
+        description: Комментарий
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CommentCreate'
+        required: true
+      responses:
+        '201':
+          description: Комментарий создан. Объект комментария
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Comment'
+
+tags:
+  - name: cities
+    description: Действия с городами
+  - name: users
+    description: Действия с пользователями
+  - name: rents
+    description: Действия с предложениями по аренде
+  - name: comments
+    description: Действия с комментариями
+
+components:
+  schemas:
+    CityCreate:
+      type: object
+
+      properties:
+        name:
+          type: string
+          required: true
+          example: Город N
+
+        coords:
+          type: object
+          properties:
+            lat:
+              type: number
+              example: 48.85661
+            long:
+              type: number
+              example: 2.35149
+
+    City:
+      type: object
+
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: 123
+
+        name:
+          type: string
+          required: true
+          example: Город N
+
+        coords:
+          type: object
+          properties:
+            lat:
+              type: number
+              example: 48.85661
+            long:
+              type: number
+              example: 2.35149
+
+    Cities:
+      type: array
+      items:
+        $ref: '#/components/schemas/City'
+
+    UserCreate:
+      type: object
+
+      properties:
+        name:
+          type: string
+          required: true
+          example: Имя Пользователя
+
+        email:
+          type: string
+          format: email
+          required: true
+          example: keks@htmlacademy.ru
+
+        avatar:
+          type: string
+          example: path/to/avatar.jpg
+
+        type:
+          type: string
+          enum: [ general, pro ]
+          example: pro
+
+        pass:
+          type: string
+          format: password
+          required: true
+          example: 123456
+
+    UserLogin:
+      type: object
+
+      properties:
+        email:
+          type: string
+          format: email
+          required: true
+          example: keks@htmlacademy.ru
+
+        pass:
+          type: string
+          format: password
+          required: true
+          example: 123456
+
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: 123
+
+        name:
+          type: string
+          example: Имя Пользователя
+
+        email:
+          type: string
+          format: email
+          example: example@example.com
+
+        avatar:
+          type: string
+          example: path/to/avatar.jpg
+
+        type:
+          type: string
+          enum: [general, pro]
+          example: pro
+
+    UserAvatar:
+      $ref: '#/components/schemas/UserAvatarUrl'
+
+    UserAvatarUrl:
+      type: object
+      properties:
+        url:
+          type: string
+          example: path/to/avatar.jpg
+
+    RentCreate:
+      type: object
+      properties:
+        title:
+          type: string
+          required: true
+          minLength: 10
+          maxLength: 100
+          example: Заголовок предложения об аренде
+
+        description:
+          type: string
+          required: true
+          minLength: 20
+          maxLength: 1024
+          example: Описание предложения об аренде
+
+        city:
+          $ref: '#/components/schemas/City/properties/id'
+
+        preview:
+          type: string
+          required: true
+          example: url/to/preview-1.jpg
+
+        images:
+          type: array
+          items:
+            type: string
+          required: true
+          example: ['url/to/image-1.jpg', 'url/to/image-2.jpg', 'url/to/image-3.jpg',]
+
+        isPremium:
+          type: boolean
+          required: true
+          example: true
+
+        type:
+          type: string
+          enum: ['apartment', 'house', 'room', 'hotel']
+          required: true
+          example: house
+
+        rooms:
+          type: integer
+          required: true
+          minimum: 1
+          maximum: 8
+          example: 2
+
+        guests:
+          type: integer
+          required: true
+          minimum: 1
+          maximum: 10
+          example: 3
+
+        price:
+          type: integer
+          required: true
+          example: 4000
+          minimum: 100
+          maximum: 10000
+
+        facilities:
+          type: array
+          items:
+            type: string
+            enum: ['Breakfast', 'Air conditioning', 'Laptop friendly workspace', 'Baby seat', 'Washer', 'Towels', 'Fridge']
+          required: true
+          example: ['Air conditioning', 'Laptop friendly workspace']
+
+        author:
+          $ref: '#/components/schemas/User/properties/id'
+
+    RentUpdate:
+      type: object
+      properties:
+        title:
+          type: string
+          minLength: 10
+          maxLength: 100
+          example: Обновленный заголовок предложения
+
+        description:
+          type: string
+          minLength: 20
+          maxLength: 1024
+          example: Обновленное описание предложения
+
+        city:
+          $ref: '#/components/schemas/City/properties/id'
+
+        preview:
+          type: string
+          example: url/to/preview-1.jpg
+
+        images:
+          type: array
+          items:
+            type: string
+          example: [ 'url/to/image-1.jpg', 'url/to/image-2.jpg', 'url/to/image-3.jpg', ]
+
+        isPremium:
+          type: boolean
+          example: true
+
+        type:
+          type: string
+          enum: [ 'apartment', 'house', 'room', 'hotel' ]
+          example: house
+
+        rooms:
+          type: integer
+          minimum: 1
+          maximum: 8
+          example: 2
+
+        guests:
+          type: integer
+          minimum: 1
+          maximum: 10
+          example: 3
+
+        price:
+          type: integer
+          example: 4000
+          minimum: 100
+          maximum: 10000
+
+        facilities:
+          type: array
+          items:
+            type: string
+            enum: [ 'Breakfast', 'Air conditioning', 'Laptop friendly workspace', 'Baby seat', 'Washer', 'Towels', 'Fridge' ]
+          example: [ 'Air conditioning', 'Laptop friendly workspace' ]
+
+        author:
+          $ref: '#/components/schemas/User/properties/id'
+
+    Rent:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: 456
+
+        title:
+          type: string
+          required: true
+          example: Title of rent offer
+
+        description:
+          type: string
+          required: true
+          example: Description for rent offer
+
+        createdAt:
+          type: string
+          format: 'date-time'
+          required: true
+          example: 2017-07-21T17:32:28Z
+
+        city:
+          $ref: '#/components/schemas/City'
+
+        preview:
+          type: string
+          required: true
+          example: url/to/preview-1.jpg
+
+        images:
+          type: array
+          items:
+            type: string
+          example: [ 'url/to/image-1.jpg', 'url/to/image-2.jpg', 'url/to/image-3.jpg', ]
+
+        isPremium:
+          type: boolean
+          required: true
+          example: true
+
+        rating:
+          type: number
+          format: float
+          example: 4.5
+
+        type:
+          type: string
+          enum: [ 'apartment', 'house', 'room', 'hotel' ]
+          required: true
+          example: house
+
+        rooms:
+          type: integer
+          required: true
+          example: 2
+
+        guests:
+          type: integer
+          required: true
+          example: 3
+
+        price:
+          type: integer
+          required: true
+          example: 4000
+
+        facilities:
+          type: array
+          items:
+            type: string
+            enum: [ 'Breakfast', 'Air conditioning', 'Laptop friendly workspace', 'Baby seat', 'Washer', 'Towels', 'Fridge' ]
+          example: [ 'Air conditioning', 'Laptop friendly workspace' ]
+
+        author:
+          $ref: '#/components/schemas/User'
+
+        commentCount:
+          type: integer
+          default: 0
+          example: 12
+
+    Rents:
+      type: array
+      items:
+        $ref: '#/components/schemas/Rent'
+
+    CommentCreate:
+      type: object
+      properties:
+        text:
+          type: string
+          minLength: 5
+          maxLength: 1024
+          required: true
+          example: Очень ценный комментарий
+
+    Comment:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: 789
+
+        text:
+          type: string
+          required: true
+          example: Очень ценный комментарий
+
+        createdAt:
+          type: string
+          format: 'date-time'
+          required: true
+          example: 2017-07-21T17:32:28Z
+
+        rating:
+          type: number
+          format: float
+          example: 4.5
+
+        author:
+          $ref: '#/components/schemas/User'
+
+
+    Comments:
+      type: array
+      items:
+        $ref: '#/components/schemas/Comment'
