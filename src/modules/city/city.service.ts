@@ -5,6 +5,7 @@ import CreateCityDto from '@modules/city/dto/create-city.dto.js';
 import { CityEntity } from '@modules/city/city.entity.js';
 import { CityServiceInterface } from '@modules/city/city-service.interface.js';
 import { LoggerInterface } from '@core/logger/logger.interface.js';
+import { Sort } from '@appTypes/sort.enum.js';
 import { AppComponent } from '@appTypes/app-component.enum.js';
 
 @injectable()
@@ -43,6 +44,38 @@ export default class CityService implements CityServiceInterface {
   }
 
   public async find(): Promise<DocumentType<CityEntity>[]> {
-    return this.cityModel.find();
+    return this.cityModel.
+      aggregate([
+        {
+          $lookup: {
+            from: 'rents',
+            let: { cityId: '$_id'},
+            pipeline: [
+              {
+                $match: {
+                  $expr: {
+                    $eq: ['$$cityId', '$city'],
+                  },
+                },
+              },
+              { $project: { _id: 1 }}
+            ],
+            as: 'rents',
+          }
+        },
+        {
+          $addFields: {
+            id: { $toString: '$_id' },
+            rentsCount: { $size: '$rents' },
+          },
+        },
+        { $unset: 'rents' },
+        {
+          $sort: {
+            rentsCount: Sort.Down,
+          },
+        },
+      ])
+      .exec();
   }
 }
