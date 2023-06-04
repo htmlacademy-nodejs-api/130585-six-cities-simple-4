@@ -3,6 +3,7 @@ import { inject, injectable } from 'inversify';
 
 import { UserEntity } from '@modules/user/user.entity.js';
 import CreateUserDto from '@modules/user/dto/create-user.dto.js';
+import UpdateUserDto from '@modules/user/dto/update-user.dto.js';
 import { UserServiceInterface } from '@modules/user/user-service.interface.js';
 import { LoggerInterface } from '@core/logger/logger.interface.js';
 import { ConfigInterface } from '@core/config/config.interface.js';
@@ -39,5 +40,11 @@ export default class UserService implements UserServiceInterface {
     }
 
     return this.create(dto);
+  }
+
+  public updateById(userId: string, dto: UpdateUserDto): Promise<DocumentType<UserEntity> | null> {
+    return this.userModel
+      .findByIdAndUpdate(userId, dto, { new: true })
+      .exec();
   }
 }
