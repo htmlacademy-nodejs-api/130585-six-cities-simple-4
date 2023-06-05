@@ -44,8 +44,8 @@ export default class CityService implements CityServiceInterface {
   }
 
   public async find(): Promise<DocumentType<CityEntity>[]> {
-    return this.cityModel.
-      aggregate([
+    return this.cityModel
+      .aggregate([
         {
           $lookup: {
             from: 'rents',

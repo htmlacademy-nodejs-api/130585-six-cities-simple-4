@@ -1,5 +1,6 @@
 import { inject, injectable } from 'inversify';
 import { DocumentType, types } from '@typegoose/typegoose';
+import { Types } from 'mongoose';
 
 import { CommentServiceInterface } from '@modules/comment/comment.service.interface.js';
 import { CommentEntity } from '@modules/comment/comment.entity.js';
@@ -34,5 +35,32 @@ export default class CommentService implements CommentServiceInterface {
       .exec();
 
     return result.deletedCount;
+  }
+
+  public async countRatingByRentId(rentId: string): Promise<number | null> {
+    const objectRentId = new Types.ObjectId(rentId);
+    const result = await this.commentModel.aggregate([
+      {
+        $match: {
+          rentId: objectRentId,
+        },
+      },
+      {
+        $group: {
+          _id: objectRentId,
+          rating: { $avg: '$rating' },
+        },
+      },
+      {
+        $merge:  {
+          into: 'rents',
+          on: '_id',
+          whenMatched: 'merge',
+          whenNotMatched: 'discard',
+        },
+      },
+    ]).exec();
+
+    return result?.[0]?.rating ?? null;
   }
 }

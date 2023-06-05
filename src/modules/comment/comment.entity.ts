@@ -23,7 +23,7 @@ export class CommentEntity extends defaultClasses.TimeStamps implements CommentE
   public text!: string;
 
   @prop({
-    default: 0
+    default: 1
   })
   public rating!: number;
 
