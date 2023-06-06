@@ -1,5 +1,6 @@
 import 'reflect-metadata';
 import { injectable, inject } from 'inversify';
+import express, { Express } from 'express';
 
 import { LoggerInterface } from '@core/logger/logger.interface.js';
 import { ConfigInterface } from '@core/config/config.interface.js';
@@ -14,9 +15,12 @@ export default class RESTApplication {
     @inject(AppComponent.LoggerInterface)private readonly logger: LoggerInterface,
     @inject(AppComponent.ConfigInterface)private readonly config: ConfigInterface<RestSchema>,
     @inject(AppComponent.DBClientInterface) private readonly dbClient: DBClientInterface,
+    private expressApp: Express = express(),
   ) {}
 
   private async initDB() {
+    this.logger.info('Инициализация БД…');
+
     const mongoUri = getMongoURI(
       this.config.get('DB_USER'),
       this.config.get('DB_PASSWORD'),
@@ -25,15 +29,23 @@ export default class RESTApplication {
       this.config.get('DB_NAME'),
     );
 
-    return this.dbClient.connect(mongoUri);
+    await this.dbClient.connect(mongoUri);
+    this.logger.info('Инициализация БД завершена!');
+  }
+
+  private async initServer() {
+    this.logger.info('Инициализация сервера…');
+
+    const port = this.config.get('PORT');
+
+    this.expressApp.listen(port);
+    this.logger.info(`🚀 Cервер запущен на http://localhost:${port}!`);
   }
 
   public async init() {
     this.logger.info('Инициализация приложения…');
-    this.logger.info(`Получение значений из env: $PORT = ${this.config.get('PORT')}, $SALT = ${this.config.get('SALT')}, $DB_HOST = ${this.config.get('DB_HOST')}`);
 
-    this.logger.info('Инициализация БД…');
     await this.initDB();
-    this.logger.info('Инициализация БД завершена!');
+    await this.initServer();
   }
 }
