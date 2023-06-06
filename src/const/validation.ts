@@ -26,3 +26,8 @@ export const enum RentPrice {
   Min = 100,
   Max = 10000,
 }
+
+export const enum CommentLength {
+  Min = 5,
+  Max = 1024,
+}

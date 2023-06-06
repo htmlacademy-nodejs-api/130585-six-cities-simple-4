@@ -3,9 +3,12 @@ import { inject, injectable } from 'inversify';
 
 import { RentServiceInterface } from '@modules/rent/rent-service.interface.js';
 import { RentEntity } from '@modules/rent/rent.entity.js';
-import { AppComponent } from '@appTypes/app-component.enum';
-import { LoggerInterface } from '@core/logger/logger.interface';
-import CreateRentDto from '@modules/rent/dto/create-rent.dto';
+import { AppComponent } from '@appTypes/app-component.enum.js';
+import { LoggerInterface } from '@core/logger/logger.interface.js';
+import CreateRentDto from '@modules/rent/dto/create-rent.dto.js';
+import UpdateRentDto from '@modules/rent/dto/update-rent.dto.js';
+import { Sort } from '@appTypes/sort.enum.js';
+import { DEFAULT_RENTS_COUNT } from '@modules/rent/rent.const.js';
 
 @injectable()
 export class RentService implements RentServiceInterface {
@@ -23,6 +26,69 @@ export class RentService implements RentServiceInterface {
   }
 
   public async findById(rentId: string): Promise<DocumentType<RentEntity> | null> {
-    return this.rentModel.findById(rentId).exec();
+    return this.rentModel
+      .findById(rentId)
+      .populate(['author', 'city'])
+      .exec();
+  }
+
+  public async find(): Promise<DocumentType<RentEntity>[]> {
+    return this.rentModel
+      .find()
+      .populate(['author', 'city'])
+      .exec();
+  }
+
+  public async deleteById(rentId: string): Promise<DocumentType<RentEntity> | null> {
+    return this.rentModel
+      .findByIdAndDelete(rentId)
+      .exec();
+  }
+
+  public async updateById(rentId: string, dto: UpdateRentDto): Promise<DocumentType<RentEntity> | null> {
+    return this.rentModel
+      .findByIdAndUpdate(rentId, dto, { new: true })
+      .populate(['author', 'city'])
+      .exec();
+  }
+
+  public async findByCityId(citId: string, count?: number): Promise<DocumentType<RentEntity>[]> {
+    const limit = count ?? DEFAULT_RENTS_COUNT;
+
+    return this.rentModel
+      .find({ city: citId }, {}, { limit })
+      .populate(['author', 'city'])
+      .exec();
+  }
+
+  public async incCommentCount(rentId: string): Promise<DocumentType<RentEntity> | null> {
+    return this.rentModel
+      .findByIdAndUpdate(rentId, {
+        '$inc': {
+          commentCount: 1,
+        }})
+      .exec();
+  }
+
+  public async findNew(count: number): Promise<DocumentType<RentEntity>[]> {
+    return this.rentModel
+      .find()
+      .sort({ createdAt: Sort.Down })
+      .limit(count)
+      .populate(['author', 'city'])
+      .exec();
+  }
+
+  public async findDiscussed(count: number): Promise<DocumentType<RentEntity>[]> {
+    return this.rentModel
+      .find()
+      .sort({ commentCount: Sort.Down })
+      .limit(count)
+      .populate(['author', 'city'])
+      .exec();
+  }
+
+  public async exists(documentId: string): Promise<boolean> {
+    return (await this.rentModel.exists({ _id: documentId })) !== null;
   }
 }
