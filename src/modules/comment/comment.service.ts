@@ -37,9 +37,10 @@ export default class CommentService implements CommentServiceInterface {
     return result.deletedCount;
   }
 
-  public async countRatingByRentId(rentId: string): Promise<number | null> {
+  public async countRatingByRentId(rentId: string): Promise<void> {
     const objectRentId = new Types.ObjectId(rentId);
-    const result = await this.commentModel.aggregate([
+
+    await this.commentModel.aggregate([
       {
         $match: {
           rentId: objectRentId,
@@ -48,7 +49,13 @@ export default class CommentService implements CommentServiceInterface {
       {
         $group: {
           _id: objectRentId,
-          rating: { $avg: '$rating' },
+          avg: { $avg: '$rating' },
+        },
+      },
+      {
+        $project: {
+          _id: '$_id' ,
+          rating: { $round: ['$avg', 1] },
         },
       },
       {
@@ -60,7 +67,5 @@ export default class CommentService implements CommentServiceInterface {
         },
       },
     ]).exec();
-
-    return result?.[0]?.rating ?? null;
   }
 }
