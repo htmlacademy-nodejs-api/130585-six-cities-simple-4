@@ -20,6 +20,7 @@ export default class RESTApplication {
     @inject(AppComponent.ConfigInterface)private readonly config: ConfigInterface<RestSchema>,
     @inject(AppComponent.DBClientInterface) private readonly dbClient: DBClientInterface,
     @inject(AppComponent.CityController) private readonly cityController: ControllerInterface,
+    @inject(AppComponent.UserController) private readonly userController: ControllerInterface,
     @inject(AppComponent.ExceptionFilterInterface) private readonly exceptionFilter: ExceptionFilterInterface,
   ) {
     this.expressApp = express();
@@ -49,6 +50,7 @@ export default class RESTApplication {
   private async initRoutes() {
     this.logger.info('Инициализация маршрутов...');
     this.expressApp.use('/cities', this.cityController.router);
+    this.expressApp.use('/users', this.userController.router);
     this.logger.info('Инициализация маршрутов завершена!');
   }
 

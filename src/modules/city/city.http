@@ -10,7 +10,7 @@ POST http://localhost:5000/cities HTTP/1.1
 Content-Type: application/json
 
 {
-  "name": "Moscoe",
+  "name": "Moscow",
   "coords": {
     "lat": 55.7558,
     "long": 37.6173
