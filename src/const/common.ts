@@ -6,3 +6,7 @@ export const enum ChunkSize {
 export const enum Encoding {
   Utf8 = 'utf8',
 }
+
+export const enum ContentType {
+  Json = 'application/json',
+}
