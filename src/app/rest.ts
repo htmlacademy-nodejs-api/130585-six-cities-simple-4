@@ -35,7 +35,13 @@ export default class RESTApplication {
     this.logger.info('Инициализация БД завершена!');
   }
 
-  private initRoutes() {
+  private async initMiddlewares() {
+    this.logger.info('Инициализация глобальных middleware…');
+    this.expressApp.use(express.json());
+    this.logger.info('Инициализация глобальных middleware завершена!');
+  }
+
+  private async initRoutes() {
     this.logger.info('Инициализация маршрутов...');
     this.expressApp.use('/cities', this.cityController.router);
     this.logger.info('Инициализация маршрутов завершена!');
@@ -54,6 +60,7 @@ export default class RESTApplication {
     this.logger.info('Инициализация приложения…');
 
     await this.initDB();
+    await this.initMiddlewares();
     await this.initRoutes();
     await this.initServer();
   }
