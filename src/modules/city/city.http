@@ -1,0 +1,6 @@
+#  Города
+## Возвращает список городов
+GET http://localhost:5000/cities HTTP/1.1
+Content-Type: application/json
+
+###

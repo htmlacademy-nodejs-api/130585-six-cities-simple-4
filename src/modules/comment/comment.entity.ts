@@ -17,8 +17,8 @@ export class CommentEntity extends defaultClasses.TimeStamps implements CommentE
   @prop({
     trim: true,
     required: true,
-    min: CommentLength.Min,
-    max: CommentLength.Max,
+    minlength: CommentLength.Min,
+    maxlength: CommentLength.Max,
   })
   public text!: string;
 

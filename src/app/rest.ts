@@ -5,6 +5,7 @@ import express, { Express } from 'express';
 import { LoggerInterface } from '@core/logger/logger.interface.js';
 import { ConfigInterface } from '@core/config/config.interface.js';
 import { DBClientInterface } from '@core/db-client/db-client.interface.js';
+import { ControllerInterface } from '@core/controller/controller.interface.js';
 import { RestSchema } from '@core/config/rest.schema.js';
 import { AppComponent } from '@appTypes/app-component.enum.js';
 import { getMongoURI } from '@utils/index.js';
@@ -15,6 +16,7 @@ export default class RESTApplication {
     @inject(AppComponent.LoggerInterface)private readonly logger: LoggerInterface,
     @inject(AppComponent.ConfigInterface)private readonly config: ConfigInterface<RestSchema>,
     @inject(AppComponent.DBClientInterface) private readonly dbClient: DBClientInterface,
+    @inject(AppComponent.CityController) private readonly cityController: ControllerInterface,
     private expressApp: Express = express(),
   ) {}
 
@@ -33,6 +35,12 @@ export default class RESTApplication {
     this.logger.info('Инициализация БД завершена!');
   }
 
+  private initRoutes() {
+    this.logger.info('Инициализация маршрутов...');
+    this.expressApp.use('/cities', this.cityController.router);
+    this.logger.info('Инициализация маршрутов завершена!');
+  }
+
   private async initServer() {
     this.logger.info('Инициализация сервера…');
 
@@ -46,6 +54,7 @@ export default class RESTApplication {
     this.logger.info('Инициализация приложения…');
 
     await this.initDB();
+    await this.initRoutes();
     await this.initServer();
   }
 }
