@@ -6,19 +6,24 @@ import { LoggerInterface } from '@core/logger/logger.interface.js';
 import { ConfigInterface } from '@core/config/config.interface.js';
 import { DBClientInterface } from '@core/db-client/db-client.interface.js';
 import { ControllerInterface } from '@core/controller/controller.interface.js';
+import { ExceptionFilterInterface } from '@core/exception-filter/exception-filter.interface.js';
 import { RestSchema } from '@core/config/rest.schema.js';
 import { AppComponent } from '@appTypes/app-component.enum.js';
 import { getMongoURI } from '@utils/index.js';
 
 @injectable()
 export default class RESTApplication {
+  private expressApp: Express;
+
   constructor(
     @inject(AppComponent.LoggerInterface)private readonly logger: LoggerInterface,
     @inject(AppComponent.ConfigInterface)private readonly config: ConfigInterface<RestSchema>,
     @inject(AppComponent.DBClientInterface) private readonly dbClient: DBClientInterface,
     @inject(AppComponent.CityController) private readonly cityController: ControllerInterface,
-    private expressApp: Express = express(),
-  ) {}
+    @inject(AppComponent.ExceptionFilterInterface) private readonly exceptionFilter: ExceptionFilterInterface,
+  ) {
+    this.expressApp = express();
+  }
 
   private async initDB() {
     this.logger.info('Инициализация БД…');
@@ -47,6 +52,12 @@ export default class RESTApplication {
     this.logger.info('Инициализация маршрутов завершена!');
   }
 
+  private async initExceptionFilters() {
+    this.logger.info('Инициализация Exception filters...');
+    this.expressApp.use(this.exceptionFilter.catch.bind(this.exceptionFilter));
+    this.logger.info('Инициализация Exception filters завершена!');
+  }
+
   private async initServer() {
     this.logger.info('Инициализация сервера…');
 
@@ -62,6 +73,7 @@ export default class RESTApplication {
     await this.initDB();
     await this.initMiddlewares();
     await this.initRoutes();
+    await this.initExceptionFilters();
     await this.initServer();
   }
 }
