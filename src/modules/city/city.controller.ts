@@ -10,6 +10,7 @@ import CityRdo from '@modules/city/rdo/city.rdo.js';
 import { AppComponent } from '@appTypes/app-component.enum.js';
 import { HttpMethod } from '@appTypes/http-method.enum.js';
 import { fillDTO } from '@utils/db.js';
+import HttpError from '@core/errors/http-error.js';
 
 @injectable()
 export default class CityController extends Controller {
@@ -44,10 +45,11 @@ export default class CityController extends Controller {
     const existCity = await this.cityService.findByCityName(body.name);
 
     if (existCity) {
-      const errorMessage = `Город с названием «${ body.name }» уже существует`;
-
-      this.send(res, StatusCodes.UNPROCESSABLE_ENTITY, { error: errorMessage });
-      return this.logger.error(errorMessage);
+      throw new HttpError(
+        StatusCodes.UNPROCESSABLE_ENTITY,
+        `Город с названием «${ body.name }» уже существует`,
+        'CityController'
+      );
     }
 
     const result = await this.cityService.create(body);
