@@ -4,6 +4,7 @@ import { StatusCodes } from 'http-status-codes';
 
 import { Controller } from '@core/controller/controller.abstract.js';
 import CreateUserDto from '@modules/user/dto/create-user.dto.js';
+import LoginUserDto from '@modules/user/dto/login-user.dto.js';
 import UserRdo from '@modules/user/rdo/user.rdo.js';
 import { LoggerInterface } from '@core/logger/logger.interface.js';
 import { UserServiceInterface } from '@modules/user/user-service.interface.js';
@@ -29,10 +30,15 @@ export default class UserController extends Controller {
       method: HttpMethod.Post,
       handler: this.create,
     });
+    this.addRoute({
+      path: '/login',
+      method: HttpMethod.Post,
+      handler: this.login,
+    });
   }
 
   public async create(
-    {body}: Request<Record<string, unknown>, Record<string, unknown>, CreateUserDto>,
+    { body }: Request<Record<string, unknown>, Record<string, unknown>, CreateUserDto>,
     res: Response,
   ): Promise<void> {
     const existsUser = await this.userService.findByEmail(body.email);
@@ -40,7 +46,7 @@ export default class UserController extends Controller {
     if (existsUser) {
       throw new HttpError(
         StatusCodes.CONFLICT,
-        `Пользователь с email «${body.email}» уже существует`,
+        `Пользователь с email «${ body.email }» уже существует`,
         'UserController'
       );
     }
@@ -49,6 +55,27 @@ export default class UserController extends Controller {
     this.created(
       res,
       fillDTO(UserRdo, result)
+    );
+  }
+
+  public async login(
+    { body }: Request<Record<string, unknown>, Record<string, unknown>, LoginUserDto>,
+    _res: Response,
+  ): Promise<void> {
+    const existsUser = await this.userService.findByEmail(body.email);
+
+    if (!existsUser) {
+      throw new HttpError(
+        StatusCodes.UNAUTHORIZED,
+        `Пользователя с email ${ body.email } не существует`,
+        'UserController',
+      );
+    }
+
+    throw new HttpError(
+      StatusCodes.NOT_IMPLEMENTED,
+      'Метод не закончен',
+      'UserController',
     );
   }
 }
