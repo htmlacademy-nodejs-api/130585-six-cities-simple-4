@@ -7,6 +7,7 @@ import { LoggerInterface } from '@core/logger/logger.interface.js';
 import { CityServiceInterface } from '@modules/city/city-service.interface.js';
 import CreateCityDto from '@modules/city/dto/create-city.dto.js';
 import CityRdo from '@modules/city/rdo/city.rdo.js';
+import { UnknownRecord } from '@appTypes/unknown-record.type.js';
 import { AppComponent } from '@appTypes/app-component.enum.js';
 import { HttpMethod } from '@appTypes/http-method.enum.js';
 import { fillDTO } from '@utils/db.js';
@@ -41,7 +42,7 @@ export default class CityController extends Controller {
     this.ok(res, citiesToResponse);
   }
 
-  public async create({ body }: Request<Record<string, unknown>, Record<string, unknown>, CreateCityDto>, res: Response): Promise<void> {
+  public async create({ body }: Request<UnknownRecord, UnknownRecord, CreateCityDto>, res: Response): Promise<void> {
     const existCity = await this.cityService.findByCityName(body.name);
 
     if (existCity) {

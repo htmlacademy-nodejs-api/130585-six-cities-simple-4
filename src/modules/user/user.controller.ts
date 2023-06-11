@@ -6,6 +6,7 @@ import { Controller } from '@core/controller/controller.abstract.js';
 import CreateUserDto from '@modules/user/dto/create-user.dto.js';
 import LoginUserDto from '@modules/user/dto/login-user.dto.js';
 import UserRdo from '@modules/user/rdo/user.rdo.js';
+import { UnknownRecord } from '@appTypes/unknown-record.type.js';
 import { LoggerInterface } from '@core/logger/logger.interface.js';
 import { UserServiceInterface } from '@modules/user/user-service.interface.js';
 import { ConfigInterface } from '@core/config/config.interface.js';
@@ -38,7 +39,7 @@ export default class UserController extends Controller {
   }
 
   public async create(
-    { body }: Request<Record<string, unknown>, Record<string, unknown>, CreateUserDto>,
+    { body }: Request<UnknownRecord, UnknownRecord, CreateUserDto>,
     res: Response,
   ): Promise<void> {
     const existsUser = await this.userService.findByEmail(body.email);

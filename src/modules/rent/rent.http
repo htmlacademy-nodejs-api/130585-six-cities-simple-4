@@ -1,0 +1,56 @@
+# Предложения об аренде
+## Возвращает список предложений об аренде
+GET http://localhost:5000/rents HTTP/1.1
+Content-Type: application/json
+
+###
+
+## Возвращает информацию о предложении об аренде
+GET http://localhost:5000/rents/648196cf1ca25c81b7bbf621 HTTP/1.1
+Content-Type: application/json
+
+###
+
+## Создает предложение об аренде на основе переданных данных
+POST http://localhost:5000/rents HTTP/1.1
+Content-Type: application/json
+
+{
+  "title": "Cute central flat with modern design",
+  "description": "Cute central flat with modern design",
+  "city": "647e1ea88507534f70eaae96",
+  "preview": "url/to/image-1.jpg",
+  "images": [
+    "url/to/image-1.jpg",
+    "url/to/image-2.jpg"
+  ],
+  "isPremium": false,
+  "type": "room",
+  "rooms": 2,
+  "guests": 3,
+  "price": 1200,
+  "facilities": [
+    "Laptop friendly workspace",
+    "Washer"
+  ],
+  "author": "647e1ea88507534f70eaae93"
+}
+
+###
+
+## Удаление предложения об аренде
+DELETE http://localhost:5000/rents/647e1ea88507534f70eaae90 HTTP/1.1
+Content-Type: application/json
+
+###
+
+## Редактирование предложения об аренде
+PATCH http://localhost:5000/rents/647e1ea88507534f70eaae8a HTTP/1.1
+Content-Type: application/json
+
+{
+  "title": "Cute central flat with ancient designs",
+  "rooms": 8
+}
+
+###

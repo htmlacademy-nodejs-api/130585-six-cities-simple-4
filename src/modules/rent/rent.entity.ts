@@ -56,6 +56,7 @@ export class RentEntity extends defaultClasses.TimeStamps implements RentEntityT
     required: true,
     min: RentRating.Min,
     max: RentRating.Max,
+    default: RentRating.Min,
   })
   public rating!: number;
 

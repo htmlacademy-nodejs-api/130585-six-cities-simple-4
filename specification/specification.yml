@@ -156,7 +156,7 @@ paths:
       tags:
         - rents
       summary: Список предложений об аренде
-      description: Возвращает предложений об аренде
+      description: Возвращает список предложений об аренде
       responses:
         '201':
           description: Предложения получены. Массив объектов предложений об аренде
@@ -178,7 +178,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Rents'
-        '409':
+        '404':
           description: Предложения с таким id не существует
 
     patch:
@@ -200,16 +200,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Rent'
+        '404':
+          description: Предложения с таким id не существует
 
     delete:
       tags:
         - rents
       summary: Удаление предложения об аренде
       responses:
-        '201':
-          description: Предложение удалено
-        '409':
-          description: Предложение не найдено
+        '204':
+          description: Предложение удалено, нет контента
+        '404':
+          description: Предложения с таким id не существует
         '403':
           description: Доступ к предложению запрещен
 

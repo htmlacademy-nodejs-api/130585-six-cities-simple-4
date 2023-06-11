@@ -1,4 +1,12 @@
-import { Expose } from 'class-transformer';
+import { Expose, Type } from 'class-transformer';
+
+export class CityCoordsRdo {
+  @Expose()
+  public lat!: number;
+
+  @Expose()
+  public long!: number;
+}
 
 export default class CityRdo {
   @Expose()
@@ -6,4 +14,8 @@ export default class CityRdo {
 
   @Expose()
   public name!: string;
+
+  @Expose()
+  @Type(() => CityCoordsRdo)
+  public coords?: CityCoordsRdo;
 }
