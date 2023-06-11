@@ -25,7 +25,7 @@ export default class CityService implements CityServiceInterface {
     return this.cityModel.findById(cityId).exec();
   }
 
-  public async findByCityName(cityName: string): Promise<DocumentType<CityEntity> | null> {
+  public async findByCityName(cityName?: string): Promise<DocumentType<CityEntity> | null> {
     return this.cityModel.findOne({ name: cityName }).exec();
   }
 
