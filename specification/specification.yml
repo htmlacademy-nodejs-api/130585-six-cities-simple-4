@@ -239,12 +239,15 @@ paths:
       description: Возвращает комментарии к предложению об аренде
       responses:
         '201':
-          description: Предложение получено. Массив объектов комментариев
+          description: Массив объектов комментариев
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Comments'
+        '404':
+          description: Предложения с таким id не существует
 
+  /comments:
     post:
       tags:
         - rents
@@ -265,6 +268,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Comment'
+        '404':
+          description: Предложения с таким id не существует
 
 tags:
   - name: cities

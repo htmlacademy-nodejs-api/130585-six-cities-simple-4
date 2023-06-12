@@ -56,7 +56,10 @@ export default class CityController extends Controller {
     this.ok(res, citiesToResponse);
   }
 
-  public async create({ body }: Request<UnknownRecord, UnknownRecord, CreateCityDto>, res: Response): Promise<void> {
+  public async create(
+    { body }: Request<UnknownRecord, UnknownRecord, CreateCityDto>,
+    res: Response,
+  ): Promise<void> {
     const existCity = await this.cityService.findByCityName(body.name);
 
     if (existCity) {
