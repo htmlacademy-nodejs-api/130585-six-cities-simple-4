@@ -24,7 +24,7 @@ type ParamsCityDetails = {
 @injectable()
 export default class CityController extends Controller {
   constructor(
-    @inject(AppComponent.LoggerInterface) logger: LoggerInterface,
+    @inject(AppComponent.LoggerInterface) protected readonly logger: LoggerInterface,
     @inject(AppComponent.CityServiceInterface) private readonly cityService: CityServiceInterface,
     @inject(AppComponent.RentServiceInterface) private readonly rentService: RentServiceInterface,
   ) {
@@ -76,10 +76,12 @@ export default class CityController extends Controller {
   }
 
   public async getRentsFromCity(
-    {params, query}: Request<ParamsCityDetails, UnknownRecord, UnknownRecord, RequestQuery>,
+    { params, query }: Request<ParamsCityDetails, UnknownRecord, UnknownRecord, RequestQuery>,
     res: Response
   ): Promise<void> {
-    const rents = await this.rentService.findByCityId(params.cityId, query.limit);
+    const { cityId } = params;
+    const { limit } = query;
+    const rents = await this.rentService.findByCityId(cityId, limit);
 
     this.ok(res, fillDTO(RentRdo, rents));
   }

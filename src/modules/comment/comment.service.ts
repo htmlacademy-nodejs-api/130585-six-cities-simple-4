@@ -7,6 +7,7 @@ import { CommentEntity } from '@modules/comment/comment.entity.js';
 import CreateCommentDto from '@modules/comment/dto/create-comment.dto.js';
 import { LoggerInterface } from '@core/logger/logger.interface.js';
 import { AppComponent } from '@appTypes/app-component.enum.js';
+import { DEFAULT_COMMENTS_COUNT } from '@modules/comment/comment.const.js';
 
 @injectable()
 export default class CommentService implements CommentServiceInterface {
@@ -23,9 +24,11 @@ export default class CommentService implements CommentServiceInterface {
     return comment.populate('author');
   }
 
-  public async findByRentId(rentId: string): Promise<DocumentType<CommentEntity>[]> {
+  public async findByRentId(rentId: string, count?: number): Promise<DocumentType<CommentEntity>[]> {
+    const limit = count ?? DEFAULT_COMMENTS_COUNT;
+
     return this.commentModel
-      .find({ rentId })
+      .find({ rentId }, {}, { limit })
       .populate('author');
   }
 

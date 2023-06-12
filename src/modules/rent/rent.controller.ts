@@ -6,14 +6,17 @@ import { StatusCodes } from 'http-status-codes';
 import { Controller } from '@core/controller/controller.abstract.js';
 import { LoggerInterface } from '@core/logger/logger.interface.js';
 import { RentServiceInterface } from '@modules/rent/rent-service.interface.js';
+import { CommentServiceInterface } from '@modules/comment/comment.service.interface.js';
 import RentRdo from '@modules/rent/rdo/rent.rdo.js';
 import CreateRentDto from '@modules/rent/dto/create-rent.dto.js';
 import UpdateRentDto from '@modules/rent/dto/update-rent.dto.js';
+import CommentRdo from '@modules/comment/rdo/comment.rdo.js';
 import { UnknownRecord } from '@appTypes/unknown-record.type.js';
 import { AppComponent } from '@appTypes/app-component.enum.js';
 import { HttpMethod } from '@appTypes/http-method.enum.js';
 import { fillDTO } from '@utils/db.js';
 import HttpError from '@core/errors/http-error.js';
+import { RequestQuery } from '@appTypes/request-query.type';
 
 // тип параметров запроса
 type ParamsRentDetails = {
@@ -23,8 +26,9 @@ type ParamsRentDetails = {
 @injectable()
 export default class RentController extends Controller {
   constructor(
-    @inject(AppComponent.LoggerInterface) logger: LoggerInterface,
+    @inject(AppComponent.LoggerInterface) protected readonly logger: LoggerInterface,
     @inject(AppComponent.RentServiceInterface) private readonly rentService: RentServiceInterface,
+    @inject(AppComponent.CommentServiceInterface) private readonly commentService: CommentServiceInterface,
   ) {
     super(logger);
 
@@ -54,6 +58,11 @@ export default class RentController extends Controller {
       path: '/:rentId',
       method: HttpMethod.Patch,
       handler: this.update,
+    });
+    this.addRoute({
+      path: '/:rentId/comments',
+      method: HttpMethod.Get,
+      handler: this.getComments,
     });
   }
 
@@ -107,6 +116,8 @@ export default class RentController extends Controller {
       );
     }
 
+    await this.commentService.deleteByRentId(rentId);
+
     this.noContent(res, fillDTO(RentRdo, rent));
   }
 
@@ -126,5 +137,25 @@ export default class RentController extends Controller {
     }
 
     this.ok(res, fillDTO(RentRdo, updatedRent));
+  }
+
+  public async getComments(
+    { params, query }: Request<ParamsRentDetails, UnknownRecord, UnknownRecord, RequestQuery>,
+    res: Response,
+  ): Promise<void> {
+    const { rentId } = params;
+    const existsRent = await this.rentService.findById(rentId);
+
+    if (!existsRent) {
+      throw new HttpError(
+        StatusCodes.NOT_FOUND,
+        `Предложения с id ${ rentId } не существует`,
+        'RentController'
+      );
+    }
+
+    const { limit } = query;
+    const comments = await this.commentService.findByRentId(rentId, limit);
+    this.ok(res, fillDTO(CommentRdo, comments));
   }
 }

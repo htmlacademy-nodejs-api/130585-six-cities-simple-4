@@ -17,7 +17,7 @@ import HttpError from '@core/errors/http-error.js';
 @injectable()
 export default class CommentController extends Controller {
   constructor(
-    @inject(AppComponent.LoggerInterface) logger: LoggerInterface,
+    @inject(AppComponent.LoggerInterface) protected readonly logger: LoggerInterface,
     @inject(AppComponent.CommentServiceInterface) private readonly commentService: CommentServiceInterface,
     @inject(AppComponent.RentServiceInterface) private readonly rentService: RentServiceInterface,
 
@@ -37,8 +37,9 @@ export default class CommentController extends Controller {
     res: Response,
   ): Promise<void> {
     const { rentId } = body;
+    const existsRent = await this.rentService.findById(rentId);
 
-    if (! await this.rentService.exists(rentId)) {
+    if (!existsRent) {
       throw new HttpError(
         StatusCodes.NOT_FOUND,
         `Предложения об аренде с id «${ rentId }» не существует`,
@@ -48,6 +49,7 @@ export default class CommentController extends Controller {
 
     const comment = await this.commentService.create(body);
     await this.rentService.incCommentCount(rentId);
+    await this.commentService.countRatingByRentId(rentId);
     this.created(res, fillDTO(CommentRdo, comment));
   }
 }
