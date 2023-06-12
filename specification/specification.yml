@@ -45,6 +45,21 @@ paths:
               schema:
                 $ref: '#/components/schemas/Cities'
 
+  /cities/:cityId/rents:
+    get:
+      tags:
+        - cities
+        - rents
+      summary: Список предложений из города
+      description: Список предложений об аренде в определенном городе
+      responses:
+        '200':
+          description: Города получены. Массив объектов городов
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Rents'
+
   /users/signup:
     post:
       tags:

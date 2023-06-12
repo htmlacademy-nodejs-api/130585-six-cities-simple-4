@@ -1,23 +1,32 @@
 import { inject, injectable } from 'inversify';
 import { Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
+import { ParamsDictionary } from 'express-serve-static-core';
 
 import { Controller } from '@core/controller/controller.abstract.js';
 import { LoggerInterface } from '@core/logger/logger.interface.js';
 import { CityServiceInterface } from '@modules/city/city-service.interface.js';
+import { RentServiceInterface } from '@modules/rent/rent-service.interface.js';
 import CreateCityDto from '@modules/city/dto/create-city.dto.js';
 import CityRdo from '@modules/city/rdo/city.rdo.js';
+import RentRdo from '@modules/rent/rdo/rent.rdo.js';
 import { UnknownRecord } from '@appTypes/unknown-record.type.js';
+import { RequestQuery } from '@appTypes/request-query.type.js';
 import { AppComponent } from '@appTypes/app-component.enum.js';
 import { HttpMethod } from '@appTypes/http-method.enum.js';
 import { fillDTO } from '@utils/db.js';
 import HttpError from '@core/errors/http-error.js';
+
+type ParamsCityDetails = {
+  cityId: string;
+} | ParamsDictionary
 
 @injectable()
 export default class CityController extends Controller {
   constructor(
     @inject(AppComponent.LoggerInterface) logger: LoggerInterface,
     @inject(AppComponent.CityServiceInterface) private readonly cityService: CityServiceInterface,
+    @inject(AppComponent.RentServiceInterface) private readonly rentService: RentServiceInterface,
   ) {
     super(logger);
 
@@ -32,6 +41,11 @@ export default class CityController extends Controller {
       path: '/',
       method: HttpMethod.Post,
       handler: this.create,
+    });
+    this.addRoute({
+      path: '/:cityId/rents',
+      method: HttpMethod.Get,
+      handler: this.getRentsFromCity,
     });
   }
 
@@ -56,5 +70,14 @@ export default class CityController extends Controller {
     const result = await this.cityService.create(body);
 
     this.created(res, fillDTO(CityRdo, result));
+  }
+
+  public async getRentsFromCity(
+    {params, query}: Request<ParamsCityDetails, UnknownRecord, UnknownRecord, RequestQuery>,
+    res: Response
+  ): Promise<void> {
+    const rents = await this.rentService.findByCityId(params.cityId, query.limit);
+
+    this.ok(res, fillDTO(RentRdo, rents));
   }
 }
