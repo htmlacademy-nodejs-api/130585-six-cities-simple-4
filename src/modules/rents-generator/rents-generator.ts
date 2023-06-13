@@ -7,7 +7,7 @@ import {
   getRandomDate,
   getRandomBoolean,
 } from '@utils/index.js';
-import { RentDays, RentRating, RentRooms, RentGuests, RentPrice } from '@const/validation.js';
+import { RentDaysValidation, RentRatingValidation, RentRoomsValidation, RentGuestsValidation, RentPriceValidation } from '@const/validation.js';
 
 export class RentsGenerator implements RentsGeneratorInterface {
   constructor(private readonly mockData: MockRent) {}
@@ -15,16 +15,16 @@ export class RentsGenerator implements RentsGeneratorInterface {
   public generate(): string {
     const title = getRandomItem<string>(this.mockData.titles ?? []);
     const description = getRandomItem<string>(this.mockData.descriptions ?? []);
-    const createdAt = getRandomDate(RentDays.Before);
+    const createdAt = getRandomDate(RentDaysValidation.Before);
     const city = getRandomItem<string>(this.mockData.cities ?? []);
     const preview = getRandomItem<string>(this.mockData.previews ?? []);
     const images = getRandomItems<string>(this.mockData.images ?? []).join(';');
     const isPremium = getRandomBoolean();
-    const rating = getRandomNumberFromInterval(RentRating.Min, RentRating.Max, 1);
+    const rating = getRandomNumberFromInterval(RentRatingValidation.Min, RentRatingValidation.Max, 1);
     const type = getRandomItem<string>(this.mockData.types ?? []);
-    const rooms = getRandomNumberFromInterval(RentRooms.Min, RentRooms.Max);
-    const guests = getRandomNumberFromInterval(RentGuests.Min, RentGuests.Max);
-    const price = getRandomNumberFromInterval(RentPrice.Min, RentPrice.Max);
+    const rooms = getRandomNumberFromInterval(RentRoomsValidation.Min, RentRoomsValidation.Max);
+    const guests = getRandomNumberFromInterval(RentGuestsValidation.Min, RentGuestsValidation.Max);
+    const price = getRandomNumberFromInterval(RentPriceValidation.Min, RentPriceValidation.Max);
     const facilities = getRandomItems<string>(this.mockData.facilities ?? []).join(';');
     const name = getRandomItem<string>(this.mockData.names ?? []);
     const email = getRandomItem<string>(this.mockData.emails ?? []);
