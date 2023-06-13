@@ -23,7 +23,12 @@ export abstract class Controller implements ControllerInterface {
   }
 
   public addRoute(route: RouteInterface) {
-    this._router[route.method](route.path, asyncHandler(route.handler.bind(this)));
+    const routeHandler = asyncHandler(route.handler.bind(this));
+    const middlewares = route.middlewares?.map(
+      (middleware) => asyncHandler(middleware.execute.bind(middleware))
+    ) || [];
+
+    this._router[route.method](route.path, [...middlewares, routeHandler]);
     this.logger.info(`Зарегистрирован маршрут: ${route.method.toUpperCase()} ${route.path}`);
   }
 
