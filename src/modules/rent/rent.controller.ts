@@ -17,6 +17,7 @@ import { HttpMethod } from '@appTypes/http-method.enum.js';
 import { fillDTO } from '@utils/db.js';
 import HttpError from '@core/errors/http-error.js';
 import { RequestQuery } from '@appTypes/request-query.type';
+import { ValidateObjectIdMiddleware } from '@core/middleware/validate-objectid.middleware.js';
 
 // тип параметров запроса
 type ParamsRentDetails = {
@@ -43,6 +44,7 @@ export default class RentController extends Controller {
       path: '/:rentId',
       method: HttpMethod.Get,
       handler: this.show,
+      middlewares: [ new ValidateObjectIdMiddleware('rentId') ]
     });
     this.addRoute({
       path: '/',
@@ -53,16 +55,19 @@ export default class RentController extends Controller {
       path: '/:rentId',
       method: HttpMethod.Delete,
       handler: this.delete,
+      middlewares: [ new ValidateObjectIdMiddleware('rentId') ]
     });
     this.addRoute({
       path: '/:rentId',
       method: HttpMethod.Patch,
       handler: this.update,
+      middlewares: [ new ValidateObjectIdMiddleware('rentId') ]
     });
     this.addRoute({
       path: '/:rentId/comments',
       method: HttpMethod.Get,
       handler: this.getComments,
+      middlewares: [ new ValidateObjectIdMiddleware('rentId') ]
     });
   }
 

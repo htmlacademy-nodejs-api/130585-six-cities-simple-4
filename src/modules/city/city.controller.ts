@@ -16,6 +16,7 @@ import { AppComponent } from '@appTypes/app-component.enum.js';
 import { HttpMethod } from '@appTypes/http-method.enum.js';
 import { fillDTO } from '@utils/db.js';
 import HttpError from '@core/errors/http-error.js';
+import { ValidateObjectIdMiddleware } from '@core/middleware/validate-objectid.middleware.js';
 
 type ParamsCityDetails = {
   cityId: string;
@@ -46,6 +47,7 @@ export default class CityController extends Controller {
       path: '/:cityId/rents',
       method: HttpMethod.Get,
       handler: this.getRentsFromCity,
+      middlewares: [ new ValidateObjectIdMiddleware('cityId') ]
     });
   }
 
