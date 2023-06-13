@@ -69,6 +69,16 @@ export default class RentController extends Controller {
       handler: this.getComments,
       middlewares: [ new ValidateObjectIdMiddleware('rentId') ]
     });
+    this.addRoute({
+      path: '/sort/top-rated',
+      method: HttpMethod.Get,
+      handler: this.getTopRated,
+    });
+    this.addRoute({
+      path: '/sort/popular',
+      method: HttpMethod.Get,
+      handler: this.getPopular,
+    });
   }
 
   public async index(_req: Request, res: Response): Promise<void> {
@@ -162,5 +172,25 @@ export default class RentController extends Controller {
     const { limit } = query;
     const comments = await this.commentService.findByRentId(rentId, limit);
     this.ok(res, fillDTO(CommentRdo, comments));
+  }
+
+  public async getTopRated(
+    { query }: Request<UnknownRecord, UnknownRecord, UnknownRecord, RequestQuery>,
+    res: Response,
+  ): Promise<void> {
+    const { limit } = query;
+    const topRatedRents = await this.rentService.findTopRated(limit);
+
+    this.ok(res, fillDTO(RentRdo, topRatedRents));
+  }
+
+  public async getPopular(
+    { query }: Request<UnknownRecord, UnknownRecord, UnknownRecord, RequestQuery>,
+    res: Response,
+  ): Promise<void> {
+    const { limit } = query;
+    const popularRents = await this.rentService.findPopular(limit);
+
+    this.ok(res, fillDTO(RentRdo, popularRents));
   }
 }

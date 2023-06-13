@@ -7,6 +7,7 @@ import { CommentEntity } from '@modules/comment/comment.entity.js';
 import CreateCommentDto from '@modules/comment/dto/create-comment.dto.js';
 import { LoggerInterface } from '@core/logger/logger.interface.js';
 import { AppComponent } from '@appTypes/app-component.enum.js';
+import { Sort } from '@appTypes/sort.enum.js';
 import { DEFAULT_COMMENTS_COUNT } from '@modules/comment/comment.const.js';
 
 @injectable()
@@ -29,6 +30,7 @@ export default class CommentService implements CommentServiceInterface {
 
     return this.commentModel
       .find({ rentId }, {}, { limit })
+      .sort({ createdAt: Sort.Down })
       .populate('author');
   }
 

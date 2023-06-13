@@ -12,7 +12,7 @@ export interface RentServiceInterface {
   updateById(rentId: string, dto: UpdateRentDto): Promise<DocumentType<RentEntity> | null>;
   findByCityId(cityId: string, count?: number): Promise<DocumentType<RentEntity>[]>;
   incCommentCount(rentId: string): Promise<DocumentType<RentEntity> | null>;
-  findNew(count: number): Promise<DocumentType<RentEntity>[]>;
-  findDiscussed(count: number): Promise<DocumentType<RentEntity>[]>;
+  findTopRated(count?: number): Promise<DocumentType<RentEntity>[]>;
+  findPopular(count?: number): Promise<DocumentType<RentEntity>[]>;
   exists(documentId: string): Promise<boolean>;
 }

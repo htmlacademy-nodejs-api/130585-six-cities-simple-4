@@ -14,6 +14,9 @@ export default class RentRdo {
   public description!: string;
 
   @Expose()
+  public createdAt!: string;
+
+  @Expose()
   @Type(() => CityRdo)
   public city!: CityRdo;
 
@@ -40,6 +43,9 @@ export default class RentRdo {
 
   @Expose()
   public price!: number;
+
+  @Expose()
+  public commentCount!: number;
 
   @Expose()
   public facilities!: string[];

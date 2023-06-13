@@ -247,6 +247,34 @@ paths:
         '404':
           description: Предложения с таким id не существует
 
+  /rents/sort/top-rated:
+    get:
+      tags:
+        - rents
+      summary: Список предложений об аренде с высокими оценками
+      description: Возвращает список предложений об аренде, отсортированный по возрастанию по рейтингу
+      responses:
+        '201':
+          description: Предложения получены. Массив объектов предложений об аренде
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Rents'
+
+  /rents/sort/popular:
+    get:
+      tags:
+        - rents
+      summary: Список популярных предложений об аренде
+      description: Возвращает список предложений об аренде, отсортированный по возрастанию по количеству комментариев
+      responses:
+        '201':
+          description: Предложения получены. Массив объектов предложений об аренде
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Rents'
+
   /comments:
     post:
       tags:

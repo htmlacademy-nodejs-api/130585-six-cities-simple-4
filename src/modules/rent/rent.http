@@ -60,3 +60,15 @@ GET http://localhost:5000/rents/647e1ea88507534f70eaae8a/comments HTTP/1.1
 Content-Type: application/json
 
 ###
+
+## Возвращает список предложений об аренде, отсортированный по возрастанию по рейтингу
+GET http://localhost:5000/rents/sort/top-rated HTTP/1.1
+Content-Type: application/json
+
+###
+
+## Возвращает список предложений об аренде, отсортированный по возрастанию по количеству комментариев
+GET http://localhost:5000/rents/sort/popular HTTP/1.1
+Content-Type: application/json
+
+###

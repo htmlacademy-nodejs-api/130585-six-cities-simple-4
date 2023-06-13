@@ -1,1 +1,1 @@
-export const DEFAULT_COMMENTS_COUNT = 20;
+export const DEFAULT_COMMENTS_COUNT = 50;
