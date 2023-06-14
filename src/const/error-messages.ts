@@ -97,6 +97,7 @@ export const UserTypeError = {
 } as const;
 
 export const UserPassError = {
+  Required: 'Поле Пароль обязательное',
   Length: `Минимальное количество символов для поля Пароль - ${ UserPassValidation.Min }, максимальное - ${ UserPassValidation.Max }`,
 } as const;
 

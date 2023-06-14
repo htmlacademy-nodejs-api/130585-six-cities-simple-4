@@ -37,6 +37,7 @@ export default class UserController extends Controller {
       path: '/login',
       method: HttpMethod.Post,
       handler: this.login,
+      middlewares: [ new ValidateDtoMiddleware(LoginUserDto) ],
     });
   }
 
