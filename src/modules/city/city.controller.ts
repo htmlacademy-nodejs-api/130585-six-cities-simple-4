@@ -18,6 +18,7 @@ import { fillDTO } from '@utils/db.js';
 import HttpError from '@core/errors/http-error.js';
 import { ValidateObjectIdMiddleware } from '@core/middleware/validate-objectid.middleware.js';
 import { ValidateDtoMiddleware } from '@core/middleware/validate-dto.middleware.js';
+import { DocumentExistsMiddleware } from '@core/middleware/document-exists.middleware.js';
 
 type ParamsCityDetails = {
   cityId: string;
@@ -49,7 +50,10 @@ export default class CityController extends Controller {
       path: '/:cityId/rents',
       method: HttpMethod.Get,
       handler: this.getRentsFromCity,
-      middlewares: [ new ValidateObjectIdMiddleware('cityId') ]
+      middlewares: [
+        new ValidateObjectIdMiddleware('cityId'),
+        new DocumentExistsMiddleware(this.cityService, 'Города', 'cityId'),
+      ]
     });
   }
 

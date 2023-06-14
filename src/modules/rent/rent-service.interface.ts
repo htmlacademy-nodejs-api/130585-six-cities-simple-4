@@ -3,8 +3,9 @@ import { DocumentType } from '@typegoose/typegoose';
 import CreateRentDto from '@modules/rent/dto/create-rent.dto.js';
 import UpdateRentDto from '@modules/rent/dto/update-rent.dto.js';
 import { RentEntity } from '@modules/rent/rent.entity.js';
+import { DocumentExistsInterface } from '@appTypes/document-exists.interface.js';
 
-export interface RentServiceInterface {
+export interface RentServiceInterface extends DocumentExistsInterface {
   create(dto: CreateRentDto): Promise<DocumentType<RentEntity>>;
   findById(rentId: string): Promise<DocumentType<RentEntity> | null>;
   find(): Promise<DocumentType<RentEntity>[]>;
@@ -14,5 +15,4 @@ export interface RentServiceInterface {
   incCommentCount(rentId: string): Promise<DocumentType<RentEntity> | null>;
   findTopRated(count?: number): Promise<DocumentType<RentEntity>[]>;
   findPopular(count?: number): Promise<DocumentType<RentEntity>[]>;
-  exists(documentId: string): Promise<boolean>;
 }

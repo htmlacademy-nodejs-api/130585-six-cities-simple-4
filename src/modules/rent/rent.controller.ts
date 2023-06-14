@@ -1,7 +1,6 @@
 import { inject, injectable } from 'inversify';
 import { Request, Response } from 'express';
 import { ParamsDictionary } from 'express-serve-static-core';
-import { StatusCodes } from 'http-status-codes';
 
 import { Controller } from '@core/controller/controller.abstract.js';
 import { LoggerInterface } from '@core/logger/logger.interface.js';
@@ -15,10 +14,10 @@ import { UnknownRecord } from '@appTypes/unknown-record.type.js';
 import { AppComponent } from '@appTypes/app-component.enum.js';
 import { HttpMethod } from '@appTypes/http-method.enum.js';
 import { fillDTO } from '@utils/db.js';
-import HttpError from '@core/errors/http-error.js';
 import { RequestQuery } from '@appTypes/request-query.type';
 import { ValidateObjectIdMiddleware } from '@core/middleware/validate-objectid.middleware.js';
 import { ValidateDtoMiddleware } from '@core/middleware/validate-dto.middleware.js';
+import { DocumentExistsMiddleware } from '@core/middleware/document-exists.middleware.js';
 
 // тип параметров запроса
 type ParamsRentDetails = {
@@ -45,7 +44,10 @@ export default class RentController extends Controller {
       path: '/:rentId',
       method: HttpMethod.Get,
       handler: this.show,
-      middlewares: [ new ValidateObjectIdMiddleware('rentId') ],
+      middlewares: [
+        new ValidateObjectIdMiddleware('rentId'),
+        new DocumentExistsMiddleware(this.rentService, 'Предложения по аренде', 'rentId'),
+      ],
     });
     this.addRoute({
       path: '/',
@@ -57,7 +59,10 @@ export default class RentController extends Controller {
       path: '/:rentId',
       method: HttpMethod.Delete,
       handler: this.delete,
-      middlewares: [ new ValidateObjectIdMiddleware('rentId') ],
+      middlewares: [
+        new ValidateObjectIdMiddleware('rentId'),
+        new DocumentExistsMiddleware(this.rentService, 'Предложения по аренде', 'rentId'),
+      ],
     });
     this.addRoute({
       path: '/:rentId',
@@ -65,14 +70,18 @@ export default class RentController extends Controller {
       handler: this.update,
       middlewares: [
         new ValidateObjectIdMiddleware('rentId'),
-        new ValidateDtoMiddleware(UpdateRentDto)
+        new ValidateDtoMiddleware(UpdateRentDto),
+        new DocumentExistsMiddleware(this.rentService, 'Предложения по аренде', 'rentId'),
       ],
     });
     this.addRoute({
       path: '/:rentId/comments',
       method: HttpMethod.Get,
       handler: this.getComments,
-      middlewares: [ new ValidateObjectIdMiddleware('rentId') ],
+      middlewares: [
+        new ValidateObjectIdMiddleware('rentId'),
+        new DocumentExistsMiddleware(this.rentService, 'Предложения по аренде', 'rentId'),
+      ],
     });
     this.addRoute({
       path: '/sort/top-rated',
@@ -99,15 +108,6 @@ export default class RentController extends Controller {
   ): Promise<void> {
     const { rentId } = params;
     const rent = await this.rentService.findById(rentId);
-
-    if (!rent) {
-      throw new HttpError(
-        StatusCodes.NOT_FOUND,
-        `Предложения с id ${ rentId } не существует`,
-        'RentController'
-      );
-    }
-
     this.ok(res, fillDTO(RentRdo, rent));
   }
 
@@ -128,16 +128,7 @@ export default class RentController extends Controller {
     const { rentId } = params;
     const rent = await this.rentService.deleteById(rentId);
 
-    if (!rent) {
-      throw new HttpError(
-        StatusCodes.NOT_FOUND,
-        `Предложения с id ${ rentId } не существует`,
-        'RentController'
-      );
-    }
-
     await this.commentService.deleteByRentId(rentId);
-
     this.noContent(res, fillDTO(RentRdo, rent));
   }
 
@@ -147,15 +138,6 @@ export default class RentController extends Controller {
   ): Promise<void> {
     const { rentId } = params;
     const updatedRent = await this.rentService.updateById(rentId, body);
-
-    if (!updatedRent) {
-      throw new HttpError(
-        StatusCodes.NOT_FOUND,
-        `Предложения с id ${ rentId } не существует`,
-        'RentController'
-      );
-    }
-
     this.ok(res, fillDTO(RentRdo, updatedRent));
   }
 
@@ -164,16 +146,6 @@ export default class RentController extends Controller {
     res: Response,
   ): Promise<void> {
     const { rentId } = params;
-    const existsRent = await this.rentService.findById(rentId);
-
-    if (!existsRent) {
-      throw new HttpError(
-        StatusCodes.NOT_FOUND,
-        `Предложения с id ${ rentId } не существует`,
-        'RentController'
-      );
-    }
-
     const { limit } = query;
     const comments = await this.commentService.findByRentId(rentId, limit);
     this.ok(res, fillDTO(CommentRdo, comments));
