@@ -2,6 +2,8 @@ import { prop, modelOptions, defaultClasses, getModelForClass } from '@typegoose
 
 import { User } from '@appTypes/user.type.js';
 import { UserType, userTypes } from '@appTypes/user-type.type.js';
+import { UserNameValidation } from '@const/validation.js';
+import { UserTypeError } from '@const/error-messages.js';
 import { createSHA256 } from '@utils/index.js';
 
 // for type merging of interface and class UserEntity
@@ -18,7 +20,8 @@ export class UserEntity extends defaultClasses.TimeStamps implements User {
   @prop({
     required: true,
     trim: true,
-    default: '',
+    minlength: UserNameValidation.Min,
+    maxlength: UserNameValidation.Max,
   })
   public name!: string;
 
@@ -37,11 +40,11 @@ export class UserEntity extends defaultClasses.TimeStamps implements User {
     type: () => String,
     required: true,
     validate: {
-      validator: (type: UserType | undefined) => [...userTypes, undefined].includes(type),
-      message: `Тип пользователя не входят в список разрешенных: ${userTypes.join(', ')}, undefined!`
-    }
+      validator: (type: UserType) => userTypes.includes(type),
+      message: UserTypeError.IsIn,
+    },
   })
-  public type!: UserType | undefined;
+  public type!: UserType;
 
   @prop({
     required: true,

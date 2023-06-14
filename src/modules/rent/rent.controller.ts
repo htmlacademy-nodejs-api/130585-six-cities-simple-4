@@ -45,31 +45,31 @@ export default class RentController extends Controller {
       path: '/:rentId',
       method: HttpMethod.Get,
       handler: this.show,
-      middlewares: [ new ValidateObjectIdMiddleware('rentId') ]
+      middlewares: [ new ValidateObjectIdMiddleware('rentId') ],
     });
     this.addRoute({
       path: '/',
       method: HttpMethod.Post,
       handler: this.create,
-      middlewares: [ new ValidateDtoMiddleware(CreateRentDto) ]
+      middlewares: [ new ValidateDtoMiddleware(CreateRentDto) ],
     });
     this.addRoute({
       path: '/:rentId',
       method: HttpMethod.Delete,
       handler: this.delete,
-      middlewares: [ new ValidateObjectIdMiddleware('rentId') ]
+      middlewares: [ new ValidateObjectIdMiddleware('rentId') ],
     });
     this.addRoute({
       path: '/:rentId',
       method: HttpMethod.Patch,
       handler: this.update,
-      middlewares: [ new ValidateObjectIdMiddleware('rentId') ]
+      middlewares: [ new ValidateObjectIdMiddleware('rentId') ],
     });
     this.addRoute({
       path: '/:rentId/comments',
       method: HttpMethod.Get,
       handler: this.getComments,
-      middlewares: [ new ValidateObjectIdMiddleware('rentId') ]
+      middlewares: [ new ValidateObjectIdMiddleware('rentId') ],
     });
     this.addRoute({
       path: '/sort/top-rated',

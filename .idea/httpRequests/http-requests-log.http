@@ -1,0 +1,946 @@
+POST http://localhost:5000/users/signup
+Content-Type: application/json
+Content-Length: 131
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "name": "Michael Surname",
+  "email": "michae@test5.net",
+  "avatar": "avatar.png",
+  "pass": "pass3456",
+  "type": "general"
+}
+
+<> 2023-06-14T111751.201.json
+
+###
+
+POST http://localhost:5000/users/signup
+Content-Type: application/json
+Content-Length: 130
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "name": "Michael Surname",
+  "email": "michae@test.net",
+  "avatar": "avatar.png",
+  "pass": "pass3456",
+  "type": "general"
+}
+
+<> 2023-06-14T111743.409.json
+
+###
+
+POST http://localhost:5000/users/signup
+Content-Type: application/json
+Content-Length: 111
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "name": "",
+  "email": "michae@test.net",
+  "avatar": "avatar.png",
+  "pass": "pass",
+  "type": "general"
+}
+
+<> 2023-06-14T111732.400.json
+
+###
+
+POST http://localhost:5000/users/signup
+Content-Type: application/json
+Content-Length: 125
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "name": "Michael Surname",
+  "email": "michaetest.net",
+  "avatar": "avatar.png",
+  "pass": "pass",
+  "type": "general"
+}
+
+<> 2023-06-14T111702.400.json
+
+###
+
+POST http://localhost:5000/rents
+Content-Type: application/json
+Content-Length: 553
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "title": "Cute central flat with modern design",
+  "description": "Cute central flat with modern design",
+  "city": "647e1ea88507534f70eaae96",
+  "preview": "url/to/image-1.webp",
+  "images": [
+    "url/to/image-1.jpg",
+    "url/to/image-2.jpg",
+    "url/to/image-2.jpg",
+    "url/to/image-2.jpg",
+    "url/to/image-2.jpg",
+    "url/to/image-2.jpg"
+  ],
+  "isPremium": false,
+  "type": "room",
+  "rooms": 0,
+  "guests": 90,
+  "price": 1200,
+  "facilities": [
+    "Lapto friendly workspace",
+    "Washer"
+  ],
+  "author": "647e1ea88507534f70eaae93"
+}
+
+<> 2023-06-14T102641.400.json
+
+###
+
+POST http://localhost:5000/rents
+Content-Type: application/json
+Content-Length: 553
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "title": "Cute central flat with modern design",
+  "description": "Cute central flat with modern design",
+  "city": "647e1ea88507534f70eaae96",
+  "preview": "url/to/image-1.webp",
+  "images": [
+    "url/to/image-1.jpg",
+    "url/to/image-2.jpg",
+    "url/to/image-2.jpg",
+    "url/to/image-2.jpg",
+    "url/to/image-2.jpg",
+    "url/to/image-2.jpg"
+  ],
+  "isPremium": false,
+  "type": "room",
+  "rooms": 0,
+  "guests": 90,
+  "price": 1200,
+  "facilities": [
+    "Lapto friendly workspace",
+    "Washer"
+  ],
+  "author": "647e1ea88507534f70eaae93"
+}
+
+<> 2023-06-14T102639.400.json
+
+###
+
+POST http://localhost:5000/rents
+Content-Type: application/json
+Content-Length: 553
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "title": "Cute central flat with modern design",
+  "description": "Cute central flat with modern design",
+  "city": "647e1ea88507534f70eaae96",
+  "preview": "url/to/image-1.webp",
+  "images": [
+    "url/to/image-1.jpg",
+    "url/to/image-2.jpg",
+    "url/to/image-2.jpg",
+    "url/to/image-2.jpg",
+    "url/to/image-2.jpg",
+    "url/to/image-2.jpg"
+  ],
+  "isPremium": false,
+  "type": "room",
+  "rooms": 2,
+  "guests": 3,
+  "price": 1200,
+  "facilities": [
+    "Laptop friendly workspace",
+    "Washer"
+  ],
+  "author": "647e1ea88507534f70eaae93"
+}
+
+<> 2023-06-14T102606.201.json
+
+###
+
+POST http://localhost:5000/rents
+Content-Type: application/json
+Content-Length: 551
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "title": "Cute central flat with modern design",
+  "description": "Cute central flat with modern design",
+  "city": "647e1ea88507534f70eaae96",
+  "preview": "url/to/image-1.jp",
+  "images": [
+    "url/to/image-1.jpg",
+    "url/to/image-2.jpg",
+    "url/to/image-2.jpg",
+    "url/to/image-2.jpg",
+    "url/to/image-2.jpg",
+    "url/to/image-2.jpg"
+  ],
+  "isPremium": false,
+  "type": "room",
+  "rooms": 2,
+  "guests": 3,
+  "price": 1200,
+  "facilities": [
+    "Laptop friendly workspace",
+    "Washer"
+  ],
+  "author": "647e1ea88507534f70eaae93"
+}
+
+<> 2023-06-14T102555.400.json
+
+###
+
+POST http://localhost:5000/rents
+Content-Type: application/json
+Content-Length: 552
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "title": "Cute central flat with modern design",
+  "description": "Cute central flat with modern design",
+  "city": "647e1ea88507534f70eaae96",
+  "preview": "url/to/image-1.jp",
+  "images": [
+    "url/to/image-1.jpg",
+    "url/to/image-2.jpg",
+    "url/to/image-2.jpg",
+    "url/to/image-2.jpg",
+    "url/to/image-2.jpg",
+    "url/to/image-2.jpg",
+  ],
+  "isPremium": false,
+  "type": "room",
+  "rooms": 2,
+  "guests": 3,
+  "price": 1200,
+  "facilities": [
+    "Laptop friendly workspace",
+    "Washer"
+  ],
+  "author": "647e1ea88507534f70eaae93"
+}
+
+<> 2023-06-14T102548.500.json
+
+###
+
+POST http://localhost:5000/rents
+Content-Type: application/json
+Content-Length: 448
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "title": "Cute central flat with modern design",
+  "description": "Cute central flat with modern design",
+  "city": "647e1ea88507534f70eaae96",
+  "preview": "url/to/image-1.jp",
+  "images": [
+    "url/to/image-1.jpgf",
+    "url/to/image-2.jpg"
+  ],
+  "isPremium": false,
+  "type": "room",
+  "rooms": 2,
+  "guests": 3,
+  "price": 1200,
+  "facilities": [
+    "Laptop friendly workspace",
+    "Washer"
+  ],
+  "author": "647e1ea88507534f70eaae93"
+}
+
+<> 2023-06-14T102534.400.json
+
+###
+
+POST http://localhost:5000/rents
+Content-Type: application/json
+Content-Length: 447
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "title": "Cute central flat with modern design",
+  "description": "Cute central flat with modern design",
+  "city": "647e1ea88507534f70eaae96",
+  "preview": "url/to/image-1.jp",
+  "images": [
+    "url/to/image-1.jpg",
+    "url/to/image-2.jpg"
+  ],
+  "isPremium": false,
+  "type": "room",
+  "rooms": 2,
+  "guests": 3,
+  "price": 1200,
+  "facilities": [
+    "Laptop friendly workspace",
+    "Washer"
+  ],
+  "author": "647e1ea88507534f70eaae93"
+}
+
+<> 2023-06-14T102125.400.json
+
+###
+
+POST http://localhost:5000/rents
+Content-Type: application/json
+Content-Length: 452
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "title": "Cute central flat with modern design",
+  "description": "Cute central flat with modern design",
+  "city": "647e1ea88507534f70eaae96",
+  "preview": "url/to/image-1.jpg?23=",
+  "images": [
+    "url/to/image-1.jpg",
+    "url/to/image-2.jpg"
+  ],
+  "isPremium": false,
+  "type": "room",
+  "rooms": 2,
+  "guests": 3,
+  "price": 1200,
+  "facilities": [
+    "Laptop friendly workspace",
+    "Washer"
+  ],
+  "author": "647e1ea88507534f70eaae93"
+}
+
+<> 2023-06-14T102114.400.json
+
+###
+
+POST http://localhost:5000/rents
+Content-Type: application/json
+Content-Length: 423
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "title": "design",
+  "description": "Cute central flat with modern design",
+  "city": "647e1ea88507534f70eaae96",
+  "preview": "./url/to/image-1.jpg",
+  "images": [
+    "./url/to/image-1.jpg",
+    "./url/to/image-2.jpg"
+  ],
+  "isPremium": false,
+  "type": "rom",
+  "rooms": 2,
+  "guests": 3,
+  "price": 1200,
+  "facilities": [
+    "Laptop friendly workspace",
+    "Washer"
+  ],
+  "author": "647e1ea88507534f70eaae93"
+}
+
+<> 2023-06-14T101939.400.json
+
+###
+
+POST http://localhost:5000/rents
+Content-Type: application/json
+Content-Length: 423
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "title": "design",
+  "description": "Cute central flat with modern design",
+  "city": "647e1ea88507534f70eaae96",
+  "preview": "./url/to/image-1.jpg",
+  "images": [
+    "./url/to/image-1.jpg",
+    "./url/to/image-2.jpg"
+  ],
+  "isPremium": false,
+  "type": "rom",
+  "rooms": 2,
+  "guests": 3,
+  "price": 1200,
+  "facilities": [
+    "Laptop friendly workspace",
+    "Washer"
+  ],
+  "author": "647e1ea88507534f70eaae93"
+}
+
+<> 2023-06-14T100617.400.json
+
+###
+
+POST http://localhost:5000/rents
+Content-Type: application/json
+Content-Length: 417
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "title": "design",
+  "description": "Cute central flat with modern design",
+  "city": "647e1ea88507534f70eaae96",
+  "preview": "url/to/image-1.jpg",
+  "images": [
+    "url/to/image-1.jpg",
+    "url/to/image-2.jpg"
+  ],
+  "isPremium": false,
+  "type": "rom",
+  "rooms": 2,
+  "guests": 3,
+  "price": 1200,
+  "facilities": [
+    "Laptop friendly workspace",
+    "Washer"
+  ],
+  "author": "647e1ea88507534f70eaae93"
+}
+
+<> 2023-06-14T100536.400.json
+
+###
+
+POST http://localhost:5000/rents
+Content-Type: application/json
+Content-Length: 418
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "title": "design",
+  "description": "Cute central flat with modern design",
+  "city": "647e1ea88507534f70eaae96",
+  "preview": "url/to/image-1.jpg",
+  "images": [
+    "url/to/image-1.jpg",
+    "url/to/image-2.jpg"
+  ],
+  "isPremium": false,
+  "type": "room",
+  "rooms": 2,
+  "guests": 3,
+  "price": 1200,
+  "facilities": [
+    "Laptop friendly workspace",
+    "Washer"
+  ],
+  "author": "647e1ea88507534f70eaae93"
+}
+
+<> 2023-06-14T095556.400.json
+
+###
+
+POST http://localhost:5000/rents
+Content-Type: application/json
+Content-Length: 418
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "title": "design",
+  "description": "Cute central flat with modern design",
+  "city": "647e1ea88507534f70eaae96",
+  "preview": "url/to/image-1.jpg",
+  "images": [
+    "url/to/image-1.jpg",
+    "url/to/image-2.jpg"
+  ],
+  "isPremium": false,
+  "type": "room",
+  "rooms": 2,
+  "guests": 3,
+  "price": 1200,
+  "facilities": [
+    "Laptop friendly workspace",
+    "Washer"
+  ],
+  "author": "647e1ea88507534f70eaae93"
+}
+
+<> 2023-06-14T095553.400.json
+
+###
+
+POST http://localhost:5000/rents
+Content-Type: application/json
+Content-Length: 418
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "title": "design",
+  "description": "Cute central flat with modern design",
+  "city": "647e1ea88507534f70eaae96",
+  "preview": "url/to/image-1.jpg",
+  "images": [
+    "url/to/image-1.jpg",
+    "url/to/image-2.jpg"
+  ],
+  "isPremium": false,
+  "type": "room",
+  "rooms": 2,
+  "guests": 3,
+  "price": 1200,
+  "facilities": [
+    "Laptop friendly workspace",
+    "Washer"
+  ],
+  "author": "647e1ea88507534f70eaae93"
+}
+
+<> 2023-06-14T095538.400.json
+
+###
+
+POST http://localhost:5000/rents
+Content-Type: application/json
+Content-Length: 429
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "title": "Cute odern design",
+  "description": "Cute central flat with modern design",
+  "city": "647e1ea88507534f70eaae96",
+  "preview": "url/to/image-1.jpg",
+  "images": [
+    "url/to/image-1.jpg",
+    "url/to/image-2.jpg"
+  ],
+  "isPremium": false,
+  "type": "room",
+  "rooms": 2,
+  "guests": 3,
+  "price": 1200,
+  "facilities": [
+    "Laptop friendly workspace",
+    "Washer"
+  ],
+  "author": "647e1ea88507534f70eaae93"
+}
+
+<> 2023-06-14T095151.400.json
+
+###
+
+GET http://localhost:5000/rents
+Content-Type: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-06-13T103040.200.json
+
+###
+
+GET http://localhost:5000/rents
+Content-Type: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-06-13T103022.200.json
+
+###
+
+GET http://localhost:5000/rents
+Content-Type: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-06-13T102923.200.json
+
+###
+
+GET http://localhost:5000/rents/sort/popular
+Content-Type: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-06-13T102831.200.json
+
+###
+
+GET http://localhost:5000/rents/sort/top-rated
+Content-Type: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-06-13T102804.200.json
+
+###
+
+POST http://localhost:5000/comments
+Content-Type: application/json
+Content-Length: 168
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "text": "Очень ценный новый комментарий",
+  "rentId": "647e1ea88507534f70eaaeba",
+  "author": "647e1ea88507534f70eaae9b",
+  "rating": 5
+}
+
+<> 2023-06-13T102755.201.json
+
+###
+
+POST http://localhost:5000/comments
+Content-Type: application/json
+Content-Length: 168
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "text": "Очень ценный новый комментарий",
+  "rentId": "647e1ea88507534f70eaaeba",
+  "author": "647e1ea88507534f70eaae9b",
+  "rating": 5
+}
+
+<> 2023-06-13T102754-1.201.json
+
+###
+
+POST http://localhost:5000/comments
+Content-Type: application/json
+Content-Length: 168
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "text": "Очень ценный новый комментарий",
+  "rentId": "647e1ea88507534f70eaaeba",
+  "author": "647e1ea88507534f70eaae9b",
+  "rating": 5
+}
+
+<> 2023-06-13T102754.201.json
+
+###
+
+POST http://localhost:5000/comments
+Content-Type: application/json
+Content-Length: 168
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "text": "Очень ценный новый комментарий",
+  "rentId": "647e1ea88507534f70eaaeba",
+  "author": "647e1ea88507534f70eaae9b",
+  "rating": 4
+}
+
+<> 2023-06-13T102751.201.json
+
+###
+
+POST http://localhost:5000/comments
+Content-Type: application/json
+Content-Length: 168
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "text": "Очень ценный новый комментарий",
+  "rentId": "647e1ea88507534f70eaaeba",
+  "author": "647e1ea88507534f70eaae9b",
+  "rating": 4
+}
+
+<> 2023-06-13T102748.201.json
+
+###
+
+POST http://localhost:5000/comments
+Content-Type: application/json
+Content-Length: 168
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "text": "Очень ценный новый комментарий",
+  "rentId": "647e1ea88507534f70eaae9e",
+  "author": "647e1ea88507534f70eaae9b",
+  "rating": 4
+}
+
+<> 2023-06-13T102732.201.json
+
+###
+
+POST http://localhost:5000/comments
+Content-Type: application/json
+Content-Length: 168
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "text": "Очень ценный новый комментарий",
+  "rentId": "647e1ea88507534f70eaae9e",
+  "author": "647e1ea88507534f70eaae9b",
+  "rating": 4
+}
+
+<> 2023-06-13T102729.201.json
+
+###
+
+POST http://localhost:5000/comments
+Content-Type: application/json
+Content-Length: 168
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "text": "Очень ценный новый комментарий",
+  "rentId": "647e1ea88507534f70eaae9e",
+  "author": "647e1ea88507534f70eaae9b",
+  "rating": 1
+}
+
+<> 2023-06-13T102722.201.json
+
+###
+
+GET http://localhost:5000/rents/sort/popular
+Content-Type: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-06-13T102638.200.json
+
+###
+
+GET http://localhost:5000/rents/sort/popular
+Content-Type: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-06-13T102541.200.json
+
+###
+
+GET http://localhost:5000/rents/sort/popular
+Content-Type: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-06-13T102412.200.json
+
+###
+
+GET http://localhost:5000/rents/sort/popular
+Content-Type: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-06-13T102321.404.html
+
+###
+
+GET http://localhost:5000/rents/sort/popular
+Content-Type: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-06-13T102259.404.html
+
+###
+
+GET http://localhost:5000/rents/sort/top-rated
+Content-Type: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-06-13T102235.404.html
+
+###
+
+GET http://localhost:5000/cities/6471ea88507534f70eaae96/rents?limit=2
+Content-Type: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-06-13T092652.400.json
+
+###
+
+DELETE http://localhost:5000/rents/6471ea88507534f70eaae8a
+Content-Type: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-06-13T092522.400.json
+
+###
+
+GET http://localhost:5000/rents/648196cf1ca25c81b7bbf621
+Content-Type: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-06-13T092354.200.json
+
+###
+
+GET http://localhost:5000/rents/64816cf1ca25c81b7bbf621
+Content-Type: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-06-13T092345.400.json
+
+###
+
+GET http://localhost:5000/rents/648196cf1ca25c81b7bbf621
+Content-Type: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-06-13T092330.200.json
+
+###
+
+DELETE http://localhost:5000/rents/647e1ea88507534f70eaae8a
+Content-Type: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+###
+
+GET http://localhost:5000/rents/647e1ea88507534f70eaae8a/comments
+Content-Type: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-06-12T230534.200.json
+
+###
+
+DELETE http://localhost:5000/rents/647e1ea88507534f70eaae90
+Content-Type: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-06-12T230508.404.json
+
+###
+
+DELETE http://localhost:5000/rents/647e1ea88507534f70eaae98
+Content-Type: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+###
+
+GET http://localhost:5000/rents/647e1ea88507534f70eaae98/comments
+Content-Type: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-06-12T230235.200.json
+
+###
+
+GET http://localhost:5000/rents/647e1ea88507534f70eaae98/comments
+Content-Type: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-06-12T230145.404.html
+
+###
+
+GET http://localhost:5000/rents/647e1ea88507534f70eaae98/comments
+Content-Type: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-06-12T230143.404.html
+
+###
+

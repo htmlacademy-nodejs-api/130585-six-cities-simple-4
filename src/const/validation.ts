@@ -3,6 +3,11 @@ export const enum UserNameValidation {
   Max = 15,
 }
 
+export const enum UserPassValidation {
+  Min = 6,
+  Max = 12,
+}
+
 export const enum RentTitleValidation {
   Min = 10,
   Max = 100,
@@ -37,11 +42,6 @@ export const enum RentPriceValidation {
   Max = 10000,
 }
 
-export const enum CommentTextValidation {
-  Min = 5,
-  Max = 1024,
-}
-
 export const enum RentImagesValidation {
   Min = 6,
   Max = 6,
@@ -51,4 +51,9 @@ export const enum RentFacilitiesValidation {
   Min = 1,
 }
 
-export const IMAGE_URL_MATCH_PATTERN = /\.(jpg|jpeg|gif|png|tiff|bmp|webp)(\?(.*))?$/gmi;
+export const enum CommentTextValidation {
+  Min = 5,
+  Max = 1024,
+}
+
+export const IMAGE_URL_MATCH_PATTERN = /\.(jpg|jpeg|png)(\?(.*))?$/gmi;

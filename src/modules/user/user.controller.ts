@@ -13,8 +13,9 @@ import { ConfigInterface } from '@core/config/config.interface.js';
 import { AppComponent } from '@appTypes/app-component.enum.js';
 import { RestSchema } from '@core/config/rest.schema.js';
 import { HttpMethod } from '@appTypes/http-method.enum.js';
-import HttpError from '@core/errors/http-error.js';
 import { fillDTO } from '@utils/db.js';
+import HttpError from '@core/errors/http-error.js';
+import { ValidateDtoMiddleware } from '@core/middleware/validate-dto.middleware.js';
 
 @injectable()
 export default class UserController extends Controller {
@@ -30,6 +31,7 @@ export default class UserController extends Controller {
       path: '/signup',
       method: HttpMethod.Post,
       handler: this.create,
+      middlewares: [ new ValidateDtoMiddleware(CreateUserDto) ],
     });
     this.addRoute({
       path: '/login',

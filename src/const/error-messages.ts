@@ -7,9 +7,12 @@ import {
   RentPriceValidation,
   RentImagesValidation,
   RentFacilitiesValidation,
+  UserNameValidation,
+  UserPassValidation,
 } from '@const/validation.js';
 import { rentTypes } from '@appTypes/rent-type.type.js';
-import { rentFacilities } from '@appTypes/rent-facility.type';
+import { rentFacilities } from '@appTypes/rent-facility.type.js';
+import { userTypes } from '@appTypes/user-type.type.js';
 
 export const RentTitleError = {
   Min: `Минимальная длина поля Заголовок - ${ RentTitleValidation.Min } символов`,
@@ -54,11 +57,11 @@ export const RentAuthorError = {
 } as const;
 
 export const RentPreviewError = {
-  IsImg: 'В Превью должна быть ссылка на изображение',
+  IsImg: 'В Превью должна быть ссылка на изображение (jpg, png)',
 } as const;
 
 export const RentImagesError = {
-  IsImg: 'В поле Изображения должен быть массив ссылок на изображения',
+  IsImg: 'В поле Изображения должен быть массив ссылок на изображения (jpg, png)',
   IsArray: 'В поле Изображения должен быть массив ссылок на изображения',
   ArrayLength: `Количество Изображений должно быть ${ RentImagesValidation.Min }`,
 } as const;
@@ -75,5 +78,25 @@ export const RentFacilitiesError = {
   IsArray: `В поле Удобства должен быть массив из удобств: ${ rentFacilities.join(', ') }`,
   IsIn: `Удобства не входят в список разрешенных: ${ rentFacilities.join(', ') }`,
   ArrayMinLength: `Минимальное количество удобств - ${ RentFacilitiesValidation.Min }`
+} as const;
+
+export const UserEmailError = {
+  IsEmail: 'Email пользователя должен иметь валидный формат',
+} as const;
+
+export const UserAvatarError = {
+  IsImg: 'В поле Аватар должна быть ссылка на изображение (jpg, png)',
+} as const;
+
+export const UserNameError = {
+  Length: `Минимальное количество символов для поля Имя - ${ UserNameValidation.Min }, максимальное - ${ UserNameValidation.Max }`,
+} as const;
+
+export const UserTypeError = {
+  IsIn: `Тип пользователя не входит в список разрешенных: ${ userTypes.join(', ') }`,
+} as const;
+
+export const UserPassError = {
+  Length: `Минимальное количество символов для поля Пароль - ${ UserPassValidation.Min }, максимальное - ${ UserPassValidation.Max }`,
 } as const;
 
