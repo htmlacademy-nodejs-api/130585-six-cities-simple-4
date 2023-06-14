@@ -13,6 +13,7 @@ import { AppComponent } from '@appTypes/app-component.enum.js';
 import { HttpMethod } from '@appTypes/http-method.enum.js';
 import { fillDTO } from '@utils/db.js';
 import HttpError from '@core/errors/http-error.js';
+import { ValidateDtoMiddleware } from '@core/middleware/validate-dto.middleware.js';
 
 @injectable()
 export default class CommentController extends Controller {
@@ -29,6 +30,7 @@ export default class CommentController extends Controller {
     this.addRoute({
       path: '/', method: HttpMethod.Post,
       handler: this.create,
+      middlewares: [ new ValidateDtoMiddleware(CreateCommentDto) ],
     });
   }
 

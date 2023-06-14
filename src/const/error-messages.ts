@@ -10,6 +10,7 @@ import {
   UserNameValidation,
   UserPassValidation,
   CityNameValidation,
+  CommentTextValidation,
 } from '@const/validation.js';
 import { rentTypes } from '@appTypes/rent-type.type.js';
 import { rentFacilities } from '@appTypes/rent-facility.type.js';
@@ -111,5 +112,17 @@ export const CityNameError = {
 export const CityCoordsError = {
   IsLatitude: 'Координата широты должна быть валидным числом или строкой',
   IsLongitude: 'Координата долготы должна быть валидным числом или строкой',
+} as const;
+
+export const CommentTextError = {
+  Length: `Минимальное количество символов для поля Сообщение - ${ CommentTextValidation.Min }, максимальное - ${ CommentTextValidation.Max }`,
+} as const;
+
+export const CommentRentIdError = {
+  IsMongoId: 'Id Предложения по аренде должен быть валидным MongoId',
+} as const;
+
+export const CommentAuthorError = {
+  IsMongoId: 'Id Пользователя должен быть валидным MongoId',
 } as const;
 
