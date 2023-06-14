@@ -17,6 +17,7 @@ import { HttpMethod } from '@appTypes/http-method.enum.js';
 import { fillDTO } from '@utils/db.js';
 import HttpError from '@core/errors/http-error.js';
 import { ValidateObjectIdMiddleware } from '@core/middleware/validate-objectid.middleware.js';
+import { ValidateDtoMiddleware } from '@core/middleware/validate-dto.middleware.js';
 
 type ParamsCityDetails = {
   cityId: string;
@@ -42,6 +43,7 @@ export default class CityController extends Controller {
       path: '/',
       method: HttpMethod.Post,
       handler: this.create,
+      middlewares: [ new ValidateDtoMiddleware(CreateCityDto) ]
     });
     this.addRoute({
       path: '/:cityId/rents',

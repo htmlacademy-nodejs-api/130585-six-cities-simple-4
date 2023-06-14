@@ -56,4 +56,8 @@ export const enum CommentTextValidation {
   Max = 1024,
 }
 
+export const enum CityNameValidation {
+  Min = 1,
+}
+
 export const IMAGE_URL_MATCH_PATTERN = /\.(jpg|jpeg|png)(\?(.*))?$/gmi;

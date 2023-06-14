@@ -9,10 +9,12 @@ import {
   RentFacilitiesValidation,
   UserNameValidation,
   UserPassValidation,
+  CityNameValidation,
 } from '@const/validation.js';
 import { rentTypes } from '@appTypes/rent-type.type.js';
 import { rentFacilities } from '@appTypes/rent-facility.type.js';
 import { userTypes } from '@appTypes/user-type.type.js';
+import { cities } from '@appTypes/city.type.js';
 
 export const RentTitleError = {
   Min: `Минимальная длина поля Заголовок - ${ RentTitleValidation.Min } символов`,
@@ -99,5 +101,15 @@ export const UserTypeError = {
 export const UserPassError = {
   Required: 'Поле Пароль обязательное',
   Length: `Минимальное количество символов для поля Пароль - ${ UserPassValidation.Min }, максимальное - ${ UserPassValidation.Max }`,
+} as const;
+
+export const CityNameError = {
+  IsIn: `Название города не входит в список разрешенных: ${ cities.join(', ') }`,
+  Min: `Минимальное количество символов для поля Название -  ${ CityNameValidation.Min }`
+} as const;
+
+export const CityCoordsError = {
+  IsLatitude: 'Координата широты должна быть валидным числом или строкой',
+  IsLongitude: 'Координата долготы должна быть валидным числом или строкой',
 } as const;
 
