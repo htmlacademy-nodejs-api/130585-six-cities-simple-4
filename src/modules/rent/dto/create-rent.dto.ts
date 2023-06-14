@@ -1,4 +1,17 @@
-import { MinLength, MaxLength, IsInt, Min, Max, IsMongoId, IsUrl, IsArray, IsBoolean, ArrayMinSize, ArrayMaxSize, IsIn } from 'class-validator';
+import {
+  MinLength,
+  MaxLength,
+  IsInt,
+  Min,
+  Max,
+  IsMongoId,
+  IsArray,
+  IsBoolean,
+  ArrayMinSize,
+  ArrayMaxSize,
+  IsIn,
+  Matches,
+} from 'class-validator';
 
 import { RentType, rentTypes } from '@appTypes/rent-type.type.js';
 import { RentFacility, rentFacilities } from '@appTypes/rent-facility.type.js';
@@ -10,6 +23,7 @@ import {
   RentPriceValidation,
   RentImagesValidation,
   RentFacilitiesValidation,
+  IMAGE_URL_MATCH_PATTERN,
 } from '@const/validation.js';
 import {
   RentTitleError,
@@ -38,13 +52,13 @@ export default class CreateRentDto {
   @IsMongoId({ message: RentCityError.IsMongoId })
   public city!: string;
 
-  @IsUrl({}, { message: RentPreviewError.IsUrl })
+  @Matches(IMAGE_URL_MATCH_PATTERN, { message: RentPreviewError.IsImg })
   public preview!: string;
 
   @IsArray({ message: RentImagesError.IsArray })
-  @ArrayMinSize(RentImagesValidation.Min, { message: RentImagesError.ArrayLength})
+  @ArrayMinSize(RentImagesValidation.Min, { message: RentImagesError.ArrayLength })
   @ArrayMaxSize(RentImagesValidation.Max, { message: RentImagesError.ArrayLength })
-  @IsUrl({}, { each: true, message: RentImagesError.IsUrl })
+  @Matches(IMAGE_URL_MATCH_PATTERN, { each: true, message: RentImagesError.IsImg })
   public images!: string[];
 
   @IsBoolean({ message: RentPremiumError.IsBoolean })

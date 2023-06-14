@@ -18,6 +18,7 @@ import { fillDTO } from '@utils/db.js';
 import HttpError from '@core/errors/http-error.js';
 import { RequestQuery } from '@appTypes/request-query.type';
 import { ValidateObjectIdMiddleware } from '@core/middleware/validate-objectid.middleware.js';
+import { ValidateDtoMiddleware } from '@core/middleware/validate-dto.middleware.js';
 
 // тип параметров запроса
 type ParamsRentDetails = {
@@ -50,6 +51,7 @@ export default class RentController extends Controller {
       path: '/',
       method: HttpMethod.Post,
       handler: this.create,
+      middlewares: [ new ValidateDtoMiddleware(CreateRentDto) ]
     });
     this.addRoute({
       path: '/:rentId',

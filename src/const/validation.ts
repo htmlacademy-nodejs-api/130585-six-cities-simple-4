@@ -50,3 +50,5 @@ export const enum RentImagesValidation {
 export const enum RentFacilitiesValidation {
   Min = 1,
 }
+
+export const IMAGE_URL_MATCH_PATTERN = /\.(jpg|jpeg|gif|png|tiff|bmp|webp)(\?(.*))?$/gmi;

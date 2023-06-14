@@ -54,11 +54,11 @@ export const RentAuthorError = {
 } as const;
 
 export const RentPreviewError = {
-  IsUrl: 'В превью должна быть ссылка на изображение',
+  IsImg: 'В Превью должна быть ссылка на изображение',
 } as const;
 
 export const RentImagesError = {
-  IsUrl: 'В поле Изображения должен быть массив ссылок на изображения',
+  IsImg: 'В поле Изображения должен быть массив ссылок на изображения',
   IsArray: 'В поле Изображения должен быть массив ссылок на изображения',
   ArrayLength: `Количество Изображений должно быть ${ RentImagesValidation.Min }`,
 } as const;
@@ -68,7 +68,7 @@ export const RentPremiumError = {
 } as const;
 
 export const RentTypeError = {
-  IsIn: `Тип объявления не входит в список разрешенных: ${ rentTypes.join(',') }`,
+  IsIn: `Тип объявления не входит в список разрешенных: ${ rentTypes.join(', ') }`,
 } as const;
 
 export const RentFacilitiesError = {
