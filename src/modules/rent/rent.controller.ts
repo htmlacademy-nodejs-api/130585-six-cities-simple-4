@@ -63,7 +63,10 @@ export default class RentController extends Controller {
       path: '/:rentId',
       method: HttpMethod.Patch,
       handler: this.update,
-      middlewares: [ new ValidateObjectIdMiddleware('rentId') ],
+      middlewares: [
+        new ValidateObjectIdMiddleware('rentId'),
+        new ValidateDtoMiddleware(UpdateRentDto)
+      ],
     });
     this.addRoute({
       path: '/:rentId/comments',
