@@ -16,6 +16,8 @@ import { HttpMethod } from '@appTypes/http-method.enum.js';
 import { fillDTO } from '@utils/db.js';
 import HttpError from '@core/errors/http-error.js';
 import { ValidateDtoMiddleware } from '@core/middleware/validate-dto.middleware.js';
+import { DocumentExistsMiddleware } from '@core/middleware/document-exists.middleware.js';
+import { UploadFileMiddleware } from '@core/middleware/upload-file.middleware.js';
 
 @injectable()
 export default class UserController extends Controller {
@@ -38,6 +40,15 @@ export default class UserController extends Controller {
       method: HttpMethod.Post,
       handler: this.login,
       middlewares: [ new ValidateDtoMiddleware(LoginUserDto) ],
+    });
+    this.addRoute({
+      path: '/:userId/avatar',
+      method: HttpMethod.Post,
+      handler: this.uploadAvatar,
+      middlewares: [
+        new DocumentExistsMiddleware(this.userService, 'Пользователя', 'userId'),
+        new UploadFileMiddleware(this.configService.get('UPLOAD_DIRECTORY'), 'avatar'),
+      ],
     });
   }
 
@@ -81,5 +92,11 @@ export default class UserController extends Controller {
       'Метод не закончен',
       'UserController',
     );
+  }
+
+  public async uploadAvatar (req: Request, res: Response): Promise<void> {
+    this.created(res, {
+      url: req?.file?.path,
+    });
   }
 }

@@ -145,6 +145,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UserAvatarUrl'
+        '404':
+          description: Пользователя с таким id не существует
 
   /rents:
     post:
@@ -432,7 +434,8 @@ components:
           example: pro
 
     UserAvatar:
-      $ref: '#/components/schemas/UserAvatarUrl'
+      type: string
+      format: binary
 
     UserAvatarUrl:
       type: object
