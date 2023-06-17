@@ -13,10 +13,10 @@ export class DocumentExistsMiddleware implements MiddlewareInterface {
   ) {
   }
 
-  public async execute({ params }: Request, _res: Response, next: NextFunction): Promise<void> {
-    const documentId = params[this.idParam];
+  public async execute({ params, body }: Request, _res: Response, next: NextFunction): Promise<void> {
+    const documentId = params[this.idParam] || body[this.idParam];
 
-    if (!await this.service.exists(documentId)) {
+    if (documentId !== undefined && !await this.service.exists(documentId)) {
       throw new HttpError(
         StatusCodes.NOT_FOUND,
         `${ this.entityName } c ${ this.idParam } = ${ documentId } не существует`,

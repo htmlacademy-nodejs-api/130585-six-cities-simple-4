@@ -44,7 +44,7 @@ export default class CityController extends Controller {
       path: '/',
       method: HttpMethod.Post,
       handler: this.create,
-      middlewares: [ new ValidateDtoMiddleware(CreateCityDto) ]
+      middlewares: [ new ValidateDtoMiddleware(CreateCityDto) ],
     });
     this.addRoute({
       path: '/:cityId/rents',
@@ -53,7 +53,7 @@ export default class CityController extends Controller {
       middlewares: [
         new ValidateObjectIdMiddleware('cityId'),
         new DocumentExistsMiddleware(this.cityService, 'Города', 'cityId'),
-      ]
+      ],
     });
   }
 

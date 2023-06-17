@@ -5,6 +5,7 @@ import { ParamsDictionary } from 'express-serve-static-core';
 import { Controller } from '@core/controller/controller.abstract.js';
 import { LoggerInterface } from '@core/logger/logger.interface.js';
 import { RentServiceInterface } from '@modules/rent/rent-service.interface.js';
+import { UserServiceInterface } from '@modules/user/user-service.interface.js';
 import { CommentServiceInterface } from '@modules/comment/comment.service.interface.js';
 import RentRdo from '@modules/rent/rdo/rent.rdo.js';
 import CreateRentDto from '@modules/rent/dto/create-rent.dto.js';
@@ -29,6 +30,7 @@ export default class RentController extends Controller {
   constructor(
     @inject(AppComponent.LoggerInterface) protected readonly logger: LoggerInterface,
     @inject(AppComponent.RentServiceInterface) private readonly rentService: RentServiceInterface,
+    @inject(AppComponent.UserServiceInterface) private readonly userService: UserServiceInterface,
     @inject(AppComponent.CommentServiceInterface) private readonly commentService: CommentServiceInterface,
   ) {
     super(logger);
@@ -53,7 +55,10 @@ export default class RentController extends Controller {
       path: '/',
       method: HttpMethod.Post,
       handler: this.create,
-      middlewares: [ new ValidateDtoMiddleware(CreateRentDto) ],
+      middlewares: [
+        new ValidateDtoMiddleware(CreateRentDto),
+        new DocumentExistsMiddleware(this.userService, 'Пользователя', 'author'),
+      ],
     });
     this.addRoute({
       path: '/:rentId',
