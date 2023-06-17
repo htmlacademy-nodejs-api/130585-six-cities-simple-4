@@ -4,11 +4,13 @@ import { extension } from 'mime-types';
 import { nanoid } from 'nanoid';
 
 import { MiddlewareInterface } from '@core/middleware/middleware.interface.js';
+import { IMAGE_MAX_SIZE } from '@const/validation.js';
 
 export class UploadFileMiddleware implements MiddlewareInterface {
   constructor(
     private uploadDirectory: string,
     private fieldName: string,
+    private maxCount: number = 1,
   ) {
   }
 
@@ -23,8 +25,12 @@ export class UploadFileMiddleware implements MiddlewareInterface {
       },
     });
 
-    const uploadSingleFileMiddleware = multer({ storage })
-      .single(this.fieldName);
+    const uploadSingleFileMiddleware = multer({
+      storage,
+      limits: {
+        fileSize: IMAGE_MAX_SIZE,
+      },
+    })[this.maxCount > 1 ? 'array' : 'single'](this.fieldName, this.maxCount);
 
     uploadSingleFileMiddleware(req, res, next);
   }

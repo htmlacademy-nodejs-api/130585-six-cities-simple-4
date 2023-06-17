@@ -61,3 +61,4 @@ export const enum CityNameValidation {
 }
 
 export const IMAGE_URL_MATCH_PATTERN = /\.(jpg|jpeg|png)(\?(.*))?$/gmi;
+export const IMAGE_MAX_SIZE = 5 * 1024 * 1024;
