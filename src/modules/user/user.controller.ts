@@ -15,6 +15,7 @@ import { RestSchema } from '@core/config/rest.schema.js';
 import { HttpMethod } from '@appTypes/http-method.enum.js';
 import { fillDTO } from '@utils/db.js';
 import HttpError from '@core/errors/http-error.js';
+import UploadAvatarRdo from '@modules/user/rdo/upload-avatar.rdo.js';
 import { ValidateDtoMiddleware } from '@core/middleware/validate-dto.middleware.js';
 import { DocumentExistsMiddleware } from '@core/middleware/document-exists.middleware.js';
 import { UploadFileMiddleware } from '@core/middleware/upload-file.middleware.js';
@@ -95,8 +96,10 @@ export default class UserController extends Controller {
   }
 
   public async uploadAvatar (req: Request, res: Response): Promise<void> {
-    this.created(res, {
+    const result = {
       url: req?.file?.path,
-    });
+    };
+
+    this.created(res, fillDTO(UploadAvatarRdo, result));
   }
 }
