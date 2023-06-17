@@ -5,10 +5,19 @@ import { RentFacility, rentFacilities } from '@appTypes/rent-facility.type.js';
 import { RentEntityType } from '@appTypes/rent.type.js';
 import { CityEntity } from '@modules/city/city.entity.js';
 import { UserEntity } from '@modules/user/user.entity.js';
-import { RentRating, RentRooms, RentGuests, RentPrice } from '@const/validation.js';
+import {
+  RentTitleValidation,
+  RentDescriptionValidation,
+  RentRatingValidation,
+  RentRoomsValidation,
+  RentGuestsValidation,
+  RentPriceValidation,
+} from '@const/validation.js';
+import { RentTypeError, RentFacilitiesError } from '@const/error-messages.js';
 
 // for type merging of interface and class UserEntity
-export interface RentEntity extends defaultClasses.Base {}
+export interface RentEntity extends defaultClasses.Base {
+}
 
 @modelOptions({
   schemaOptions: {
@@ -19,12 +28,16 @@ export class RentEntity extends defaultClasses.TimeStamps implements RentEntityT
   @prop({
     required: true,
     trim: true,
+    minlength: RentTitleValidation.Min,
+    maxlength: RentTitleValidation.Max,
   })
   public title!: string;
 
   @prop({
     required: true,
     trim: true,
+    minlength: RentDescriptionValidation.Min,
+    maxlength: RentDescriptionValidation.Max,
   })
   public description!: string;
 
@@ -41,7 +54,7 @@ export class RentEntity extends defaultClasses.TimeStamps implements RentEntityT
   public preview!: string;
 
   @prop({
-    type: () => [String],
+    type: () => [ String ],
     required: true,
     default: [],
   })
@@ -54,8 +67,9 @@ export class RentEntity extends defaultClasses.TimeStamps implements RentEntityT
 
   @prop({
     required: true,
-    min: RentRating.Min,
-    max: RentRating.Max,
+    min: RentRatingValidation.Min,
+    max: RentRatingValidation.Max,
+    default: 0,
   })
   public rating!: number;
 
@@ -64,38 +78,38 @@ export class RentEntity extends defaultClasses.TimeStamps implements RentEntityT
     required: true,
     validate: {
       validator: (type: RentType) => rentTypes.includes(type),
-      message: `Тип объявления не входит в список разрешенных: ${rentTypes.join(',')}!`
+      message: RentTypeError.IsIn,
     }
   })
   public type!: RentType;
 
   @prop({
     required: true,
-    min: RentRooms.Min,
-    max: RentRooms.Max,
+    min: RentRoomsValidation.Min,
+    max: RentRoomsValidation.Max,
   })
   public rooms!: number;
 
   @prop({
     required: true,
-    min: RentGuests.Min,
-    max: RentGuests.Max,
+    min: RentGuestsValidation.Min,
+    max: RentGuestsValidation.Max,
   })
   public guests!: number;
 
   @prop({
     required: true,
-    min: RentPrice.Min,
-    max: RentPrice.Max,
+    min: RentPriceValidation.Min,
+    max: RentPriceValidation.Max,
   })
   public price!: number;
 
   @prop({
-    type: () => [String],
+    type: () => [ String ],
     required: true,
     validate: {
       validator: (facilities: RentFacility[]) => facilities.every((facility) => rentFacilities.includes(facility)),
-      message: `Удобства не входят в список разрешенных: ${rentFacilities.join(', ')}!`
+      message: RentFacilitiesError.IsIn,
     }
   })
   public facilities!: RentFacility[];

@@ -45,6 +45,21 @@ paths:
               schema:
                 $ref: '#/components/schemas/Cities'
 
+  /cities/:cityId/rents:
+    get:
+      tags:
+        - cities
+        - rents
+      summary: Список предложений из города
+      description: Список предложений об аренде в определенном городе
+      responses:
+        '200':
+          description: Города получены. Массив объектов городов
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Rents'
+
   /users/signup:
     post:
       tags:
@@ -156,7 +171,7 @@ paths:
       tags:
         - rents
       summary: Список предложений об аренде
-      description: Возвращает предложений об аренде
+      description: Возвращает список предложений об аренде
       responses:
         '201':
           description: Предложения получены. Массив объектов предложений об аренде
@@ -178,7 +193,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Rents'
-        '409':
+        '404':
           description: Предложения с таким id не существует
 
     patch:
@@ -200,16 +215,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Rent'
+        '404':
+          description: Предложения с таким id не существует
 
     delete:
       tags:
         - rents
       summary: Удаление предложения об аренде
       responses:
-        '201':
-          description: Предложение удалено
-        '409':
-          description: Предложение не найдено
+        '204':
+          description: Предложение удалено, нет контента
+        '404':
+          description: Предложения с таким id не существует
         '403':
           description: Доступ к предложению запрещен
 
@@ -222,12 +239,43 @@ paths:
       description: Возвращает комментарии к предложению об аренде
       responses:
         '201':
-          description: Предложение получено. Массив объектов комментариев
+          description: Массив объектов комментариев
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Comments'
+        '404':
+          description: Предложения с таким id не существует
 
+  /rents/sort/top-rated:
+    get:
+      tags:
+        - rents
+      summary: Список предложений об аренде с высокими оценками
+      description: Возвращает список предложений об аренде, отсортированный по возрастанию по рейтингу
+      responses:
+        '201':
+          description: Предложения получены. Массив объектов предложений об аренде
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Rents'
+
+  /rents/sort/popular:
+    get:
+      tags:
+        - rents
+      summary: Список популярных предложений об аренде
+      description: Возвращает список предложений об аренде, отсортированный по возрастанию по количеству комментариев
+      responses:
+        '201':
+          description: Предложения получены. Массив объектов предложений об аренде
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Rents'
+
+  /comments:
     post:
       tags:
         - rents
@@ -248,6 +296,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Comment'
+        '404':
+          description: Предложения с таким id не существует
 
 tags:
   - name: cities

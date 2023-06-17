@@ -2,13 +2,14 @@ import { prop, modelOptions, defaultClasses, getModelForClass } from '@typegoose
 
 import { City, CityName, cities } from '@appTypes/city.type.js';
 import { Coords } from '@appTypes/coords.type.js';
+import { CityNameError } from '@const/error-messages.js';
 
 class CityCoordsEntity {
   @prop()
-  public lat?: number;
+  public lat!: number;
 
   @prop()
-  public long?: number;
+  public long!: number;
 }
 
 // for type merging of interface and class UserEntity
@@ -26,14 +27,13 @@ export class CityEntity extends defaultClasses.TimeStamps implements City {
     required: true,
     validate: {
       validator: (cityName: CityName) => cities.includes(cityName),
-      message: `Название города не входит в список разрешенных: ${cities.join(', ')}!`
+      message: CityNameError.IsIn,
     }
   })
   public name!: CityName;
 
   @prop({
     type: () => CityCoordsEntity,
-    required: true,
     default: {},
     _id: false,
   })

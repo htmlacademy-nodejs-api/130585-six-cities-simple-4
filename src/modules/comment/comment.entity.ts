@@ -1,7 +1,7 @@
 import { prop, Ref, modelOptions, defaultClasses, getModelForClass } from '@typegoose/typegoose';
 
 import { CommentEntityType } from '@appTypes/comment.type.js';
-import { CommentLength } from '@const/validation.js';
+import { CommentTextValidation } from '@const/validation.js';
 import { RentEntity } from '@modules/rent/rent.entity.js';
 import { UserEntity } from '@modules/user/user.entity.js';
 
@@ -17,8 +17,8 @@ export class CommentEntity extends defaultClasses.TimeStamps implements CommentE
   @prop({
     trim: true,
     required: true,
-    minlength: CommentLength.Min,
-    maxlength: CommentLength.Max,
+    minlength: CommentTextValidation.Min,
+    maxlength: CommentTextValidation.Max,
   })
   public text!: string;
 

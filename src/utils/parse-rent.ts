@@ -37,7 +37,7 @@ export const parseRent = (rentString: string): Rent => {
       name,
       email,
       avatar,
-      type: getTypedServerField<UserType>(userType, userTypes),
+      type: getTypedServerField<UserType>(userType, userTypes) || userTypes[0],
     },
     commentCount: 0,
   };
