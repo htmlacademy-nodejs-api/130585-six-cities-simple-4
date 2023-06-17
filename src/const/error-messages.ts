@@ -67,6 +67,7 @@ export const RentImagesError = {
   IsImg: 'В поле Изображения должен быть массив ссылок на изображения (jpg, png)',
   IsArray: 'В поле Изображения должен быть массив ссылок на изображения',
   ArrayLength: `Количество Изображений должно быть ${ RentImagesValidation.Min }`,
+  ArrayUnique: 'В поле Изображения все ссылки должны быть уникальны',
 } as const;
 
 export const RentPremiumError = {
@@ -80,7 +81,8 @@ export const RentTypeError = {
 export const RentFacilitiesError = {
   IsArray: `В поле Удобства должен быть массив из удобств: ${ rentFacilities.join(', ') }`,
   IsIn: `Удобства не входят в список разрешенных: ${ rentFacilities.join(', ') }`,
-  ArrayMinLength: `Минимальное количество удобств - ${ RentFacilitiesValidation.Min }`
+  ArrayMinLength: `Минимальное количество удобств - ${ RentFacilitiesValidation.Min }`,
+  ArrayUnique: 'Удобства не должны повторяться',
 } as const;
 
 export const UserEmailError = {
@@ -106,7 +108,7 @@ export const UserPassError = {
 
 export const CityNameError = {
   IsIn: `Название города не входит в список разрешенных: ${ cities.join(', ') }`,
-  Min: `Минимальное количество символов для поля Название -  ${ CityNameValidation.Min }`
+  Min: `Минимальное количество символов для поля Название -  ${ CityNameValidation.Min }`,
 } as const;
 
 export const CityCoordsError = {

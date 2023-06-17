@@ -12,6 +12,7 @@ import {
   ArrayMaxSize,
   IsIn,
   Matches,
+  ArrayUnique,
 } from 'class-validator';
 
 import { RentType, rentTypes } from '@appTypes/rent-type.type.js';
@@ -64,6 +65,7 @@ export default class UpdateRentDto {
   @ArrayMinSize(RentImagesValidation.Min, { message: RentImagesError.ArrayLength })
   @ArrayMaxSize(RentImagesValidation.Max, { message: RentImagesError.ArrayLength })
   @Matches(IMAGE_URL_MATCH_PATTERN, { each: true, message: RentImagesError.IsImg })
+  @ArrayUnique({ message: RentImagesError.ArrayUnique })
   public images?: string[];
 
   @IsOptional()
@@ -96,5 +98,6 @@ export default class UpdateRentDto {
   @IsArray({ message: RentFacilitiesError.IsArray })
   @ArrayMinSize(RentFacilitiesValidation.Min, { message: RentFacilitiesError.ArrayMinLength })
   @IsIn(rentFacilities, { each: true, message: RentFacilitiesError.IsIn })
+  @ArrayUnique({ message: RentFacilitiesError.ArrayUnique })
   public facilities?: RentFacility[];
 }
