@@ -147,6 +147,8 @@ paths:
                 $ref: '#/components/schemas/UserAvatarUrl'
         '404':
           description: Пользователя с таким id не существует
+        '415':
+          description: Неподдерживаемый формат изображений (jpg, png)
 
   /rents:
     post:

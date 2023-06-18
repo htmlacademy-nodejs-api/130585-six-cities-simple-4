@@ -1,10 +1,12 @@
 import { NextFunction, Request, Response } from 'express';
-import multer, { diskStorage } from 'multer';
+import multer, { diskStorage, FileFilterCallback } from 'multer';
 import { extension } from 'mime-types';
 import { nanoid } from 'nanoid';
+import { StatusCodes } from 'http-status-codes';
 
 import { MiddlewareInterface } from '@core/middleware/middleware.interface.js';
-import { IMAGE_MAX_SIZE } from '@const/validation.js';
+import HttpError from '@core/errors/http-error.js';
+import { IMAGE_MAX_SIZE, IMAGE_EXT_MATCH_PATTERN } from '@const/validation.js';
 
 export class UploadFileMiddleware implements MiddlewareInterface {
   constructor(
@@ -29,6 +31,19 @@ export class UploadFileMiddleware implements MiddlewareInterface {
       storage,
       limits: {
         fileSize: IMAGE_MAX_SIZE,
+      },
+      fileFilter(_req: Request, file: Express.Multer.File, callback: FileFilterCallback) {
+        const ext = extension(file.mimetype);
+
+        if (!ext || !IMAGE_EXT_MATCH_PATTERN.test(ext)) {
+          return callback(new HttpError(
+            StatusCodes.UNSUPPORTED_MEDIA_TYPE,
+            'Неподдерживаемый формат изображений (jpg, png)',
+            'UploadFileMiddleware',
+          ));
+        }
+
+        callback(null, true);
       },
     })[this.maxCount > 1 ? 'array' : 'single'](this.fieldName, this.maxCount);
 
