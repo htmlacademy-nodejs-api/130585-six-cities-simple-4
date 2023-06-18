@@ -8,7 +8,7 @@ import { MiddlewareInterface } from '@core/middleware/middleware.interface.js';
 import HttpError from '@core/errors/http-error.js';
 import { IMAGE_MAX_SIZE, IMAGE_EXT_MATCH_PATTERN } from '@const/validation.js';
 
-export class UploadFileMiddleware implements MiddlewareInterface {
+export class UploadFilesMiddleware implements MiddlewareInterface {
   constructor(
     private uploadDirectory: string,
     private fieldName: string,
@@ -27,7 +27,7 @@ export class UploadFileMiddleware implements MiddlewareInterface {
       },
     });
 
-    const uploadSingleFileMiddleware = multer({
+    const uploadFilesMiddleware = multer({
       storage,
       limits: {
         fileSize: IMAGE_MAX_SIZE,
@@ -47,6 +47,6 @@ export class UploadFileMiddleware implements MiddlewareInterface {
       },
     })[this.maxCount > 1 ? 'array' : 'single'](this.fieldName, this.maxCount);
 
-    uploadSingleFileMiddleware(req, res, next);
+    uploadFilesMiddleware(req, res, next);
   }
 }

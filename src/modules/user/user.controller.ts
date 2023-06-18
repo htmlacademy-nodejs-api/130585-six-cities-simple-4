@@ -16,9 +16,10 @@ import { HttpMethod } from '@appTypes/http-method.enum.js';
 import { fillDTO } from '@utils/db.js';
 import HttpError from '@core/errors/http-error.js';
 import UploadAvatarRdo from '@modules/user/rdo/upload-avatar.rdo.js';
-import { ValidateDtoMiddleware } from '@core/middleware/validate-dto.middleware.js';
+import { ValidateObjectIdMiddleware } from '@core/middleware/validate-objectid.middleware.js';
 import { DocumentExistsMiddleware } from '@core/middleware/document-exists.middleware.js';
-import { UploadFileMiddleware } from '@core/middleware/upload-file.middleware.js';
+import { ValidateDtoMiddleware } from '@core/middleware/validate-dto.middleware.js';
+import { UploadFilesMiddleware } from '@core/middleware/upload-files.middleware';
 
 @injectable()
 export default class UserController extends Controller {
@@ -47,8 +48,9 @@ export default class UserController extends Controller {
       method: HttpMethod.Post,
       handler: this.uploadAvatar,
       middlewares: [
+        new ValidateObjectIdMiddleware('userId'),
         new DocumentExistsMiddleware(this.userService, 'Пользователя', 'userId'),
-        new UploadFileMiddleware(this.configService.get('UPLOAD_DIRECTORY'), 'avatar'),
+        new UploadFilesMiddleware(this.configService.get('UPLOAD_DIRECTORY'), 'avatar'),
       ],
     });
   }

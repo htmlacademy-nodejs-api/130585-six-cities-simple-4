@@ -1,6 +1,7 @@
 import { inject, injectable } from 'inversify';
 import { Request, Response } from 'express';
 import { ParamsDictionary } from 'express-serve-static-core';
+import { StatusCodes } from 'http-status-codes';
 
 import { Controller } from '@core/controller/controller.abstract.js';
 import { LoggerInterface } from '@core/logger/logger.interface.js';
@@ -13,6 +14,7 @@ import RentRdo from '@modules/rent/rdo/rent.rdo.js';
 import CreateRentDto from '@modules/rent/dto/create-rent.dto.js';
 import UpdateRentDto from '@modules/rent/dto/update-rent.dto.js';
 import UploadPreviewRdo from '@modules/rent/rdo/upload-preview.rdo.js';
+import UploadImagesRdo from '@modules/rent/rdo/upload-images.rdo.js';
 import CommentRdo from '@modules/comment/rdo/comment.rdo.js';
 import { UnknownRecord } from '@appTypes/unknown-record.type.js';
 import { AppComponent } from '@appTypes/app-component.enum.js';
@@ -22,7 +24,10 @@ import { RequestQuery } from '@appTypes/request-query.type';
 import { ValidateObjectIdMiddleware } from '@core/middleware/validate-objectid.middleware.js';
 import { ValidateDtoMiddleware } from '@core/middleware/validate-dto.middleware.js';
 import { DocumentExistsMiddleware } from '@core/middleware/document-exists.middleware.js';
-import { UploadFileMiddleware } from '@core/middleware/upload-file.middleware';
+import { UploadFilesMiddleware } from '@core/middleware/upload-files.middleware.js';
+import { RentImagesValidation } from '@const/validation.js';
+import HttpError from '@core/errors/http-error.js';
+import { RentImagesError, RentPreviewError } from '@const/error-messages.js';
 
 // тип параметров запроса
 type ParamsRentDetails = {
@@ -108,8 +113,19 @@ export default class RentController extends Controller {
       method: HttpMethod.Post,
       handler: this.uploadPreview,
       middlewares: [
+        new ValidateObjectIdMiddleware('rentId'),
         new DocumentExistsMiddleware(this.rentService, 'Предложения по аренде', 'rentId'),
-        new UploadFileMiddleware(this.configService.get('UPLOAD_DIRECTORY'), 'preview'),
+        new UploadFilesMiddleware(this.configService.get('UPLOAD_DIRECTORY'), 'preview'),
+      ],
+    });
+    this.addRoute({
+      path: '/:rentId/images',
+      method: HttpMethod.Post,
+      handler: this.uploadImages,
+      middlewares: [
+        new ValidateObjectIdMiddleware('rentId'),
+        new DocumentExistsMiddleware(this.rentService, 'Предложения по аренде', 'rentId'),
+        new UploadFilesMiddleware(this.configService.get('UPLOAD_DIRECTORY'), 'images', RentImagesValidation.Max),
       ],
     });
   }
@@ -191,15 +207,37 @@ export default class RentController extends Controller {
   }
 
   public async uploadPreview (
-    { params, file }: Request<ParamsRentDetails, UnknownRecord, UnknownRecord>,
+    { file }: Request<ParamsRentDetails, UnknownRecord, UnknownRecord>,
     res: Response
   ): Promise<void> {
-    const { rentId } = params;
-    const result = {
-      preview: file?.path,
-    };
+    if (!file?.path) {
+      throw new HttpError(
+        StatusCodes.BAD_REQUEST,
+        RentPreviewError.IsRequired,
+        'RentController',
+      );
+    }
 
-    await this.rentService.updateById(rentId, result);
-    this.created(res, fillDTO(UploadPreviewRdo, result));
+    this.created(res, fillDTO(UploadPreviewRdo, {
+      preview: file.path,
+    }));
+  }
+
+  public async uploadImages (
+    { files }: Request<ParamsRentDetails, UnknownRecord, UnknownRecord>,
+    res: Response,
+  ): Promise<void> {
+
+    if (!Array.isArray(files) || !files.length) {
+      throw new HttpError(
+        StatusCodes.BAD_REQUEST,
+        RentImagesError.ArrayLength,
+        'RentController',
+      );
+    }
+
+    this.created(res, fillDTO(UploadImagesRdo, {
+      images: files.filter((file) => file?.path).map((file) => file.path),
+    }));
   }
 }
