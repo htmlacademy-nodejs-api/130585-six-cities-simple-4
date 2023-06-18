@@ -7,9 +7,12 @@ import { LoggerInterface } from '@core/logger/logger.interface.js';
 import { RentServiceInterface } from '@modules/rent/rent-service.interface.js';
 import { UserServiceInterface } from '@modules/user/user-service.interface.js';
 import { CommentServiceInterface } from '@modules/comment/comment.service.interface.js';
+import { ConfigInterface } from '@core/config/config.interface.js';
+import { RestSchema } from '@core/config/rest.schema.js';
 import RentRdo from '@modules/rent/rdo/rent.rdo.js';
 import CreateRentDto from '@modules/rent/dto/create-rent.dto.js';
 import UpdateRentDto from '@modules/rent/dto/update-rent.dto.js';
+import UploadPreviewRdo from '@modules/rent/rdo/upload-preview.rdo.js';
 import CommentRdo from '@modules/comment/rdo/comment.rdo.js';
 import { UnknownRecord } from '@appTypes/unknown-record.type.js';
 import { AppComponent } from '@appTypes/app-component.enum.js';
@@ -19,6 +22,7 @@ import { RequestQuery } from '@appTypes/request-query.type';
 import { ValidateObjectIdMiddleware } from '@core/middleware/validate-objectid.middleware.js';
 import { ValidateDtoMiddleware } from '@core/middleware/validate-dto.middleware.js';
 import { DocumentExistsMiddleware } from '@core/middleware/document-exists.middleware.js';
+import { UploadFileMiddleware } from '@core/middleware/upload-file.middleware';
 
 // тип параметров запроса
 type ParamsRentDetails = {
@@ -32,6 +36,7 @@ export default class RentController extends Controller {
     @inject(AppComponent.RentServiceInterface) private readonly rentService: RentServiceInterface,
     @inject(AppComponent.UserServiceInterface) private readonly userService: UserServiceInterface,
     @inject(AppComponent.CommentServiceInterface) private readonly commentService: CommentServiceInterface,
+    @inject(AppComponent.ConfigInterface) private readonly configService: ConfigInterface<RestSchema>,
   ) {
     super(logger);
 
@@ -97,6 +102,15 @@ export default class RentController extends Controller {
       path: '/sort/popular',
       method: HttpMethod.Get,
       handler: this.getPopular,
+    });
+    this.addRoute({
+      path: '/:rentId/preview',
+      method: HttpMethod.Post,
+      handler: this.uploadPreview,
+      middlewares: [
+        new DocumentExistsMiddleware(this.rentService, 'Предложения по аренде', 'rentId'),
+        new UploadFileMiddleware(this.configService.get('UPLOAD_DIRECTORY'), 'preview'),
+      ],
     });
   }
 
@@ -174,5 +188,18 @@ export default class RentController extends Controller {
     const popularRents = await this.rentService.findPopular(limit);
 
     this.ok(res, fillDTO(RentRdo, popularRents));
+  }
+
+  public async uploadPreview (
+    { params, file }: Request<ParamsRentDetails, UnknownRecord, UnknownRecord>,
+    res: Response
+  ): Promise<void> {
+    const { rentId } = params;
+    const result = {
+      preview: file?.path,
+    };
+
+    await this.rentService.updateById(rentId, result);
+    this.created(res, fillDTO(UploadPreviewRdo, result));
   }
 }

@@ -279,6 +279,31 @@ paths:
               schema:
                 $ref: '#/components/schemas/Rents'
 
+  /rents/{rentId}/preview:
+    post:
+      tags:
+        - rents
+      summary: Загрузка изображения превью предложения об аренде
+      description: Загружает изображение превью предложения об аренде. Изображение превью должно быть в формате `png` или `jpg`
+      requestBody:
+        description: Файл изображения
+        content:
+          image/*:
+            schema:
+              $ref: '#/components/schemas/RentPreview'
+        required: true
+      responses:
+        '200':
+          description: Объект с адресом превью
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RentPreviewUrl'
+        '404':
+          description: Предложения с таким id не существует
+        '415':
+          description: Неподдерживаемый формат изображений (jpg, png)
+
   /comments:
     post:
       tags:
@@ -520,6 +545,17 @@ components:
 
         author:
           $ref: '#/components/schemas/User/properties/id'
+
+    RentPreview:
+      type: string
+      format: binary
+
+    RentPreviewUrl:
+      type: object
+      properties:
+        preview:
+          type: string
+          example: path/to/preview.jpg
 
     RentUpdate:
       type: object

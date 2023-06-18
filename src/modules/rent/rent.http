@@ -72,3 +72,16 @@ GET http://localhost:5000/rents/sort/popular HTTP/1.1
 Content-Type: application/json
 
 ###
+
+## Загружает изображение превью предложения об аренде
+POST http://localhost:5000/rents/647e1ea88507534f70eaae9e/preview HTTP/1.1
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="preview"; filename="123.png"
+Content-Type: image/png
+
+< /Users/ekateric/Documents/screenshots/123.png
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+###
