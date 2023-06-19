@@ -6,6 +6,7 @@ import { Controller } from '@core/controller/controller.abstract.js';
 import CreateUserDto from '@modules/user/dto/create-user.dto.js';
 import LoginUserDto from '@modules/user/dto/login-user.dto.js';
 import UserRdo from '@modules/user/rdo/user.rdo.js';
+import LoginUserRdo from '@modules/user/rdo/login-user.rdo.js';
 import { UnknownRecord } from '@appTypes/unknown-record.type.js';
 import { LoggerInterface } from '@core/logger/logger.interface.js';
 import { UserServiceInterface } from '@modules/user/user-service.interface.js';
@@ -13,9 +14,10 @@ import { ConfigInterface } from '@core/config/config.interface.js';
 import { AppComponent } from '@appTypes/app-component.enum.js';
 import { RestSchema } from '@core/config/rest.schema.js';
 import { HttpMethod } from '@appTypes/http-method.enum.js';
-import { fillDTO } from '@utils/db.js';
+import { fillDTO, createJWT } from '@utils/db.js';
 import HttpError from '@core/errors/http-error.js';
 import { ValidateDtoMiddleware } from '@core/middleware/validate-dto.middleware.js';
+import { JWT_ALGORITHM } from '@const/db.js';
 
 @injectable()
 export default class UserController extends Controller {
@@ -56,30 +58,39 @@ export default class UserController extends Controller {
     }
 
     const result = await this.userService.create(body, this.configService.get('SALT'));
-    this.created(
-      res,
-      fillDTO(UserRdo, result)
-    );
+
+    this.created(res, fillDTO(UserRdo, result));
   }
 
   public async login(
     { body }: Request<Record<string, unknown>, Record<string, unknown>, LoginUserDto>,
-    _res: Response,
+    res: Response,
   ): Promise<void> {
-    const existsUser = await this.userService.findByEmail(body.email);
+    const user = await this
+      .userService
+      .verifyUser(body, this.configService.get('SALT'));
 
-    if (!existsUser) {
+    if (!user) {
       throw new HttpError(
         StatusCodes.UNAUTHORIZED,
-        `Пользователя с email ${ body.email } не существует`,
+        'Пользователь не авторизован',
         'UserController',
       );
     }
 
-    throw new HttpError(
-      StatusCodes.NOT_IMPLEMENTED,
-      'Метод не закончен',
-      'UserController',
+    const { email, id } = user;
+    const token = await createJWT(
+      JWT_ALGORITHM,
+      this.configService.get('JWT_SECRET'),
+      {
+        email,
+        id,
+      }
     );
+
+    this.ok(res, fillDTO(LoginUserRdo, {
+      email,
+      token,
+    }));
   }
 }

@@ -8,3 +8,5 @@ export const enum DBRetry {
 }
 
 export const DEFAULT_USER_PASSWORD = 'default123';
+export const JWT_EXP_TIME = '2d';
+export const JWT_ALGORITHM = 'HS256';
