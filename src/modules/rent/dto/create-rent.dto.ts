@@ -33,7 +33,6 @@ import {
   RentGuestsError,
   RentPriceError,
   RentCityError,
-  RentAuthorError,
   RentPreviewError,
   RentImagesError,
   RentPremiumError,
@@ -90,6 +89,5 @@ export default class CreateRentDto {
   @ArrayUnique({ message: RentFacilitiesError.ArrayUnique })
   public facilities!: RentFacility[];
 
-  @IsMongoId({ message: RentAuthorError.IsMongoId })
   public author!: string;
 }

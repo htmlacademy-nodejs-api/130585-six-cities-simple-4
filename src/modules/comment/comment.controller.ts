@@ -1,6 +1,5 @@
 import { inject, injectable } from 'inversify';
 import { Request, Response } from 'express';
-import { StatusCodes } from 'http-status-codes';
 
 import { Controller } from '@core/controller/controller.abstract.js';
 import { LoggerInterface } from '@core/logger/logger.interface.js';
@@ -15,7 +14,7 @@ import { HttpMethod } from '@appTypes/http-method.enum.js';
 import { fillDTO } from '@utils/db.js';
 import { ValidateDtoMiddleware } from '@core/middleware/validate-dto.middleware.js';
 import { DocumentExistsMiddleware } from '@core/middleware/document-exists.middleware.js';
-import HttpError from '@core/errors/http-error.js';
+import { PrivateRouteMiddleware } from '@core/middleware/private-route.middleware.js';
 
 @injectable()
 export default class CommentController extends Controller {
@@ -34,6 +33,7 @@ export default class CommentController extends Controller {
       path: '/', method: HttpMethod.Post,
       handler: this.create,
       middlewares: [
+        new PrivateRouteMiddleware(),
         new ValidateDtoMiddleware(CreateCommentDto),
         new DocumentExistsMiddleware(this.rentService, 'Предложения по аренде', 'rentId'),
         new DocumentExistsMiddleware(this.userService, 'Пользователя', 'author'),
@@ -45,14 +45,6 @@ export default class CommentController extends Controller {
     { body, user }: Request<UnknownRecord, UnknownRecord, CreateCommentDto>,
     res: Response,
   ): Promise<void> {
-    if (!user) {
-      throw new HttpError(
-        StatusCodes.UNAUTHORIZED,
-        'Пользователь не авторизован',
-        'CommentController'
-      );
-    }
-
     const { rentId } = body;
     const comment = await this.commentService.create({ ...body, author: user.id });
 

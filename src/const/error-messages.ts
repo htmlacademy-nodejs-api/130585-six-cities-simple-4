@@ -55,10 +55,6 @@ export const RentCityError = {
   IsMongoId: 'Id Города должен быть валидным MongoId',
 } as const;
 
-export const RentAuthorError = {
-  IsMongoId: 'Id Автора должен быть валидным MongoId',
-} as const;
-
 export const RentPreviewError = {
   IsImg: 'В Превью должна быть ссылка на изображение (jpg, png)',
 } as const;
@@ -122,9 +118,5 @@ export const CommentTextError = {
 
 export const CommentRentIdError = {
   IsMongoId: 'Id Предложения по аренде должен быть валидным MongoId',
-} as const;
-
-export const CommentAuthorError = {
-  IsMongoId: 'Id Пользователя должен быть валидным MongoId',
 } as const;
 

@@ -11,7 +11,7 @@ export class AuthenticateMiddleware implements MiddlewareInterface {
   constructor(private readonly jwtSecret: string) {
   }
 
-  public async execute(req: Request, _res: Response, next: NextFunction) {
+  public async execute(req: Request, _res: Response, next: NextFunction): Promise<void> {
     const { headers } = req;
     const token = headers?.authorization?.replace('Bearer ', '');
 
@@ -36,7 +36,7 @@ export class AuthenticateMiddleware implements MiddlewareInterface {
       throw new HttpError(
         StatusCodes.UNAUTHORIZED,
         'Не валидный токен',
-        'PrivateRouteMiddleware',
+        'AuthenticateMiddleware',
       );
     }
   }
