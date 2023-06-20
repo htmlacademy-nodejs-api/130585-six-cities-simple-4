@@ -108,6 +108,21 @@ paths:
         '409':
           description: Пользователя с таким email не существует
 
+    get:
+      tags:
+        - users
+      summary: Проверка аутентификации
+      description: Проверяет аутентификацию пользователя
+      responses:
+        '200':
+          description: Пользователь авторизован. Объект пользователя
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '401':
+          description: Пользователь не авторизован
+
   /users/{userId}:
     get:
       tags:

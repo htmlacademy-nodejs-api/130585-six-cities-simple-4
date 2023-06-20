@@ -41,6 +41,11 @@ export default class UserController extends Controller {
       handler: this.login,
       middlewares: [ new ValidateDtoMiddleware(LoginUserDto) ],
     });
+    this.addRoute({
+      path: '/login',
+      method: HttpMethod.Get,
+      handler: this.checkAuthenticate,
+    });
   }
 
   public async create(
@@ -92,5 +97,27 @@ export default class UserController extends Controller {
       email,
       token,
     }));
+  }
+
+  public async checkAuthenticate({ user: { email }}: Request, res: Response): Promise<void> {
+    if (!email) {
+      throw new HttpError(
+        StatusCodes.UNAUTHORIZED,
+        'Пользователь не авторизован',
+        'UserController'
+      );
+    }
+
+    const existedUser = await this.userService.findByEmail(email);
+
+    if (!existedUser) {
+      throw new HttpError(
+        StatusCodes.UNAUTHORIZED,
+        'Пользователь не авторизован',
+        'UserController'
+      );
+    }
+
+    this.ok(res, fillDTO(UserRdo, existedUser));
   }
 }
