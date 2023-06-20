@@ -1,5 +1,6 @@
 import { inject, injectable } from 'inversify';
 import { Request, Response } from 'express';
+import { StatusCodes } from 'http-status-codes';
 
 import { Controller } from '@core/controller/controller.abstract.js';
 import { LoggerInterface } from '@core/logger/logger.interface.js';
@@ -14,6 +15,7 @@ import { HttpMethod } from '@appTypes/http-method.enum.js';
 import { fillDTO } from '@utils/db.js';
 import { ValidateDtoMiddleware } from '@core/middleware/validate-dto.middleware.js';
 import { DocumentExistsMiddleware } from '@core/middleware/document-exists.middleware.js';
+import HttpError from '@core/errors/http-error.js';
 
 @injectable()
 export default class CommentController extends Controller {
@@ -40,11 +42,19 @@ export default class CommentController extends Controller {
   }
 
   public async create(
-    { body }: Request<UnknownRecord, UnknownRecord, CreateCommentDto>,
+    { body, user }: Request<UnknownRecord, UnknownRecord, CreateCommentDto>,
     res: Response,
   ): Promise<void> {
+    if (!user) {
+      throw new HttpError(
+        StatusCodes.UNAUTHORIZED,
+        'Пользователь не авторизован',
+        'CommentController'
+      );
+    }
+
     const { rentId } = body;
-    const comment = await this.commentService.create(body);
+    const comment = await this.commentService.create({ ...body, author: user.id });
 
     await this.rentService.incCommentCount(rentId);
     await this.commentService.countRatingByRentId(rentId);

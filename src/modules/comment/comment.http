@@ -6,7 +6,6 @@ Content-Type: application/json
 {
   "text": "Очень ценный новый комментарий",
   "rentId": "647e1ea88507534f70eaae98",
-  "author": "647e1ea88507534f70eaae9b",
   "rating": 1
 }
 
