@@ -8,6 +8,7 @@ import { LoggerInterface } from '@core/logger/logger.interface.js';
 import { RentServiceInterface } from '@modules/rent/rent-service.interface.js';
 import { UserServiceInterface } from '@modules/user/user-service.interface.js';
 import { CommentServiceInterface } from '@modules/comment/comment.service.interface.js';
+import { CityServiceInterface } from '@modules/city/city-service.interface.js';
 import { ConfigInterface } from '@core/config/config.interface.js';
 import { RestSchema } from '@core/config/rest.schema.js';
 import RentRdo from '@modules/rent/rdo/rent.rdo.js';
@@ -24,6 +25,7 @@ import { RequestQuery } from '@appTypes/request-query.type';
 import { ValidateObjectIdMiddleware } from '@core/middleware/validate-objectid.middleware.js';
 import { ValidateDtoMiddleware } from '@core/middleware/validate-dto.middleware.js';
 import { DocumentExistsMiddleware } from '@core/middleware/document-exists.middleware.js';
+import { PrivateRouteMiddleware } from '@core/middleware/private-route.middleware.js';
 import { UploadFilesMiddleware } from '@core/middleware/upload-files.middleware.js';
 import { RentImagesValidation } from '@const/validation.js';
 import HttpError from '@core/errors/http-error.js';
@@ -41,6 +43,7 @@ export default class RentController extends Controller {
     @inject(AppComponent.RentServiceInterface) private readonly rentService: RentServiceInterface,
     @inject(AppComponent.UserServiceInterface) private readonly userService: UserServiceInterface,
     @inject(AppComponent.CommentServiceInterface) private readonly commentService: CommentServiceInterface,
+    @inject(AppComponent.CityServiceInterface) private readonly cityService: CityServiceInterface,
     @inject(AppComponent.ConfigInterface) private readonly configService: ConfigInterface<RestSchema>,
   ) {
     super(logger);
@@ -66,8 +69,10 @@ export default class RentController extends Controller {
       method: HttpMethod.Post,
       handler: this.create,
       middlewares: [
+        new PrivateRouteMiddleware(),
         new ValidateDtoMiddleware(CreateRentDto),
         new DocumentExistsMiddleware(this.userService, 'Пользователя', 'author'),
+        new DocumentExistsMiddleware(this.cityService, 'Города', 'city'),
       ],
     });
     this.addRoute({
@@ -75,6 +80,7 @@ export default class RentController extends Controller {
       method: HttpMethod.Delete,
       handler: this.delete,
       middlewares: [
+        new PrivateRouteMiddleware(),
         new ValidateObjectIdMiddleware('rentId'),
         new DocumentExistsMiddleware(this.rentService, 'Предложения по аренде', 'rentId'),
       ],
@@ -84,9 +90,11 @@ export default class RentController extends Controller {
       method: HttpMethod.Patch,
       handler: this.update,
       middlewares: [
+        new PrivateRouteMiddleware(),
         new ValidateObjectIdMiddleware('rentId'),
         new ValidateDtoMiddleware(UpdateRentDto),
         new DocumentExistsMiddleware(this.rentService, 'Предложения по аренде', 'rentId'),
+        new DocumentExistsMiddleware(this.cityService, 'Города', 'city'),
       ],
     });
     this.addRoute({
@@ -147,10 +155,10 @@ export default class RentController extends Controller {
   }
 
   public async create(
-    { body }: Request<UnknownRecord, UnknownRecord, CreateRentDto>,
+    { body, user }: Request<UnknownRecord, UnknownRecord, CreateRentDto>,
     res: Response,
   ): Promise<void> {
-    const newRent = await this.rentService.create(body);
+    const newRent = await this.rentService.create({ ...body, author: user.id });
     const rent = await this.rentService.findById(newRent.id);
 
     this.created(res, fillDTO(RentRdo, rent));

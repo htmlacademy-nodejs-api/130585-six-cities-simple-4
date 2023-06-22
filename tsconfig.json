@@ -33,7 +33,7 @@
       "@appTypes/*": ["./src/types/*"],
       "@utils/*": ["./src/utils/*"],
       "@modules/*": ["./src/modules/*"],
-      "@const/*": ["./src/const/*"],
+      "@const/*": ["./src/const/*"]
     },
   },
   "include": [
@@ -44,6 +44,7 @@
     "**/*.test.ts"
   ],
   "ts-node": {
-    "esm": true
+    "esm": true,
+    "files": true
   }
 }

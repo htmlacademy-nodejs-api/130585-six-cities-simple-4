@@ -18,9 +18,16 @@ POST http://localhost:5000/users/login HTTP/1.1
 Content-Type: application/json
 
 {
-  "email": "author4@example.com",
+  "email": "michae@test.net",
   "pass": "pass"
 }
+
+###
+
+##  Проверяет аутентификацию пользователя
+GET http://localhost:5000/users/login HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer 123
 
 ###
 

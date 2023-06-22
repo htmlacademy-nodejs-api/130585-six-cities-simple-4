@@ -13,7 +13,8 @@ import {
   RentGuestsValidation,
   RentPriceValidation,
 } from '@const/validation.js';
-import { RentTypeError, RentFacilitiesError } from '@const/error-messages.js';
+import { RentTypeError, RentFacilitiesError, RentRatingError } from '@const/error-messages.js';
+import { DEFAULT_RENT_COMMENTS_COUNT, DEFAULT_RENT_RATING } from '@const/db.js';
 
 // for type merging of interface and class UserEntity
 export interface RentEntity extends defaultClasses.Base {
@@ -67,9 +68,13 @@ export class RentEntity extends defaultClasses.TimeStamps implements RentEntityT
 
   @prop({
     required: true,
-    min: RentRatingValidation.Min,
-    max: RentRatingValidation.Max,
-    default: 0,
+    validate: {
+      validator: (rating: number) =>
+        rating === DEFAULT_RENT_RATING ||
+        (rating >= RentRatingValidation.Min && rating <= RentRatingValidation.Max),
+      message: `${ RentRatingError.Min }\n ${ RentRatingError.Max }`,
+    },
+    default: DEFAULT_RENT_RATING,
   })
   public rating!: number;
 
@@ -122,7 +127,7 @@ export class RentEntity extends defaultClasses.TimeStamps implements RentEntityT
   public author!: Ref<UserEntity>;
 
   @prop({
-    default: 0,
+    default: DEFAULT_RENT_COMMENTS_COUNT,
   })
   public commentCount!: number;
 }

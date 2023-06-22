@@ -14,6 +14,7 @@ import { HttpMethod } from '@appTypes/http-method.enum.js';
 import { fillDTO } from '@utils/db.js';
 import { ValidateDtoMiddleware } from '@core/middleware/validate-dto.middleware.js';
 import { DocumentExistsMiddleware } from '@core/middleware/document-exists.middleware.js';
+import { PrivateRouteMiddleware } from '@core/middleware/private-route.middleware.js';
 
 @injectable()
 export default class CommentController extends Controller {
@@ -32,6 +33,7 @@ export default class CommentController extends Controller {
       path: '/', method: HttpMethod.Post,
       handler: this.create,
       middlewares: [
+        new PrivateRouteMiddleware(),
         new ValidateDtoMiddleware(CreateCommentDto),
         new DocumentExistsMiddleware(this.rentService, 'Предложения по аренде', 'rentId'),
         new DocumentExistsMiddleware(this.userService, 'Пользователя', 'author'),
@@ -40,11 +42,11 @@ export default class CommentController extends Controller {
   }
 
   public async create(
-    { body }: Request<UnknownRecord, UnknownRecord, CreateCommentDto>,
+    { body, user }: Request<UnknownRecord, UnknownRecord, CreateCommentDto>,
     res: Response,
   ): Promise<void> {
     const { rentId } = body;
-    const comment = await this.commentService.create(body);
+    const comment = await this.commentService.create({ ...body, author: user.id });
 
     await this.rentService.incCommentCount(rentId);
     await this.commentService.countRatingByRentId(rentId);

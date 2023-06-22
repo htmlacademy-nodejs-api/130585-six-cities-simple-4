@@ -10,6 +10,7 @@ import { ExceptionFilterInterface } from '@core/exception-filter/exception-filte
 import { RestSchema } from '@core/config/rest.schema.js';
 import { AppComponent } from '@appTypes/app-component.enum.js';
 import { getMongoURI } from '@utils/index.js';
+import { AuthenticateMiddleware } from '@core/middleware/authenticate.middleware.js';
 
 @injectable()
 export default class RESTApplication {
@@ -47,6 +48,10 @@ export default class RESTApplication {
     this.logger.info('Инициализация глобальных middleware…');
     this.expressApp.use(express.json());
     this.expressApp.use('/upload', express.static(this.config.get('UPLOAD_DIRECTORY')));
+
+    const authenticateMiddleWare = new AuthenticateMiddleware(this.config.get('JWT_SECRET'));
+
+    this.expressApp.use(authenticateMiddleWare.execute.bind(authenticateMiddleWare));
     this.logger.info('Инициализация глобальных middleware завершена!');
   }
 

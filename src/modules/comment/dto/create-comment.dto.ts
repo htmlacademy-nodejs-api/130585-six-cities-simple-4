@@ -1,7 +1,7 @@
 import { Length,IsMongoId, IsInt, Max, Min } from 'class-validator';
 
 import { CommentTextValidation, RentRatingValidation } from '@const/validation.js';
-import { CommentTextError, CommentRentIdError, CommentAuthorError, RentRatingError } from '@const/error-messages.js';
+import { CommentTextError, CommentRentIdError, RentRatingError } from '@const/error-messages.js';
 
 export default class CreateCommentDto {
   @Length(CommentTextValidation.Min, CommentTextValidation.Max, { message: CommentTextError.Length })
@@ -10,7 +10,6 @@ export default class CreateCommentDto {
   @IsMongoId({ message: CommentRentIdError.IsMongoId })
   public rentId!: string;
 
-  @IsMongoId({ message: CommentAuthorError.IsMongoId })
   public author!: string;
 
   @IsInt({ message: RentRatingError.Int })

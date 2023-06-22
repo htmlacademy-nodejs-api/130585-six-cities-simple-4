@@ -19,6 +19,7 @@ import HttpError from '@core/errors/http-error.js';
 import { ValidateObjectIdMiddleware } from '@core/middleware/validate-objectid.middleware.js';
 import { ValidateDtoMiddleware } from '@core/middleware/validate-dto.middleware.js';
 import { DocumentExistsMiddleware } from '@core/middleware/document-exists.middleware.js';
+import { PrivateRouteMiddleware } from '@core/middleware/private-route.middleware.js';
 
 type ParamsCityDetails = {
   cityId: string;
@@ -44,7 +45,10 @@ export default class CityController extends Controller {
       path: '/',
       method: HttpMethod.Post,
       handler: this.create,
-      middlewares: [ new ValidateDtoMiddleware(CreateCityDto) ],
+      middlewares: [
+        new PrivateRouteMiddleware(),
+        new ValidateDtoMiddleware(CreateCityDto),
+      ],
     });
     this.addRoute({
       path: '/:cityId/rents',
