@@ -160,6 +160,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UserAvatarUrl'
+        '404':
+          description: Пользователя с таким id не существует
+        '415':
+          description: Неподдерживаемый формат изображений (jpg, png)
 
   /rents:
     post:
@@ -289,6 +293,56 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Rents'
+
+  /rents/{rentId}/preview:
+    post:
+      tags:
+        - rents
+      summary: Загрузка изображения превью предложения об аренде
+      description: Загружает изображение превью предложения об аренде. Изображение превью должно быть в формате `png` или `jpg`
+      requestBody:
+        description: Файл изображения
+        content:
+          image/*:
+            schema:
+              $ref: '#/components/schemas/RentPreview'
+        required: true
+      responses:
+        '200':
+          description: Объект с адресом превью
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RentPreviewUrl'
+        '404':
+          description: Предложения с таким id не существует
+        '415':
+          description: Неподдерживаемый формат изображений (jpg, png)
+
+  /rents/{rentId}/images:
+    post:
+      tags:
+        - rents
+      summary: Загрузка изображений для предложения об аренде
+      description: Загружает массив изображений для предложения об аренде. Изображения должны быть в формате `png` или `jpg`
+      requestBody:
+        description: Файлы изображений
+        content:
+          image/*:
+            schema:
+              $ref: '#/components/schemas/RentImages'
+        required: true
+      responses:
+        '200':
+          description: Массив с объектами с адресами превью
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RentImagesUrls'
+        '404':
+          description: Предложения с таким id не существует
+        '415':
+          description: Неподдерживаемый формат изображений (jpg, png)
 
   /comments:
     post:
@@ -447,7 +501,8 @@ components:
           example: pro
 
     UserAvatar:
-      $ref: '#/components/schemas/UserAvatarUrl'
+      type: string
+      format: binary
 
     UserAvatarUrl:
       type: object
@@ -531,6 +586,33 @@ components:
         author:
           $ref: '#/components/schemas/User/properties/id'
 
+    RentPreview:
+      type: string
+      format: binary
+
+    RentPreviewUrl:
+      type: object
+      properties:
+        preview:
+          type: string
+          example: path/to/preview.jpg
+
+    RentImages:
+      type: array
+      maxItems: 6
+      items:
+        type: string
+        format: binary
+
+    RentImagesUrls:
+      type: object
+      properties:
+        images:
+          type: array
+          items:
+            type: string
+          example: [ 'url/to/image-1.jpg', 'url/to/image-2.jpg', 'url/to/image-3.jpg' ]
+
     RentUpdate:
       type: object
       properties:
@@ -557,7 +639,7 @@ components:
           type: array
           items:
             type: string
-          example: [ 'url/to/image-1.jpg', 'url/to/image-2.jpg', 'url/to/image-3.jpg', ]
+          example: [ 'url/to/image-1.jpg', 'url/to/image-2.jpg', 'url/to/image-3.jpg' ]
 
         isPremium:
           type: boolean

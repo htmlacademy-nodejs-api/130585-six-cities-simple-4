@@ -47,6 +47,7 @@ export default class RESTApplication {
   private async initMiddlewares() {
     this.logger.info('Инициализация глобальных middleware…');
     this.expressApp.use(express.json());
+    this.expressApp.use('/upload', express.static(this.config.get('UPLOAD_DIRECTORY')));
 
     const authenticateMiddleWare = new AuthenticateMiddleware(this.config.get('JWT_SECRET'));
 

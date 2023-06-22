@@ -16,15 +16,19 @@ import { RestSchema } from '@core/config/rest.schema.js';
 import { HttpMethod } from '@appTypes/http-method.enum.js';
 import { fillDTO, createJWT } from '@utils/db.js';
 import HttpError from '@core/errors/http-error.js';
+import UploadAvatarRdo from '@modules/user/rdo/upload-avatar.rdo.js';
+import { ValidateObjectIdMiddleware } from '@core/middleware/validate-objectid.middleware.js';
+import { DocumentExistsMiddleware } from '@core/middleware/document-exists.middleware.js';
 import { ValidateDtoMiddleware } from '@core/middleware/validate-dto.middleware.js';
 import { JWT_ALGORITHM } from '@const/db.js';
+import { UploadFilesMiddleware } from '@core/middleware/upload-files.middleware';
 
 @injectable()
 export default class UserController extends Controller {
   constructor(
     @inject(AppComponent.LoggerInterface) protected readonly logger: LoggerInterface,
     @inject(AppComponent.UserServiceInterface) private readonly userService: UserServiceInterface,
-    @inject(AppComponent.ConfigInterface) private readonly configService: ConfigInterface<RestSchema>
+    @inject(AppComponent.ConfigInterface) private readonly configService: ConfigInterface<RestSchema>,
   ) {
     super(logger);
 
@@ -45,6 +49,16 @@ export default class UserController extends Controller {
       path: '/login',
       method: HttpMethod.Get,
       handler: this.checkAuthenticate,
+    });
+    this.addRoute({
+      path: '/:userId/avatar',
+      method: HttpMethod.Post,
+      handler: this.uploadAvatar,
+      middlewares: [
+        new ValidateObjectIdMiddleware('userId'),
+        new DocumentExistsMiddleware(this.userService, 'Пользователя', 'userId'),
+        new UploadFilesMiddleware(this.configService.get('UPLOAD_DIRECTORY'), 'avatar'),
+      ],
     });
   }
 
@@ -119,5 +133,13 @@ export default class UserController extends Controller {
     }
 
     this.ok(res, fillDTO(UserRdo, existedUser));
+  }
+
+  public async uploadAvatar (req: Request, res: Response): Promise<void> {
+    const result = {
+      url: req?.file?.path,
+    };
+
+    this.created(res, fillDTO(UploadAvatarRdo, result));
   }
 }
