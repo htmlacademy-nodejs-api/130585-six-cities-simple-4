@@ -85,9 +85,7 @@ export default class UserController extends Controller {
     { body }: Request<Record<string, unknown>, Record<string, unknown>, LoginUserDto>,
     res: Response,
   ): Promise<void> {
-    const user = await this
-      .userService
-      .verifyUser(body, this.configService.get('SALT'));
+    const user = await this.userService.verifyUser(body, this.configService.get('SALT'));
 
     if (!user) {
       throw new HttpError(

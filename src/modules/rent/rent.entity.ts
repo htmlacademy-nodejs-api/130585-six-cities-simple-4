@@ -71,7 +71,7 @@ export class RentEntity extends defaultClasses.TimeStamps implements RentEntityT
     validate: {
       validator: (rating: number) =>
         rating === DEFAULT_RENT_RATING ||
-        (rating >= RentRatingValidation.Min && rating >= RentRatingValidation.Min),
+        (rating >= RentRatingValidation.Min && rating <= RentRatingValidation.Max),
       message: `${ RentRatingError.Min }\n ${ RentRatingError.Max }`,
     },
     default: DEFAULT_RENT_RATING,
