@@ -20,7 +20,7 @@ export class DocumentExistsMiddleware implements MiddlewareInterface {
       throw new HttpError(
         StatusCodes.NOT_FOUND,
         `${ this.entityName } c ${ this.idParam } = ${ documentId } не существует`,
-        'DocumentExistsMiddleware'
+        'DocumentExistsMiddleware',
       );
     }
 

@@ -60,6 +60,7 @@ export const RentAuthorError = {
 } as const;
 
 export const RentPreviewError = {
+  IsRequired: 'В Превью должно быть загружено изображение в формате jpg/png',
   IsImg: 'В Превью должна быть ссылка на изображение (jpg, png)',
 } as const;
 
