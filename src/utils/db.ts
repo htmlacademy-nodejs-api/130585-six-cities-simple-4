@@ -1,11 +1,14 @@
 import * as crypto from 'node:crypto';
 import { plainToInstance, ClassConstructor } from 'class-transformer';
 import { SignJWT } from 'jose';
+import { ValidationError } from 'class-validator';
 
 import { DBAuthSource } from '@const/db.js';
 import { JwtPayload } from '@appTypes/jwt-payload.type.js';
+import { TransformedValidationError } from '@appTypes/transformed-validation-error.type.js';
 import { Encoding } from '@const/common.js';
 import { JWT_EXP_TIME } from '@const/db.js';
+import { ServiceError } from '@appTypes/service-error.enum.js';
 
 export const getMongoURI = (
   username: string,
@@ -26,9 +29,11 @@ export function fillDTO<T, V>(dto: ClassConstructor<T>, plainObject: V) {
   });
 }
 
-export function createError(message: string) {
+export function createError(serviceError: ServiceError, message: string, details: TransformedValidationError[] = []) {
   return {
-    error: message,
+    message,
+    errorType: serviceError,
+    details: [...details],
   };
 }
 
@@ -40,4 +45,12 @@ export async function createJWT(alg: string, jwtSecret: string, payload: JwtPayl
     .setIssuedAt()
     .setExpirationTime(JWT_EXP_TIME)
     .sign(secretKey);
+}
+
+export function transformErrors(errors: ValidationError[]): TransformedValidationError[] {
+  return errors.map(({property, value, constraints}) => ({
+    property,
+    value,
+    messages: constraints ? Object.values(constraints) : []
+  }));
 }

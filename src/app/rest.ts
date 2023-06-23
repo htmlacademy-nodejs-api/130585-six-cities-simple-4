@@ -24,7 +24,9 @@ export default class RESTApplication {
     @inject(AppComponent.UserController) private readonly userController: ControllerInterface,
     @inject(AppComponent.RentController) private readonly rentController: ControllerInterface,
     @inject(AppComponent.CommentController) private readonly commentController: ControllerInterface,
-    @inject(AppComponent.ExceptionFilterInterface) private readonly exceptionFilter: ExceptionFilterInterface,
+    @inject(AppComponent.HttpErrorExceptionFilter) private readonly httpErrorExceptionFilter: ExceptionFilterInterface,
+    @inject(AppComponent.ValidationExceptionFilter) private readonly validationExceptionFilter: ExceptionFilterInterface,
+    @inject(AppComponent.BaseExceptionFilter) private readonly baseExceptionFilter: ExceptionFilterInterface,
   ) {
     this.expressApp = express();
   }
@@ -66,7 +68,9 @@ export default class RESTApplication {
 
   private async initExceptionFilters() {
     this.logger.info('Инициализация Exception filters...');
-    this.expressApp.use(this.exceptionFilter.catch.bind(this.exceptionFilter));
+    this.expressApp.use(this.validationExceptionFilter.catch.bind(this.validationExceptionFilter));
+    this.expressApp.use(this.httpErrorExceptionFilter.catch.bind(this.httpErrorExceptionFilter));
+    this.expressApp.use(this.baseExceptionFilter.catch.bind(this.baseExceptionFilter));
     this.logger.info('Инициализация Exception filters завершена!');
   }
 
