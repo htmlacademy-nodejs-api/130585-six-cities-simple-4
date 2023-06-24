@@ -9,7 +9,7 @@ import { ControllerInterface } from '@core/controller/controller.interface.js';
 import { ExceptionFilterInterface } from '@core/exception-filter/exception-filter.interface.js';
 import { RestSchema } from '@core/config/rest.schema.js';
 import { AppComponent } from '@appTypes/app-component.enum.js';
-import { getMongoURI } from '@utils/index.js';
+import { getMongoURI, getServerPath } from '@utils/index.js';
 import { AuthenticateMiddleware } from '@core/middleware/authenticate.middleware.js';
 
 @injectable()
@@ -50,6 +50,7 @@ export default class RESTApplication {
     this.logger.info('Инициализация глобальных middleware…');
     this.expressApp.use(express.json());
     this.expressApp.use('/upload', express.static(this.config.get('UPLOAD_DIRECTORY')));
+    this.expressApp.use('/static', express.static(this.config.get('STATIC_DIRECTORY')));
 
     const authenticateMiddleWare = new AuthenticateMiddleware(this.config.get('JWT_SECRET'));
 
@@ -80,7 +81,7 @@ export default class RESTApplication {
     const port = this.config.get('PORT');
 
     this.expressApp.listen(port);
-    this.logger.info(`🚀 Cервер запущен на http://localhost:${port}!`);
+    this.logger.info(`🚀 Cервер запущен на ${getServerPath(this.config.get('HOST'), this.config.get('PORT'))}!`);
   }
 
   public async init() {

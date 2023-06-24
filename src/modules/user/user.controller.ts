@@ -5,6 +5,7 @@ import { StatusCodes } from 'http-status-codes';
 import { Controller } from '@core/controller/controller.abstract.js';
 import CreateUserDto from '@modules/user/dto/create-user.dto.js';
 import LoginUserDto from '@modules/user/dto/login-user.dto.js';
+
 import UserRdo from '@modules/user/rdo/user.rdo.js';
 import LoginUserRdo from '@modules/user/rdo/login-user.rdo.js';
 import { UnknownRecord } from '@appTypes/unknown-record.type.js';
@@ -14,13 +15,13 @@ import { ConfigInterface } from '@core/config/config.interface.js';
 import { AppComponent } from '@appTypes/app-component.enum.js';
 import { RestSchema } from '@core/config/rest.schema.js';
 import { HttpMethod } from '@appTypes/http-method.enum.js';
-import { fillDTO, createJWT } from '@utils/db.js';
+import { fillDTO, createJWT } from '@utils/index.js';
 import HttpError from '@core/errors/http-error.js';
 import UploadAvatarRdo from '@modules/user/rdo/upload-avatar.rdo.js';
 import { ValidateObjectIdMiddleware } from '@core/middleware/validate-objectid.middleware.js';
 import { DocumentExistsMiddleware } from '@core/middleware/document-exists.middleware.js';
 import { ValidateDtoMiddleware } from '@core/middleware/validate-dto.middleware.js';
-import { JWT_ALGORITHM } from '@const/db.js';
+import { JWT_ALGORITHM } from '@modules/user/user.const.js';
 import { UploadFilesMiddleware } from '@core/middleware/upload-files.middleware';
 
 @injectable()
@@ -28,9 +29,9 @@ export default class UserController extends Controller {
   constructor(
     @inject(AppComponent.LoggerInterface) protected readonly logger: LoggerInterface,
     @inject(AppComponent.UserServiceInterface) private readonly userService: UserServiceInterface,
-    @inject(AppComponent.ConfigInterface) private readonly configService: ConfigInterface<RestSchema>,
+    @inject(AppComponent.ConfigInterface) protected readonly config: ConfigInterface<RestSchema>,
   ) {
-    super(logger);
+    super(logger, config);
 
     this.logger.info('Регистрация маршрутов для UserController…');
     this.addRoute({
@@ -57,7 +58,7 @@ export default class UserController extends Controller {
       middlewares: [
         new ValidateObjectIdMiddleware('userId'),
         new DocumentExistsMiddleware(this.userService, 'Пользователя', 'userId'),
-        new UploadFilesMiddleware(this.configService.get('UPLOAD_DIRECTORY'), 'avatar'),
+        new UploadFilesMiddleware(this.config.get('UPLOAD_DIRECTORY'), 'avatar'),
       ],
     });
   }
@@ -76,7 +77,7 @@ export default class UserController extends Controller {
       );
     }
 
-    const result = await this.userService.create(body, this.configService.get('SALT'));
+    const result = await this.userService.create(body, this.config.get('SALT'));
 
     this.created(res, fillDTO(UserRdo, result));
   }
@@ -85,7 +86,7 @@ export default class UserController extends Controller {
     { body }: Request<Record<string, unknown>, Record<string, unknown>, LoginUserDto>,
     res: Response,
   ): Promise<void> {
-    const user = await this.userService.verifyUser(body, this.configService.get('SALT'));
+    const user = await this.userService.verifyUser(body, this.config.get('SALT'));
 
     if (!user) {
       throw new HttpError(
@@ -98,7 +99,7 @@ export default class UserController extends Controller {
     const { email, id } = user;
     const token = await createJWT(
       JWT_ALGORITHM,
-      this.configService.get('JWT_SECRET'),
+      this.config.get('JWT_SECRET'),
       {
         email,
         id,

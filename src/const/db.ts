@@ -1,3 +1,6 @@
+import { DEFAULT_USER_AVATAR_FILENAME } from '@modules/user/user.const.js';
+import { DEFAULT_RENT_PREVIEW_FILENAME } from '@modules/rent/rent.const.js';
+
 export const enum DBAuthSource {
   Admin = 'admin',
 }
@@ -7,8 +10,12 @@ export const enum DBRetry {
   Timeout = 1000,
 }
 
-export const DEFAULT_USER_PASSWORD = 'default123';
-export const DEFAULT_RENT_COMMENTS_COUNT = 0;
-export const DEFAULT_RENT_RATING = 0;
-export const JWT_EXP_TIME = '2d';
-export const JWT_ALGORITHM = 'HS256';
+export const DEFAULT_STATIC_IMAGES = [
+  DEFAULT_USER_AVATAR_FILENAME,
+  DEFAULT_RENT_PREVIEW_FILENAME,
+];
+
+export const STATIC_FIELDS = [
+  'avatar',
+  'preview',
+];

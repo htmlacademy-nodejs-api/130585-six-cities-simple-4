@@ -12,6 +12,7 @@ import {
   DEFAULT_RENTS_COUNT,
   DEFAULT_POPULAR_RENTS_COUNT,
   DEFAULT_TOP_RATED_RENTS_COUNT,
+  DEFAULT_RENT_PREVIEW_FILENAME,
 } from '@modules/rent/rent.const.js';
 
 @injectable()
@@ -23,7 +24,7 @@ export class RentService implements RentServiceInterface {
   }
 
   public async create(dto: CreateRentDto): Promise<DocumentType<RentEntity>> {
-    const createdRent = await this.rentModel.create(dto);
+    const createdRent = await this.rentModel.create({ ...dto, preview: DEFAULT_RENT_PREVIEW_FILENAME });
 
     this.logger.info(`Создано новое объявление: ${ createdRent.title }`);
 

@@ -11,10 +11,10 @@ import {
   RentRatingValidation,
   RentRoomsValidation,
   RentGuestsValidation,
-  RentPriceValidation,
+  RentPriceValidation, IMAGE_URL_MATCH_PATTERN,
 } from '@const/validation.js';
-import { RentTypeError, RentFacilitiesError, RentRatingError } from '@const/error-messages.js';
-import { DEFAULT_RENT_COMMENTS_COUNT, DEFAULT_RENT_RATING } from '@const/db.js';
+import { RentTypeError, RentFacilitiesError, RentRatingError, RentPreviewError } from '@const/error-messages.js';
+import { DEFAULT_RENT_COMMENTS_COUNT, DEFAULT_RENT_RATING } from '@modules/rent/rent.const.js';
 
 // for type merging of interface and class UserEntity
 export interface RentEntity extends defaultClasses.Base {
@@ -50,6 +50,10 @@ export class RentEntity extends defaultClasses.TimeStamps implements RentEntityT
   public city!: Ref<CityEntity>;
 
   @prop({
+    validate: {
+      validator: (preview: string) => IMAGE_URL_MATCH_PATTERN.test(preview),
+      message: RentPreviewError.IsImg,
+    },
     required: true,
   })
   public preview!: string;

@@ -6,7 +6,7 @@ import { ExceptionFilterInterface } from '@core/exception-filter/exception-filte
 import { AppComponent } from '@appTypes/app-component.enum.js';
 import { LoggerInterface } from '@core/logger/logger.interface.js';
 import { ServiceError } from '@appTypes/service-error.enum.js';
-import { createError } from '@utils/db.js';
+import { createError } from '@utils/index.js';
 
 @injectable()
 export default class BaseExceptionFilter implements ExceptionFilterInterface {

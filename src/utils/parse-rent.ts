@@ -24,7 +24,7 @@ export const parseRent = (rentString: string): Rent => {
     images: images.length ? images.split(';') : [],
     isPremium: Boolean(Number(isPremium)),
     rating: Number(Number(rating).toFixed(1)),
-    type: getTypedServerField<RentType>(type, rentTypes),
+    type: getTypedServerField<RentType>(type, rentTypes) || rentTypes[0],
     rooms: Number(rooms),
     guests: Number(guests),
     price: Number(price),

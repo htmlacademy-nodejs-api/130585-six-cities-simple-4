@@ -7,7 +7,7 @@ import { AppComponent } from '@appTypes/app-component.enum.js';
 import { LoggerInterface } from '@core/logger/logger.interface.js';
 import ValidationError from '@core/errors/validation-error.js';
 import { ServiceError } from '@appTypes/service-error.enum.js';
-import { createError } from '@utils/db.js';
+import { createError } from '@utils/index.js';
 
 
 @injectable()

@@ -7,7 +7,7 @@ import { LoggerInterface } from '@core/logger/logger.interface.js';
 import { AppComponent } from '@appTypes/app-component.enum.js';
 import HttpError from '@core/errors/http-error.js';
 import { ServiceError } from '@appTypes/service-error.enum.js';
-import { createError } from '@utils/db.js';
+import { createError } from '@utils/index.js';
 
 @injectable()
 export default class HttpErrorExceptionFilter implements ExceptionFilterInterface {

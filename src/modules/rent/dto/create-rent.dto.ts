@@ -34,7 +34,6 @@ import {
   RentGuestsError,
   RentPriceError,
   RentCityError,
-  RentPreviewError,
   RentImagesError,
   RentPremiumError,
   RentTypeError,
@@ -55,10 +54,6 @@ export default class CreateRentDto {
   @Expose()
   @IsMongoId({ message: RentCityError.IsMongoId })
   public city!: string;
-
-  @Expose()
-  @Matches(IMAGE_URL_MATCH_PATTERN, { message: RentPreviewError.IsImg })
-  public preview!: string;
 
   @Expose()
   @IsArray({ message: RentImagesError.IsArray })

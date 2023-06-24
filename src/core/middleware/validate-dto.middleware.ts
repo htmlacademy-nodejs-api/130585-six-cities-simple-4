@@ -4,7 +4,7 @@ import { validate } from 'class-validator';
 
 import { MiddlewareInterface } from '@core/middleware/middleware.interface.js';
 import ValidationError from '@core/errors/validation-error.js';
-import { transformErrors } from '@utils/db.js';
+import { transformErrors } from '@utils/index.js';
 
 export class ValidateDtoMiddleware implements MiddlewareInterface {
   constructor(private dto: ClassConstructor<object>) {

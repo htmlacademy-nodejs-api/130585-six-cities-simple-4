@@ -20,7 +20,7 @@ import CommentRdo from '@modules/comment/rdo/comment.rdo.js';
 import { UnknownRecord } from '@appTypes/unknown-record.type.js';
 import { AppComponent } from '@appTypes/app-component.enum.js';
 import { HttpMethod } from '@appTypes/http-method.enum.js';
-import { fillDTO } from '@utils/db.js';
+import { fillDTO } from '@utils/index.js';
 import { RequestQuery } from '@appTypes/request-query.type';
 import { ValidateObjectIdMiddleware } from '@core/middleware/validate-objectid.middleware.js';
 import { ValidateDtoMiddleware } from '@core/middleware/validate-dto.middleware.js';
@@ -44,9 +44,9 @@ export default class RentController extends Controller {
     @inject(AppComponent.UserServiceInterface) private readonly userService: UserServiceInterface,
     @inject(AppComponent.CommentServiceInterface) private readonly commentService: CommentServiceInterface,
     @inject(AppComponent.CityServiceInterface) private readonly cityService: CityServiceInterface,
-    @inject(AppComponent.ConfigInterface) private readonly configService: ConfigInterface<RestSchema>,
+    @inject(AppComponent.ConfigInterface) protected readonly config: ConfigInterface<RestSchema>,
   ) {
-    super(logger);
+    super(logger, config);
 
     this.logger.info('Регистрация маршрутов для RentController…');
 
@@ -123,7 +123,7 @@ export default class RentController extends Controller {
       middlewares: [
         new ValidateObjectIdMiddleware('rentId'),
         new DocumentExistsMiddleware(this.rentService, 'Предложения по аренде', 'rentId'),
-        new UploadFilesMiddleware(this.configService.get('UPLOAD_DIRECTORY'), 'preview'),
+        new UploadFilesMiddleware(this.config.get('UPLOAD_DIRECTORY'), 'preview'),
       ],
     });
     this.addRoute({
@@ -133,7 +133,7 @@ export default class RentController extends Controller {
       middlewares: [
         new ValidateObjectIdMiddleware('rentId'),
         new DocumentExistsMiddleware(this.rentService, 'Предложения по аренде', 'rentId'),
-        new UploadFilesMiddleware(this.configService.get('UPLOAD_DIRECTORY'), 'images', RentImagesValidation.Max),
+        new UploadFilesMiddleware(this.config.get('UPLOAD_DIRECTORY'), 'images', RentImagesValidation.Max),
       ],
     });
   }

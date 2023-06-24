@@ -5,6 +5,8 @@ import { ParamsDictionary } from 'express-serve-static-core';
 
 import { Controller } from '@core/controller/controller.abstract.js';
 import { LoggerInterface } from '@core/logger/logger.interface.js';
+import { ConfigInterface } from '@core/config/config.interface.js';
+import { RestSchema } from '@core/config/rest.schema.js';
 import { CityServiceInterface } from '@modules/city/city-service.interface.js';
 import { RentServiceInterface } from '@modules/rent/rent-service.interface.js';
 import CreateCityDto from '@modules/city/dto/create-city.dto.js';
@@ -14,7 +16,7 @@ import { UnknownRecord } from '@appTypes/unknown-record.type.js';
 import { RequestQuery } from '@appTypes/request-query.type.js';
 import { AppComponent } from '@appTypes/app-component.enum.js';
 import { HttpMethod } from '@appTypes/http-method.enum.js';
-import { fillDTO } from '@utils/db.js';
+import { fillDTO } from '@utils/index.js';
 import HttpError from '@core/errors/http-error.js';
 import { ValidateObjectIdMiddleware } from '@core/middleware/validate-objectid.middleware.js';
 import { ValidateDtoMiddleware } from '@core/middleware/validate-dto.middleware.js';
@@ -31,8 +33,9 @@ export default class CityController extends Controller {
     @inject(AppComponent.LoggerInterface) protected readonly logger: LoggerInterface,
     @inject(AppComponent.CityServiceInterface) private readonly cityService: CityServiceInterface,
     @inject(AppComponent.RentServiceInterface) private readonly rentService: RentServiceInterface,
+    @inject(AppComponent.ConfigInterface) config: ConfigInterface<RestSchema>,
   ) {
-    super(logger);
+    super(logger, config);
 
     this.logger.info('Регистрация маршрутов для CategoryController…');
 

@@ -7,7 +7,7 @@ import { DBAuthSource } from '@const/db.js';
 import { JwtPayload } from '@appTypes/jwt-payload.type.js';
 import { TransformedValidationError } from '@appTypes/transformed-validation-error.type.js';
 import { Encoding } from '@const/common.js';
-import { JWT_EXP_TIME } from '@const/db.js';
+import { JWT_EXP_TIME } from '@modules/user/user.const.js';
 import { ServiceError } from '@appTypes/service-error.enum.js';
 
 export const getMongoURI = (
@@ -17,6 +17,8 @@ export const getMongoURI = (
   port: string,
   dbName: string,
 ): string => `mongodb://${username}:${password}@${host}:${port}/${dbName}?authSource=${DBAuthSource.Admin}`;
+
+export const getServerPath = (host: string, port: number) => `http://${host}:${port}`;
 
 export const createSHA256 = (string: string, salt: string): string => {
   const shaHasher = crypto.createHmac('sha256', salt);

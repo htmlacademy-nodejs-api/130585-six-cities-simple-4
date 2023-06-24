@@ -1,10 +1,9 @@
-import { IsEmail, Length, Matches, IsOptional, IsIn } from 'class-validator';
+import { IsEmail, Length, IsIn } from 'class-validator';
 import { Expose } from 'class-transformer';
 
 import { UserType, userTypes } from '@appTypes/user-type.type.js';
 import { UserNameValidation, UserPassValidation } from '@const/validation.js';
-import { UserNameError, UserAvatarError, UserEmailError, UserTypeError, UserPassError } from '@const/error-messages.js';
-import { IMAGE_URL_MATCH_PATTERN } from '@const/validation';
+import { UserNameError, UserEmailError, UserTypeError, UserPassError } from '@const/error-messages.js';
 
 export default class CreateUserDto {
   @Expose()
@@ -14,11 +13,6 @@ export default class CreateUserDto {
   @Expose()
   @IsEmail({}, { message: UserEmailError.IsEmail })
   public email!: string;
-
-  @Expose()
-  @IsOptional()
-  @Matches(IMAGE_URL_MATCH_PATTERN, { message: UserAvatarError.IsImg })
-  public avatar?: string;
 
   @Expose()
   @IsIn(userTypes, { message: UserTypeError.IsIn })
