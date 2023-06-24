@@ -22,12 +22,19 @@ export function transformObjectProperty(
 }
 
 export function transformObjectStaticPaths(properties: string[], staticPath: string, uploadPath: string, data: UnknownRecord) {
+  const getItemPath = (item: string) => `${ DEFAULT_STATIC_IMAGES.includes(item) ? staticPath : uploadPath }/${ item }`;
+
   return properties
     .forEach((property) => {
       const transformFn = (target: UnknownRecord) => {
-        const path = DEFAULT_STATIC_IMAGES.includes(String(target[property])) ? staticPath : uploadPath;
+        const value = target[property];
 
-        target[property] = `${ path }/${ target[property] }`;
+        if (Array.isArray(value)) {
+          target[property] = value.map((item) => getItemPath(String(item)));
+
+        } else {
+          target[property] = getItemPath(String(value));
+        }
       };
 
       transformObjectProperty(property, data, transformFn);

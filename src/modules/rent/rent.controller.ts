@@ -121,6 +121,7 @@ export default class RentController extends Controller {
       method: HttpMethod.Post,
       handler: this.uploadPreview,
       middlewares: [
+        new PrivateRouteMiddleware(),
         new ValidateObjectIdMiddleware('rentId'),
         new DocumentExistsMiddleware(this.rentService, 'Предложения по аренде', 'rentId'),
         new UploadFilesMiddleware(this.config.get('UPLOAD_DIRECTORY'), 'preview'),
@@ -131,6 +132,7 @@ export default class RentController extends Controller {
       method: HttpMethod.Post,
       handler: this.uploadImages,
       middlewares: [
+        new PrivateRouteMiddleware(),
         new ValidateObjectIdMiddleware('rentId'),
         new DocumentExistsMiddleware(this.rentService, 'Предложения по аренде', 'rentId'),
         new UploadFilesMiddleware(this.config.get('UPLOAD_DIRECTORY'), 'images', RentImagesValidation.Max),
@@ -215,10 +217,10 @@ export default class RentController extends Controller {
   }
 
   public async uploadPreview (
-    { file }: Request<ParamsRentDetails, UnknownRecord, UnknownRecord>,
+    { file, params }: Request<ParamsRentDetails, UnknownRecord, UnknownRecord>,
     res: Response
   ): Promise<void> {
-    if (!file?.path) {
+    if (!file?.filename) {
       throw new HttpError(
         StatusCodes.BAD_REQUEST,
         RentPreviewError.IsRequired,
@@ -226,13 +228,17 @@ export default class RentController extends Controller {
       );
     }
 
-    this.created(res, fillDTO(UploadPreviewRdo, {
-      preview: file.path,
-    }));
+    const { rentId } = params;
+    const updateDto = {
+      preview: file.filename,
+    };
+
+    await this.rentService.updateById(rentId, updateDto);
+    this.created(res, fillDTO(UploadPreviewRdo, updateDto));
   }
 
   public async uploadImages (
-    { files }: Request<ParamsRentDetails, UnknownRecord, UnknownRecord>,
+    { files, params }: Request<ParamsRentDetails, UnknownRecord, UnknownRecord>,
     res: Response,
   ): Promise<void> {
 
@@ -244,8 +250,12 @@ export default class RentController extends Controller {
       );
     }
 
-    this.created(res, fillDTO(UploadImagesRdo, {
-      images: files.filter((file) => file?.path).map((file) => file.path),
-    }));
+    const { rentId } = params;
+    const updateDto = {
+      images: files.filter((file) => file?.filename).map((file) => file.filename),
+    };
+
+    await this.rentService.updateById(rentId, updateDto);
+    this.created(res, fillDTO(UploadImagesRdo, updateDto));
   }
 }

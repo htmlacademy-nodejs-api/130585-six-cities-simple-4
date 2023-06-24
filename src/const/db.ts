@@ -18,4 +18,5 @@ export const DEFAULT_STATIC_IMAGES = [
 export const STATIC_FIELDS = [
   'avatar',
   'preview',
+  'images',
 ];
