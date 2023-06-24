@@ -87,6 +87,7 @@ export const UserEmailError = {
 } as const;
 
 export const UserAvatarError = {
+  IsRequired: 'В поле Аватар должно быть загружено изображение в формате jpg/png',
   IsImg: 'В поле Аватар должна быть ссылка на изображение (jpg, png)',
 } as const;
 

@@ -22,7 +22,9 @@ import { ValidateObjectIdMiddleware } from '@core/middleware/validate-objectid.m
 import { DocumentExistsMiddleware } from '@core/middleware/document-exists.middleware.js';
 import { ValidateDtoMiddleware } from '@core/middleware/validate-dto.middleware.js';
 import { JWT_ALGORITHM } from '@modules/user/user.const.js';
-import { UploadFilesMiddleware } from '@core/middleware/upload-files.middleware';
+import { UploadFilesMiddleware } from '@core/middleware/upload-files.middleware.js';
+import { PrivateRouteMiddleware } from '@core/middleware/private-route.middleware.js';
+import { UserAvatarError } from '@const/error-messages.js';
 
 @injectable()
 export default class UserController extends Controller {
@@ -56,6 +58,7 @@ export default class UserController extends Controller {
       method: HttpMethod.Post,
       handler: this.uploadAvatar,
       middlewares: [
+        new PrivateRouteMiddleware(),
         new ValidateObjectIdMiddleware('userId'),
         new DocumentExistsMiddleware(this.userService, 'Пользователя', 'userId'),
         new UploadFilesMiddleware(this.config.get('UPLOAD_DIRECTORY'), 'avatar'),
@@ -127,11 +130,21 @@ export default class UserController extends Controller {
     this.ok(res, fillDTO(UserRdo, existedUser));
   }
 
-  public async uploadAvatar (req: Request, res: Response): Promise<void> {
-    const result = {
-      url: req?.file?.path,
+  public async uploadAvatar ({ file, params }: Request, res: Response): Promise<void> {
+    if (!file?.filename) {
+      throw new HttpError(
+        StatusCodes.BAD_REQUEST,
+        UserAvatarError.IsRequired,
+        'UserController',
+      );
+    }
+
+    const { userId } = params;
+    const updateDto = {
+      avatar: file?.filename,
     };
 
-    this.created(res, fillDTO(UploadAvatarRdo, result));
+    await this.userService.updateById(userId, updateDto);
+    this.created(res, fillDTO(UploadAvatarRdo, updateDto));
   }
 }
