@@ -1,6 +1,7 @@
 import 'reflect-metadata';
 import { injectable, inject } from 'inversify';
 import express, { Express } from 'express';
+import cors from 'cors';
 
 import { LoggerInterface } from '@core/logger/logger.interface.js';
 import { ConfigInterface } from '@core/config/config.interface.js';
@@ -55,6 +56,7 @@ export default class RESTApplication {
     const authenticateMiddleWare = new AuthenticateMiddleware(this.config.get('JWT_SECRET'));
 
     this.expressApp.use(authenticateMiddleWare.execute.bind(authenticateMiddleWare));
+    this.expressApp.use(cors());
     this.logger.info('Инициализация глобальных middleware завершена!');
   }
 
