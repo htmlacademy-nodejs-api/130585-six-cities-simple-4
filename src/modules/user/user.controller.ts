@@ -106,14 +106,14 @@ export default class UserController extends Controller {
       }
     );
 
-    this.ok(res, fillDTO(LoginUserRdo, {
-      email,
+    this.ok(res, {
+      ...fillDTO(LoginUserRdo, user),
       token,
-    }));
+    });
   }
 
-  public async checkAuthenticate({ user: { email }}: Request, res: Response): Promise<void> {
-    if (!email) {
+  public async checkAuthenticate({ user }: Request, res: Response): Promise<void> {
+    if (!user) {
       throw new HttpError(
         StatusCodes.UNAUTHORIZED,
         'Пользователь не авторизован',
@@ -121,15 +121,8 @@ export default class UserController extends Controller {
       );
     }
 
+    const { email } = user;
     const existedUser = await this.userService.findByEmail(email);
-
-    if (!existedUser) {
-      throw new HttpError(
-        StatusCodes.UNAUTHORIZED,
-        'Пользователь не авторизован',
-        'UserController'
-      );
-    }
 
     this.ok(res, fillDTO(UserRdo, existedUser));
   }
