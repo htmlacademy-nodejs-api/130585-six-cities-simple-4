@@ -43,7 +43,10 @@ export default class UserService implements UserServiceInterface {
 
   public updateById(userId: string, dto: UpdateUserDto): Promise<DocumentType<UserEntity> | null> {
     return this.userModel
-      .findByIdAndUpdate(userId, dto, { new: true })
+      .findByIdAndUpdate(userId, dto, {
+        new: true,
+        runValidators: true,
+      })
       .exec();
   }
 

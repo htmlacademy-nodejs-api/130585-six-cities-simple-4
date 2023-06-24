@@ -54,7 +54,10 @@ export class RentService implements RentServiceInterface {
 
   public async updateById(rentId: string, dto: UpdateRentDto): Promise<DocumentType<RentEntity> | null> {
     return this.rentModel
-      .findByIdAndUpdate(rentId, dto, { new: true })
+      .findByIdAndUpdate(rentId, dto, {
+        new: true,
+        runValidators: true,
+      })
       .populate([ 'author', 'city' ])
       .exec();
   }
