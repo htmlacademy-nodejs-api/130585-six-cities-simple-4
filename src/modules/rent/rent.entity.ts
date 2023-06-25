@@ -13,13 +13,11 @@ import {
   RentGuestsValidation,
   RentPriceValidation,
   RentImagesValidation,
-  IMAGE_URL_MATCH_PATTERN,
 } from '@const/validation.js';
 import {
   RentTypeError,
   RentFacilitiesError,
   RentRatingError,
-  RentPreviewError,
   RentImagesError,
 } from '@const/error-messages.js';
 import { DEFAULT_RENT_COMMENTS_COUNT, DEFAULT_RENT_RATING } from '@modules/rent/rent.const.js';
@@ -58,11 +56,8 @@ export class RentEntity extends defaultClasses.TimeStamps implements RentEntityT
   public city!: Ref<CityEntity>;
 
   @prop({
-    validate: {
-      validator: (preview: string) => IMAGE_URL_MATCH_PATTERN.test(preview),
-      message: RentPreviewError.IsImg,
-    },
     required: true,
+    default: '',
   })
   public preview!: string;
 

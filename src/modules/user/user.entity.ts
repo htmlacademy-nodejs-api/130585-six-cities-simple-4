@@ -2,8 +2,8 @@ import { prop, modelOptions, defaultClasses, getModelForClass } from '@typegoose
 
 import { User } from '@appTypes/user.type.js';
 import { UserType, userTypes } from '@appTypes/user-type.type.js';
-import { IMAGE_URL_MATCH_PATTERN, UserNameValidation } from '@const/validation.js';
-import { UserTypeError, UserAvatarError } from '@const/error-messages.js';
+import { UserNameValidation } from '@const/validation.js';
+import { UserTypeError } from '@const/error-messages.js';
 import { createSHA256 } from '@utils/index.js';
 
 // for type merging of interface and class UserEntity
@@ -32,10 +32,7 @@ export class UserEntity extends defaultClasses.TimeStamps implements User {
   public email!: string;
 
   @prop({
-    validate: {
-      validator: (avatar: string) => IMAGE_URL_MATCH_PATTERN.test(avatar),
-      message: UserAvatarError.IsImg,
-    },
+    required: true,
     default: '',
   })
   public avatar?: string;

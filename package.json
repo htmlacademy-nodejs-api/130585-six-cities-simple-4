@@ -16,7 +16,8 @@
     "compile": "tsc -p tsconfig.json && tsc-alias",
     "clean": "rimraf dist",
     "ts": "node --experimental-specifier-resolution=node --loader ./plugins/register-paths.js",
-    "mock:server": "json-server mocks/server-data.json --port 3123"
+    "mock:server": "json-server mocks/server-data.json --port 3123",
+    "cli": "node ./dist/main.cli.js"
   },
   "devDependencies": {
     "@types/convict": "6.1.1",

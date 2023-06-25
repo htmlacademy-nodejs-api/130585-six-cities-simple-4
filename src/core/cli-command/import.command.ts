@@ -19,7 +19,7 @@ import ConfigService from '@core/config/config.service.js';
 import MongoClientService from '@core/db-client/mongo-client.service.js';
 import FileReaderTSV from '@core/file-reader/file-reader-tsv.js';
 import { parseRent, getMongoURI } from '@utils/index.js';
-import { DEFAULT_USER_PASSWORD } from '@const/db.js';
+import { DEFAULT_USER_PASSWORD } from '@modules/user/user.const.js';
 
 export default class ImportCommand implements CliCommandInterface {
   public readonly name = '--import';
@@ -37,24 +37,36 @@ export default class ImportCommand implements CliCommandInterface {
 
     this.logger = new ConsoleLoggerService();
     this.config = new ConfigService(this.logger);
-    this.userService = new UserService(this.logger, UserModel, this.config);
+    this.userService = new UserService(this.logger, UserModel);
     this.cityService = new CityService(this.logger, CityModel);
     this.rentService = new RentService(this.logger, RentModel);
     this.DBService = new MongoClientService(this.logger);
   }
 
   private async saveRent(rent: Rent) {
+    const existCity = await this.cityService.findByCityNameOrCreate(rent.city, rent.city.name);
     const user = await this.userService.findOrCreate({
       ...rent.author,
       pass: DEFAULT_USER_PASSWORD,
-    });
-    const existCity = await this.cityService.findByCityNameOrCreate(rent.city, rent.city.name);
+    }, this.config.get('SALT'));
 
-    await this.rentService.create({
+    if (rent.author.avatar) {
+      await this.userService.updateById(user.id, {
+        avatar: rent.author.avatar,
+      });
+    }
+
+    const savedRent = await this.rentService.create({
       ...rent,
-      city: existCity ? existCity.id : undefined,
+      city: existCity.id,
       author: user.id,
     });
+
+    if (rent.preview) {
+      await this.rentService.updateById(savedRent.id, {
+        preview: rent.preview,
+      });
+    }
   }
 
   private handleStart(file: string) {
@@ -64,7 +76,13 @@ export default class ImportCommand implements CliCommandInterface {
   private async handleLine(line: string, resolve: () => void) {
     const rent = parseRent(line);
 
-    await this.saveRent(rent);
+    if (rent !== null) {
+      await this.saveRent(rent);
+
+    } else {
+      this.logger.error(`Ошибка при чтении строки ${ line }`);
+    }
+
     resolve();
   }
 

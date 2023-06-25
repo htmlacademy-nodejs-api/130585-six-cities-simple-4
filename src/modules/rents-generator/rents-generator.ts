@@ -7,10 +7,18 @@ import {
   getRandomDate,
   getRandomBoolean,
 } from '@utils/index.js';
-import { RentDaysValidation, RentRatingValidation, RentRoomsValidation, RentGuestsValidation, RentPriceValidation } from '@const/validation.js';
+import {
+  RentDaysValidation,
+  RentRatingValidation,
+  RentRoomsValidation,
+  RentGuestsValidation,
+  RentPriceValidation,
+  RentImagesValidation,
+} from '@const/validation.js';
 
 export class RentsGenerator implements RentsGeneratorInterface {
-  constructor(private readonly mockData: MockRent) {}
+  constructor(private readonly mockData: MockRent) {
+  }
 
   public generate(): string {
     const title = getRandomItem<string>(this.mockData.titles ?? []);
@@ -18,7 +26,7 @@ export class RentsGenerator implements RentsGeneratorInterface {
     const createdAt = getRandomDate(RentDaysValidation.Before);
     const city = getRandomItem<string>(this.mockData.cities ?? []);
     const preview = getRandomItem<string>(this.mockData.previews ?? []);
-    const images = getRandomItems<string>(this.mockData.images ?? []).join(';');
+    const images = getRandomItems<string>(this.mockData.images ?? [], RentImagesValidation.Max).join(';');
     const isPremium = getRandomBoolean();
     const rating = getRandomNumberFromInterval(RentRatingValidation.Min, RentRatingValidation.Max, 1);
     const type = getRandomItem<string>(this.mockData.types ?? []);

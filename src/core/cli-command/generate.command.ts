@@ -46,7 +46,7 @@ export default class GenerateCommand implements CliCommandInterface {
 
     } catch (err) {
       showError({
-        text: `Не удалось запросить данные по адресу ${url} по причине:`,
+        text: `Не удалось запросить данные по адресу ${ url } по причине:`,
         error: err,
       });
     }
