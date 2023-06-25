@@ -16,14 +16,14 @@ export default class HttpErrorExceptionFilter implements ExceptionFilterInterfac
   }
 
   public catch(error: Error, req: Request, res: Response, next: NextFunction): void {
-    if (error instanceof HttpError) {
+    if (!(error instanceof HttpError)) {
       return next(error);
     }
 
     this.logger.error(`[HttpErrorExceptionFilter]: ${ req.path }] — ${ error.message }`);
 
     res
-      .status(StatusCodes.BAD_REQUEST)
+      .status(error.httpStatusCode || StatusCodes.BAD_REQUEST)
       .json(createError(ServiceError.HttpError, error.message));
   }
 }

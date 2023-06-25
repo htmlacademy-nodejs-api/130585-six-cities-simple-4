@@ -33,10 +33,12 @@ export class AuthenticateMiddleware implements MiddlewareInterface {
       return next();
 
     } catch {
-      throw new HttpError(
-        StatusCodes.UNAUTHORIZED,
-        'Не валидный токен',
-        'AuthenticateMiddleware',
+      return next(
+        new HttpError(
+          StatusCodes.UNAUTHORIZED,
+          'Не валидный токен',
+          'AuthenticateMiddleware',
+        ),
       );
     }
   }

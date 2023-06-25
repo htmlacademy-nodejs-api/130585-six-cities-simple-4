@@ -86,7 +86,7 @@ Content-Type: image/png
 
 ## Загружает изображения для предложения об аренде
 POST http://localhost:5000/rents/647e1ea88507534f70eaae9e/images HTTP/1.1
-Authorization: eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImF2YXRhci10ZXN0QHRlc3QubmV0IiwiaWQiOiI2NDk2ZjJhNjJiY2YzMjA4ZGEwY2UxNDUiLCJpYXQiOjE2ODc2MjAwMjMsImV4cCI6MTY4Nzc5MjgyM30.qKmmVN7DWfiSon8Dc8tgGJHl6OaS7K1Qxg5mBBTQj_4
+Authorization: 123
 Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
 
 ------WebKitFormBoundary7MA4YWxkTrZu0gW

@@ -27,6 +27,7 @@ import { ValidateDtoMiddleware } from '@core/middleware/validate-dto.middleware.
 import { DocumentExistsMiddleware } from '@core/middleware/document-exists.middleware.js';
 import { PrivateRouteMiddleware } from '@core/middleware/private-route.middleware.js';
 import { UploadFilesMiddleware } from '@core/middleware/upload-files.middleware.js';
+import { RentOwnerCheckMiddleware } from '@core/middleware/rent-owner-check.middleware.js';
 import { RentImagesValidation } from '@const/validation.js';
 import HttpError from '@core/errors/http-error.js';
 import { RentImagesError, RentPreviewError } from '@const/error-messages.js';
@@ -82,7 +83,7 @@ export default class RentController extends Controller {
       middlewares: [
         new PrivateRouteMiddleware(),
         new ValidateObjectIdMiddleware('rentId'),
-        new DocumentExistsMiddleware(this.rentService, 'Предложения по аренде', 'rentId'),
+        new RentOwnerCheckMiddleware(this.rentService, this.userService),
       ],
     });
     this.addRoute({
@@ -93,7 +94,7 @@ export default class RentController extends Controller {
         new PrivateRouteMiddleware(),
         new ValidateObjectIdMiddleware('rentId'),
         new ValidateDtoMiddleware(UpdateRentDto),
-        new DocumentExistsMiddleware(this.rentService, 'Предложения по аренде', 'rentId'),
+        new RentOwnerCheckMiddleware(this.rentService, this.userService),
         new DocumentExistsMiddleware(this.cityService, 'Города', 'city'),
       ],
     });
@@ -123,7 +124,7 @@ export default class RentController extends Controller {
       middlewares: [
         new PrivateRouteMiddleware(),
         new ValidateObjectIdMiddleware('rentId'),
-        new DocumentExistsMiddleware(this.rentService, 'Предложения по аренде', 'rentId'),
+        new RentOwnerCheckMiddleware(this.rentService, this.userService),
         new UploadFilesMiddleware(this.config.get('UPLOAD_DIRECTORY'), 'preview'),
       ],
     });
@@ -134,7 +135,7 @@ export default class RentController extends Controller {
       middlewares: [
         new PrivateRouteMiddleware(),
         new ValidateObjectIdMiddleware('rentId'),
-        new DocumentExistsMiddleware(this.rentService, 'Предложения по аренде', 'rentId'),
+        new RentOwnerCheckMiddleware(this.rentService, this.userService),
         new UploadFilesMiddleware(this.config.get('UPLOAD_DIRECTORY'), 'images', RentImagesValidation.Max),
       ],
     });
