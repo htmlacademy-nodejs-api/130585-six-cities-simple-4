@@ -26,7 +26,7 @@ import {
   RentPriceValidation,
   RentImagesValidation,
   RentFacilitiesValidation,
-  IMAGE_URL_MATCH_PATTERN,
+  ImageValidation,
 } from '@const/validation.js';
 import {
   RentTitleError,
@@ -62,7 +62,7 @@ export default class UpdateRentDto {
 
   @Expose()
   @IsOptional()
-  @Matches(IMAGE_URL_MATCH_PATTERN, { message: RentPreviewError.IsImg })
+  @Matches(ImageValidation.UrlPattern, { message: RentPreviewError.IsImg })
   public preview?: string;
 
   @Expose()
@@ -70,7 +70,7 @@ export default class UpdateRentDto {
   @IsArray({ message: RentImagesError.IsArray })
   @ArrayMinSize(RentImagesValidation.Min, { message: RentImagesError.ArrayLength })
   @ArrayMaxSize(RentImagesValidation.Max, { message: RentImagesError.ArrayLength })
-  @Matches(IMAGE_URL_MATCH_PATTERN, { each: true, message: RentImagesError.IsImg })
+  @Matches(ImageValidation.UrlPattern, { each: true, message: RentImagesError.IsImg })
   @ArrayUnique({ message: RentImagesError.ArrayUnique })
   public images?: string[];
 

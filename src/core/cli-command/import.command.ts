@@ -19,7 +19,7 @@ import ConfigService from '@core/config/config.service.js';
 import MongoClientService from '@core/db-client/mongo-client.service.js';
 import FileReaderTSV from '@core/file-reader/file-reader-tsv.js';
 import { parseRent, getMongoURI } from '@utils/index.js';
-import { DEFAULT_USER_PASSWORD } from '@modules/user/user.const.js';
+import { UserDefault } from '@modules/user/user.const.js';
 
 export default class ImportCommand implements CliCommandInterface {
   public readonly name = '--import';
@@ -47,7 +47,7 @@ export default class ImportCommand implements CliCommandInterface {
     const existCity = await this.cityService.findByCityNameOrCreate(rent.city, rent.city.name);
     const user = await this.userService.findOrCreate({
       ...rent.author,
-      pass: DEFAULT_USER_PASSWORD,
+      pass: UserDefault.Password,
     }, this.config.get('SALT'));
 
     if (rent.author.avatar) {

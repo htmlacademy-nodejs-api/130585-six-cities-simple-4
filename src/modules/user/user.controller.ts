@@ -20,7 +20,7 @@ import UploadAvatarRdo from '@modules/user/rdo/upload-avatar.rdo.js';
 import { ValidateObjectIdMiddleware } from '@core/middleware/validate-objectid.middleware.js';
 import { DocumentExistsMiddleware } from '@core/middleware/document-exists.middleware.js';
 import { ValidateDtoMiddleware } from '@core/middleware/validate-dto.middleware.js';
-import { JWT_ALGORITHM } from '@modules/user/user.const.js';
+import { JwtParam } from '@modules/user/user.const.js';
 import { UploadFilesMiddleware } from '@core/middleware/upload-files.middleware.js';
 import { PrivateRouteMiddleware } from '@core/middleware/private-route.middleware.js';
 import { UserAvatarError, HttpErrorText } from '@const/error-messages.js';
@@ -100,7 +100,7 @@ export default class UserController extends Controller {
 
     const { email, id } = user;
     const token = await createJWT(
-      JWT_ALGORITHM,
+      JwtParam.Algorithm,
       this.config.get('JWT_SECRET'),
       {
         email,

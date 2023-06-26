@@ -1,3 +1,43 @@
+GET http://localhost:5000/rents/648196cf1ca25c81b7bbf621
+Content-Type: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-06-26T224941.404.json
+
+###
+
+GET http://localhost:5000/rent
+Content-Type: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-06-26T224935.404.json
+
+###
+
+GET http://localhost:5000/rent
+Content-Type: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-06-26T224746.404.json
+
+###
+
+GET http://localhost:5000/rent
+Content-Type: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-06-26T224742.404.json
+
+###
+
 GET http://localhost:5000/rents/sort/top-rated
 Content-Type: application/json
 Connection: Keep-Alive
@@ -848,82 +888,6 @@ Content-Type: image/png
 ------WebKitFormBoundary7MA4YWxkTrZu0gW--
 
 <> 2023-06-24T224448.400.json
-
-###
-
-POST http://localhost:5000/rents/647e1ea88507534f70eaae9e/images
-Authorization: eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImF2YXRhci10ZXN0QHRlc3QubmV0IiwiaWQiOiI2NDk2ZjJhNjJiY2YzMjA4ZGEwY2UxNDUiLCJpYXQiOjE2ODc2MjAwMjMsImV4cCI6MTY4Nzc5MjgyM30.qKmmVN7DWfiSon8Dc8tgGJHl6OaS7K1Qxg5mBBTQj_4
-Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
-Content-Length: 2115935
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-------WebKitFormBoundary7MA4YWxkTrZu0gW
-Content-Disposition: form-data; name="images"; filename="123.png"
-Content-Type: image/png
-
-< /Users/ekateric/Documents/screenshots/123.png
-------WebKitFormBoundary7MA4YWxkTrZu0gW--
-
-<> 2023-06-24T224447.201.json
-
-###
-
-POST http://localhost:5000/rents/647e1ea88507534f70eaae9e/images
-Authorization: eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImF2YXRhci10ZXN0QHRlc3QubmV0IiwiaWQiOiI2NDk2ZjJhNjJiY2YzMjA4ZGEwY2UxNDUiLCJpYXQiOjE2ODc2MjAwMjMsImV4cCI6MTY4Nzc5MjgyM30.qKmmVN7DWfiSon8Dc8tgGJHl6OaS7K1Qxg5mBBTQj_4
-Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
-Content-Length: 2115935
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-------WebKitFormBoundary7MA4YWxkTrZu0gW
-Content-Disposition: form-data; name="images"; filename="123.png"
-Content-Type: image/png
-
-< /Users/ekateric/Documents/screenshots/123.png
-------WebKitFormBoundary7MA4YWxkTrZu0gW--
-
-<> 2023-06-24T224445.400.json
-
-###
-
-POST http://localhost:5000/rents/647e1ea88507534f70eaae9e/images
-Authorization: eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImF2YXRhci10ZXN0QHRlc3QubmV0IiwiaWQiOiI2NDk2ZjJhNjJiY2YzMjA4ZGEwY2UxNDUiLCJpYXQiOjE2ODc2MjAwMjMsImV4cCI6MTY4Nzc5MjgyM30.qKmmVN7DWfiSon8Dc8tgGJHl6OaS7K1Qxg5mBBTQj_4
-Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
-Content-Length: 2115935
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-------WebKitFormBoundary7MA4YWxkTrZu0gW
-Content-Disposition: form-data; name="images"; filename="123.png"
-Content-Type: image/png
-
-< /Users/ekateric/Documents/screenshots/123.png
-------WebKitFormBoundary7MA4YWxkTrZu0gW--
-
-<> 2023-06-24T224442.201.json
-
-###
-
-POST http://localhost:5000/rents/647e1ea88507534f70eaae9e/images
-Authorization: eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImF2YXRhci10ZXN0QHRlc3QubmV0IiwiaWQiOiI2NDk2ZjJhNjJiY2YzMjA4ZGEwY2UxNDUiLCJpYXQiOjE2ODc2MjAwMjMsImV4cCI6MTY4Nzc5MjgyM30.qKmmVN7DWfiSon8Dc8tgGJHl6OaS7K1Qxg5mBBTQj_4
-Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
-Content-Length: 2115935
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-------WebKitFormBoundary7MA4YWxkTrZu0gW
-Content-Disposition: form-data; name="images"; filename="123.png"
-Content-Type: image/png
-
-< /Users/ekateric/Documents/screenshots/123.png
-------WebKitFormBoundary7MA4YWxkTrZu0gW--
-
-<> 2023-06-24T224345.400.json
 
 ###
 

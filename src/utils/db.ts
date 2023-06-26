@@ -7,7 +7,7 @@ import { DBAuthSource } from '@const/db.js';
 import { JwtPayload } from '@appTypes/jwt-payload.type.js';
 import { TransformedValidationError } from '@appTypes/transformed-validation-error.type.js';
 import { Encoding } from '@const/common.js';
-import { JWT_EXP_TIME } from '@modules/user/user.const.js';
+import { JwtParam } from '@modules/user/user.const.js';
 import { ServiceError } from '@appTypes/service-error.enum.js';
 
 export const getMongoURI = (
@@ -45,7 +45,7 @@ export async function createJWT(alg: string, jwtSecret: string, payload: JwtPayl
   return new SignJWT({ ...payload })
     .setProtectedHeader({ alg })
     .setIssuedAt()
-    .setExpirationTime(JWT_EXP_TIME)
+    .setExpirationTime(JwtParam.ExpTime)
     .sign(secretKey);
 }
 
