@@ -23,7 +23,7 @@ import { ValidateDtoMiddleware } from '@core/middleware/validate-dto.middleware.
 import { JWT_ALGORITHM } from '@modules/user/user.const.js';
 import { UploadFilesMiddleware } from '@core/middleware/upload-files.middleware.js';
 import { PrivateRouteMiddleware } from '@core/middleware/private-route.middleware.js';
-import { UserAvatarError } from '@const/error-messages.js';
+import { UserAvatarError, HttpErrorText } from '@const/error-messages.js';
 
 @injectable()
 export default class UserController extends Controller {
@@ -93,7 +93,7 @@ export default class UserController extends Controller {
     if (!user) {
       throw new HttpError(
         StatusCodes.UNAUTHORIZED,
-        'Пользователь не авторизован',
+        HttpErrorText.Unauthorized,
         'UserController',
       );
     }
@@ -118,7 +118,7 @@ export default class UserController extends Controller {
     if (!user) {
       throw new HttpError(
         StatusCodes.UNAUTHORIZED,
-        'Пользователь не авторизован',
+        HttpErrorText.Unauthorized,
         'UserController'
       );
     }

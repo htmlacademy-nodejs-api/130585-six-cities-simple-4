@@ -122,3 +122,10 @@ export const CommentRentIdError = {
   IsMongoId: 'Id Предложения по аренде должен быть валидным MongoId',
 } as const;
 
+export const HttpErrorText = {
+  Unauthorized: 'Пользователь не авторизован',
+  Forbidden: 'Доступ запрещен',
+  NotValidToken: 'Не валидный токен',
+  UnsupportedMediaType: 'Неподдерживаемый формат изображений (jpg, png)',
+} as const;
+

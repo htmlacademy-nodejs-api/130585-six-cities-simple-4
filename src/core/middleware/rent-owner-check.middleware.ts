@@ -5,6 +5,7 @@ import { MiddlewareInterface } from '@core/middleware/middleware.interface.js';
 import HttpError from '@core/errors/http-error.js';
 import { RentServiceInterface } from '@modules/rent/rent-service.interface.js';
 import { UserServiceInterface } from '@modules/user/user-service.interface.js';
+import { HttpErrorText } from '@const/error-messages.js';
 
 export class RentOwnerCheckMiddleware implements MiddlewareInterface {
   constructor(
@@ -38,7 +39,7 @@ export class RentOwnerCheckMiddleware implements MiddlewareInterface {
     if (user.id !== rentUser.id) {
       throw new HttpError(
         StatusCodes.FORBIDDEN,
-        'Доступ запрещен',
+        HttpErrorText.Forbidden,
         'RentOwnerCheckMiddleware',
       );
     }
