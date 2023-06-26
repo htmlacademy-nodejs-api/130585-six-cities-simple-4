@@ -1,7 +1,7 @@
 import { IsEmail, IsString } from 'class-validator';
 import { Expose } from 'class-transformer';
 
-import { UserEmailError, UserPassError } from '@const/error-messages';
+import { UserEmailError, UserPassError } from '@const/error-messages.js';
 
 export default class LoginUserDto {
   @Expose()

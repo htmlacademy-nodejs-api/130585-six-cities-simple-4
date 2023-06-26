@@ -127,5 +127,6 @@ export const HttpErrorText = {
   Forbidden: 'Доступ запрещен',
   NotValidToken: 'Не валидный токен',
   UnsupportedMediaType: 'Неподдерживаемый формат изображений (jpg, png)',
+  NotFoundUrl: 'Маршрут не найден',
 } as const;
 
