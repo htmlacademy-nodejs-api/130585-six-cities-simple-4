@@ -6,7 +6,8 @@ import { MiddlewareInterface } from '@core/middleware/middleware.interface.js';
 import HttpError from '@core/errors/http-error.js';
 
 export class ValidateObjectIdMiddleware implements MiddlewareInterface {
-  constructor(private readonly param: string) {}
+  constructor(private readonly param: string) {
+  }
 
   public execute({ params }: Request, _res: Response, next: NextFunction) {
     const objectId = params[this.param];
@@ -17,7 +18,7 @@ export class ValidateObjectIdMiddleware implements MiddlewareInterface {
 
     throw new HttpError(
       StatusCodes.BAD_REQUEST,
-      `«${objectId}» не валидный ObjectID`,
+      `«${ objectId }» не валидный ObjectID`,
       'ValidateObjectIdMiddleware'
     );
   }

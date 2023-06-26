@@ -15,14 +15,15 @@ export default class UserService implements UserServiceInterface {
   constructor(
     @inject(AppComponent.LoggerInterface) private readonly logger: LoggerInterface,
     @inject(AppComponent.UserModel) private readonly userModel: types.ModelType<UserEntity>,
-  ) {}
+  ) {
+  }
 
   public async create(dto: CreateUserDto, salt: string): Promise<DocumentType<UserEntity>> {
     const user = new UserEntity({ ...dto, avatar: DEFAULT_USER_AVATAR_FILENAME });
     user.setPassword(dto.pass, salt);
 
     const createdUser = await this.userModel.create(user);
-    this.logger.info(`Создан новый пользователь: ${user.email}`);
+    this.logger.info(`Создан новый пользователь: ${ user.email }`);
 
     return createdUser;
   }

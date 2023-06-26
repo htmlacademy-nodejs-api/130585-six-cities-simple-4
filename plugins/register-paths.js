@@ -1,12 +1,12 @@
 /* TS loader supports ts-node/esm and paths in tsconfig  */
-import { pathToFileURL } from 'node:url';
-import { resolve as resolveTs } from 'ts-node/esm';
+import {pathToFileURL} from 'node:url';
+import {resolve as resolveTs} from 'ts-node/esm';
 import * as tsConfigPaths from 'tsconfig-paths';
 
 let matchPath;
 
 try {
-  const { absoluteBaseUrl, paths } = tsConfigPaths.loadConfig();
+  const {absoluteBaseUrl, paths} = tsConfigPaths.loadConfig();
   matchPath = tsConfigPaths.createMatchPath(absoluteBaseUrl, paths);
 
 } catch (e) {
@@ -15,7 +15,7 @@ try {
   }
 }
 
-export function resolve (specifier, ctx, defaultResolve) {
+export function resolve(specifier, ctx, defaultResolve) {
   let match = matchPath && matchPath(specifier);
 
   if (specifier.endsWith('.js')) {
@@ -30,4 +30,4 @@ export function resolve (specifier, ctx, defaultResolve) {
     : resolveTs(specifier, ctx, defaultResolve);
 }
 
-export { getFormat, load, transformSource } from 'ts-node/esm';
+export {getFormat, load, transformSource} from 'ts-node/esm';

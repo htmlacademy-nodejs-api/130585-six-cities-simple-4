@@ -18,8 +18,8 @@ export default class RESTApplication {
   private expressApp: Express;
 
   constructor(
-    @inject(AppComponent.LoggerInterface)private readonly logger: LoggerInterface,
-    @inject(AppComponent.ConfigInterface)private readonly config: ConfigInterface<RestSchema>,
+    @inject(AppComponent.LoggerInterface) private readonly logger: LoggerInterface,
+    @inject(AppComponent.ConfigInterface) private readonly config: ConfigInterface<RestSchema>,
     @inject(AppComponent.DBClientInterface) private readonly dbClient: DBClientInterface,
     @inject(AppComponent.CityController) private readonly cityController: ControllerInterface,
     @inject(AppComponent.UserController) private readonly userController: ControllerInterface,
@@ -83,7 +83,7 @@ export default class RESTApplication {
     const port = this.config.get('PORT');
 
     this.expressApp.listen(port);
-    this.logger.info(`🚀 Cервер запущен на ${getServerPath(this.config.get('HOST'), this.config.get('PORT'))}!`);
+    this.logger.info(`🚀 Cервер запущен на ${ getServerPath(this.config.get('HOST'), this.config.get('PORT')) }!`);
   }
 
   public async init() {

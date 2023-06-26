@@ -16,9 +16,9 @@ export const getMongoURI = (
   host: string,
   port: string,
   dbName: string,
-): string => `mongodb://${username}:${password}@${host}:${port}/${dbName}?authSource=${DBAuthSource.Admin}`;
+): string => `mongodb://${ username }:${ password }@${ host }:${ port }/${ dbName }?authSource=${ DBAuthSource.Admin }`;
 
-export const getServerPath = (host: string, port: number) => `http://${host}:${port}`;
+export const getServerPath = (host: string, port: number) => `http://${ host }:${ port }`;
 
 export const createSHA256 = (string: string, salt: string): string => {
   const shaHasher = crypto.createHmac('sha256', salt);
@@ -35,7 +35,7 @@ export function createError(serviceError: ServiceError, message: string, details
   return {
     message,
     errorType: serviceError,
-    details: [...details],
+    details: [ ...details ],
   };
 }
 
@@ -50,7 +50,7 @@ export async function createJWT(alg: string, jwtSecret: string, payload: JwtPayl
 }
 
 export function transformErrors(errors: ValidationError[]): TransformedValidationError[] {
-  return errors.map(({property, value, constraints}) => ({
+  return errors.map(({ property, value, constraints }) => ({
     property,
     value,
     messages: constraints ? Object.values(constraints) : []

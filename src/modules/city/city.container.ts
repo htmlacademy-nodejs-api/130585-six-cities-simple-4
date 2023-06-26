@@ -8,7 +8,7 @@ import CityService from '@modules/city/city.service.js';
 import CityController from '@modules/city/city.controller.js';
 import { AppComponent } from '@appTypes/app-component.enum.js';
 
-export function createCityContainer () {
+export function createCityContainer() {
   const container = new Container();
 
   container.bind<CityServiceInterface>(AppComponent.CityServiceInterface).to(CityService);

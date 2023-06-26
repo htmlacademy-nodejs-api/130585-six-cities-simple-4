@@ -14,7 +14,7 @@ type SuccessMessageParams = {
   method?: 'log' | 'error' | 'warn' | 'info' | 'debug',
 };
 
-export const showError = ({text, error, args}: ErrorMessageParams) => {
+export const showError = ({ text, error, args }: ErrorMessageParams) => {
   let errorMessage = 'Неизвестная ошибка';
 
   if (error instanceof Error) {
@@ -25,8 +25,8 @@ export const showError = ({text, error, args}: ErrorMessageParams) => {
   }
 
   console.log(`
-  ${chalk.red.bold('!')} ${text ?? 'Ошибка'}
-      «${chalk.italic(errorMessage)}»
+  ${ chalk.red.bold('!') } ${ text ?? 'Ошибка' }
+      «${ chalk.italic(errorMessage) }»
   `);
 
   if (args?.length) {
@@ -34,9 +34,9 @@ export const showError = ({text, error, args}: ErrorMessageParams) => {
   }
 };
 
-export const showInfo = ({text, replacer, icon, args, method}: SuccessMessageParams) => {
+export const showInfo = ({ text, replacer, icon, args, method }: SuccessMessageParams) => {
   console[method || 'log'](`
-  ${chalk.green.bold(`${ icon || '✔' }`)} ${replacer ? text.replace('%%', chalk.hex('#318495').bold(replacer)) : text}
+  ${ chalk.green.bold(`${ icon || '✔' }`) } ${ replacer ? text.replace('%%', chalk.hex('#318495').bold(replacer)) : text }
   `);
 
   if (args?.length) {

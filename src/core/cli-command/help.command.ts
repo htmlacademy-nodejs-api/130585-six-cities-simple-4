@@ -7,15 +7,15 @@ export default class HelpCommand implements CliCommandInterface {
 
   public async execute(): Promise<void> {
     console.log(`
-      ${chalk.green.bold('✔')} Программа для подготовки данных для REST API сервера.
+      ${ chalk.green.bold('✔') } Программа для подготовки данных для REST API сервера.
 
-      ${chalk.bold('Пример:')} ${chalk.hex('#318495')('main.cli.js --<command> [--arguments]')}
+      ${ chalk.bold('Пример:') } ${ chalk.hex('#318495')('main.cli.js --<command> [--arguments]') }
 
-      ${chalk.bold('Команды:')}
-        ${chalk.hex('#318495')('--version')}                   ${chalk.gray('# выводит номер версии')}
-        ${chalk.hex('#318495')('--help')}                      ${chalk.gray('# печатает этот текст')}
-        ${chalk.hex('#318495')('--import <path>')}             ${chalk.gray('# импортирует данные из TSV')}
-        ${chalk.hex('#318495')('--generate <n> <path> <url>')}  ${chalk.gray('# генерирует произвольное количество тестовых данных')}
+      ${ chalk.bold('Команды:') }
+        ${ chalk.hex('#318495')('--version') }                   ${ chalk.gray('# выводит номер версии') }
+        ${ chalk.hex('#318495')('--help') }                      ${ chalk.gray('# печатает этот текст') }
+        ${ chalk.hex('#318495')('--import <path>') }             ${ chalk.gray('# импортирует данные из TSV') }
+        ${ chalk.hex('#318495')('--generate <n> <path> <url>') }  ${ chalk.gray('# генерирует произвольное количество тестовых данных') }
     `);
   }
 }

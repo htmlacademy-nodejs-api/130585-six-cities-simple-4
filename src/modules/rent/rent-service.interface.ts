@@ -7,12 +7,20 @@ import { DocumentExistsInterface } from '@appTypes/document-exists.interface.js'
 
 export interface RentServiceInterface extends DocumentExistsInterface {
   create(dto: CreateRentDto): Promise<DocumentType<RentEntity>>;
+
   findById(rentId: string): Promise<DocumentType<RentEntity> | null>;
+
   find(): Promise<DocumentType<RentEntity>[]>;
+
   deleteById(rentId: string): Promise<DocumentType<RentEntity> | null>;
+
   updateById(rentId: string, dto: UpdateRentDto): Promise<DocumentType<RentEntity> | null>;
+
   findByCityId(cityId: string, count?: number): Promise<DocumentType<RentEntity>[]>;
+
   incCommentCount(rentId: string): Promise<DocumentType<RentEntity> | null>;
+
   findTopRated(count?: number): Promise<DocumentType<RentEntity>[]>;
+
   findPopular(count?: number): Promise<DocumentType<RentEntity>[]>;
 }

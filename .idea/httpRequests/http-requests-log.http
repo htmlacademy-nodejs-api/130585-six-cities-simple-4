@@ -1,3 +1,273 @@
+GET http://localhost:5000/rents/sort/top-rated
+Content-Type: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-06-26T091707.200.json
+
+###
+
+GET http://localhost:5000/rents/649889b86cd21c5a45a8e934/comments
+Content-Type: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-06-26T091655.200.json
+
+###
+
+GET http://localhost:5000/rents/647e1ea88507534f70eaae8a/comments
+Content-Type: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-06-26T091641.404.json
+
+###
+
+GET http://localhost:5000/rents
+Content-Type: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-06-26T091554.200.json
+
+###
+
+POST http://localhost:5000/comments
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5uZXQiLCJpZCI6IjY0OTg5NzZjOWYxZGVhNGU4YzMzYzFhMSIsImlhdCI6MTY4Nzc1OTQ0NCwiZXhwIjoxNjg3OTMyMjQ0fQ.Umx4ysZF2CdZt6Jm9zJAOzVm__WZz-Ywj7PkUZecRHE
+Content-Length: 128
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "text": "Очень ценный новый комментарий",
+  "rentId": "649889b86cd21c5a45a8e934",
+  "rating": 5
+}
+
+<> 2023-06-26T091049.201.json
+
+###
+
+POST http://localhost:5000/comments
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5uZXQiLCJpZCI6IjY0OTg5NzZjOWYxZGVhNGU4YzMzYzFhMSIsImlhdCI6MTY4Nzc1OTQ0NCwiZXhwIjoxNjg3OTMyMjQ0fQ.Umx4ysZF2CdZt6Jm9zJAOzVm__WZz-Ywj7PkUZecRHE
+Content-Length: 128
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "text": "Очень ценный новый комментарий",
+  "rentId": "649889b86cd21c5a45a8e934",
+  "rating": 6
+}
+
+<> 2023-06-26T091037.400.json
+
+###
+
+POST http://localhost:5000/comments
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5uZXQiLCJpZCI6IjY0OTg5NzZjOWYxZGVhNGU4YzMzYzFhMSIsImlhdCI6MTY4Nzc1OTQ0NCwiZXhwIjoxNjg3OTMyMjQ0fQ.Umx4ysZF2CdZt6Jm9zJAOzVm__WZz-Ywj7PkUZecRHE
+Content-Length: 128
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "text": "Очень ценный новый комментарий",
+  "rentId": "649889b86cd21c5a45a8e934",
+  "rating": 5
+}
+
+<> 2023-06-26T091032.201.json
+
+###
+
+POST http://localhost:5000/comments
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5uZXQiLCJpZCI6IjY0OTg5NzZjOWYxZGVhNGU4YzMzYzFhMSIsImlhdCI6MTY4Nzc1OTQ0NCwiZXhwIjoxNjg3OTMyMjQ0fQ.Umx4ysZF2CdZt6Jm9zJAOzVm__WZz-Ywj7PkUZecRHE
+Content-Length: 128
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "text": "Очень ценный новый комментарий",
+  "rentId": "649889b86cd21c5a45a8e934",
+  "rating": 1
+}
+
+<> 2023-06-26T091003.201.json
+
+###
+
+POST http://localhost:5000/comments
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5uZXQiLCJpZCI6IjY0OTg5NzZjOWYxZGVhNGU4YzMzYzFhMSIsImlhdCI6MTY4Nzc1OTQ0NCwiZXhwIjoxNjg3OTMyMjQ0fQ.Umx4ysZF2CdZt6Jm9zJAOzVm__WZz-Ywj7PkUZecRHE
+Content-Length: 128
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "text": "Очень ценный новый комментарий",
+  "rentId": "647e1ea88507534f70eaae9e",
+  "rating": 1
+}
+
+<> 2023-06-26T090943.404.json
+
+###
+
+POST http://localhost:5000/comments
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5uZXQiLCJpZCI6IjY0OTg5NzZjOWYxZGVhNGU4YzMzYzFhMSIsImlhdCI6MTY4Nzc1OTQ0NCwiZXhwIjoxNjg3OTMyMjQ0fQ.Umx4ysZF2CdZt6Jm9zJAOzVm__WZz-Ywj7PkUZecRHE
+Content-Length: 128
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "text": "Очень ценный новый комментарий",
+  "rentId": "647e1ea88507534f70eaae9e",
+  "rating": 1
+}
+
+<> 2023-06-26T090713.400.json
+
+###
+
+POST http://localhost:5000/comments
+Content-Type: application/json
+Content-Length: 128
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "text": "Очень ценный новый комментарий",
+  "rentId": "647e1ea88507534f70eaae9e",
+  "rating": 1
+}
+
+<> 2023-06-26T090645.401.json
+
+###
+
+POST http://localhost:5000/cities
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5uZXQiLCJpZCI6IjY0OTg5NzZjOWYxZGVhNGU4YzMzYzFhMSIsImlhdCI6MTY4Nzc1OTQ0NCwiZXhwIjoxNjg3OTMyMjQ0fQ.Umx4ysZF2CdZt6Jm9zJAOzVm__WZz-Ywj7PkUZecRHE
+Content-Length: 82
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "name": "Hamburg",
+  "coords": {
+    "lat": 55.7558,
+    "long": 37.6173
+  }
+}
+
+<> 2023-06-26T090556.201.json
+
+###
+
+POST http://localhost:5000/cities
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5uZXQiLCJpZCI6IjY0OTg5NzZjOWYxZGVhNGU4YzMzYzFhMSIsImlhdCI6MTY4Nzc1OTQ0NCwiZXhwIjoxNjg3OTMyMjQ0fQ.Umx4ysZF2CdZt6Jm9zJAOzVm__WZz-Ywj7PkUZecRHE
+Content-Length: 81
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "name": "Moscow",
+  "coords": {
+    "lat": 55.7558,
+    "long": 37.6173
+  }
+}
+
+<> 2023-06-26T090425.400.json
+
+###
+
+POST http://localhost:5000/users/login
+Content-Type: application/json
+Content-Length: 50
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "email": "test@test.net",
+  "pass": "123456"
+}
+
+<> 2023-06-26T090404.200.json
+
+###
+
+GET http://localhost:5000/cities/6498275b75ec77769d21cd96/rents?limit=2
+Content-Type: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-06-26T090300.200.json
+
+###
+
+GET http://localhost:5000/cities/647e1ea88507534f70eaae96/rents?limit=2
+Content-Type: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-06-26T090236.404.json
+
+###
+
+POST http://localhost:5000/cities
+Content-Type: application/json
+Content-Length: 81
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "name": "Moscow",
+  "coords": {
+    "lat": 55.7558,
+    "long": 37.6173
+  }
+}
+
+<> 2023-06-26T090214.401.json
+
+###
+
+GET http://localhost:5000/cities
+Content-Type: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-06-26T090206.200.json
+
+###
+
 POST http://localhost:5000/users/647e1ea88507534f70eaae84/avatar
 Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImF2YXRhci10ZXN0QHRlc3QubmV0IiwiaWQiOiI2NDk2ZjJhNjJiY2YzMjA4ZGEwY2UxNDUiLCJpYXQiOjE2ODc2Mzg4NzgsImV4cCI6MTY4NzgxMTY3OH0.jMThUoqv3wJC9W9tWVMwt-Ax0lME9GIkeJFPeiXTiGY
@@ -654,388 +924,6 @@ Content-Type: image/png
 ------WebKitFormBoundary7MA4YWxkTrZu0gW--
 
 <> 2023-06-24T224345.400.json
-
-###
-
-POST http://localhost:5000/rents/647e1ea88507534f70eaae9e/images
-Authorization: eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImF2YXRhci10ZXN0QHRlc3QubmV0IiwiaWQiOiI2NDk2ZjJhNjJiY2YzMjA4ZGEwY2UxNDUiLCJpYXQiOjE2ODc2MjAwMjMsImV4cCI6MTY4Nzc5MjgyM30.qKmmVN7DWfiSon8Dc8tgGJHl6OaS7K1Qxg5mBBTQj_4
-Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
-Content-Length: 2115935
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-------WebKitFormBoundary7MA4YWxkTrZu0gW
-Content-Disposition: form-data; name="images"; filename="123.png"
-Content-Type: image/png
-
-< /Users/ekateric/Documents/screenshots/123.png
-------WebKitFormBoundary7MA4YWxkTrZu0gW--
-
-<> 2023-06-24T224343.201.json
-
-###
-
-POST http://localhost:5000/rents/647e1ea88507534f70eaae9e/images
-Authorization: eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImF2YXRhci10ZXN0QHRlc3QubmV0IiwiaWQiOiI2NDk2ZjJhNjJiY2YzMjA4ZGEwY2UxNDUiLCJpYXQiOjE2ODc2MjAwMjMsImV4cCI6MTY4Nzc5MjgyM30.qKmmVN7DWfiSon8Dc8tgGJHl6OaS7K1Qxg5mBBTQj_4
-Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
-Content-Length: 2115935
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-------WebKitFormBoundary7MA4YWxkTrZu0gW
-Content-Disposition: form-data; name="images"; filename="123.png"
-Content-Type: image/png
-
-< /Users/ekateric/Documents/screenshots/123.png
-------WebKitFormBoundary7MA4YWxkTrZu0gW--
-
-<> 2023-06-24T223456.201.json
-
-###
-
-POST http://localhost:5000/rents/647e1ea88507534f70eaae9e/images
-Authorization: eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImF2YXRhci10ZXN0QHRlc3QubmV0IiwiaWQiOiI2NDk2ZjJhNjJiY2YzMjA4ZGEwY2UxNDUiLCJpYXQiOjE2ODc2MjAwMjMsImV4cCI6MTY4Nzc5MjgyM30.qKmmVN7DWfiSon8Dc8tgGJHl6OaS7K1Qxg5mBBTQj_4
-Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
-Content-Length: 2115935
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-------WebKitFormBoundary7MA4YWxkTrZu0gW
-Content-Disposition: form-data; name="images"; filename="123.png"
-Content-Type: image/png
-
-< /Users/ekateric/Documents/screenshots/123.png
-------WebKitFormBoundary7MA4YWxkTrZu0gW--
-
-<> 2023-06-24T223426.400.json
-
-###
-
-POST http://localhost:5000/rents/647e1ea88507534f70eaae9e/images
-Authorization: eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImF2YXRhci10ZXN0QHRlc3QubmV0IiwiaWQiOiI2NDk2ZjJhNjJiY2YzMjA4ZGEwY2UxNDUiLCJpYXQiOjE2ODc2MjAwMjMsImV4cCI6MTY4Nzc5MjgyM30.qKmmVN7DWfiSon8Dc8tgGJHl6OaS7K1Qxg5mBBTQj_4
-Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
-Content-Length: 2115935
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-------WebKitFormBoundary7MA4YWxkTrZu0gW
-Content-Disposition: form-data; name="images"; filename="123.png"
-Content-Type: image/png
-
-< /Users/ekateric/Documents/screenshots/123.png
-------WebKitFormBoundary7MA4YWxkTrZu0gW--
-
-<> 2023-06-24T223416.201.json
-
-###
-
-POST http://localhost:5000/rents/647e1ea88507534f70eaae9e/images
-Authorization: eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImF2YXRhci10ZXN0QHRlc3QubmV0IiwiaWQiOiI2NDk2ZjJhNjJiY2YzMjA4ZGEwY2UxNDUiLCJpYXQiOjE2ODc2MjAwMjMsImV4cCI6MTY4Nzc5MjgyM30.qKmmVN7DWfiSon8Dc8tgGJHl6OaS7K1Qxg5mBBTQj_4
-Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
-Content-Length: 2115935
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-------WebKitFormBoundary7MA4YWxkTrZu0gW
-Content-Disposition: form-data; name="images"; filename="123.png"
-Content-Type: image/png
-
-< /Users/ekateric/Documents/screenshots/123.png
-------WebKitFormBoundary7MA4YWxkTrZu0gW--
-
-<> 2023-06-24T223027.400.json
-
-###
-
-POST http://localhost:5000/rents/647e1ea88507534f70eaae9e/images
-Authorization: eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImF2YXRhci10ZXN0QHRlc3QubmV0IiwiaWQiOiI2NDk2ZjJhNjJiY2YzMjA4ZGEwY2UxNDUiLCJpYXQiOjE2ODc2MjAwMjMsImV4cCI6MTY4Nzc5MjgyM30.qKmmVN7DWfiSon8Dc8tgGJHl6OaS7K1Qxg5mBBTQj_4
-Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
-Content-Length: 2115935
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-------WebKitFormBoundary7MA4YWxkTrZu0gW
-Content-Disposition: form-data; name="images"; filename="123.png"
-Content-Type: image/png
-
-< /Users/ekateric/Documents/screenshots/123.png
-------WebKitFormBoundary7MA4YWxkTrZu0gW--
-
-<> 2023-06-24T222957.400.json
-
-###
-
-POST http://localhost:5000/rents/647e1ea88507534f70eaae9e/images
-Authorization: eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImF2YXRhci10ZXN0QHRlc3QubmV0IiwiaWQiOiI2NDk2ZjJhNjJiY2YzMjA4ZGEwY2UxNDUiLCJpYXQiOjE2ODc2MjAwMjMsImV4cCI6MTY4Nzc5MjgyM30.qKmmVN7DWfiSon8Dc8tgGJHl6OaS7K1Qxg5mBBTQj_4
-Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
-Content-Length: 2115935
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-------WebKitFormBoundary7MA4YWxkTrZu0gW
-Content-Disposition: form-data; name="images"; filename="123.png"
-Content-Type: image/png
-
-< /Users/ekateric/Documents/screenshots/123.png
-------WebKitFormBoundary7MA4YWxkTrZu0gW--
-
-<> 2023-06-24T222840.400.json
-
-###
-
-POST http://localhost:5000/rents/647e1ea88507534f70eaae9e/images
-Authorization: eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImF2YXRhci10ZXN0QHRlc3QubmV0IiwiaWQiOiI2NDk2ZjJhNjJiY2YzMjA4ZGEwY2UxNDUiLCJpYXQiOjE2ODc2MjAwMjMsImV4cCI6MTY4Nzc5MjgyM30.qKmmVN7DWfiSon8Dc8tgGJHl6OaS7K1Qxg5mBBTQj_4
-Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
-Content-Length: 2115935
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-------WebKitFormBoundary7MA4YWxkTrZu0gW
-Content-Disposition: form-data; name="images"; filename="123.png"
-Content-Type: image/png
-
-< /Users/ekateric/Documents/screenshots/123.png
-------WebKitFormBoundary7MA4YWxkTrZu0gW--
-
-<> 2023-06-24T222722.400.json
-
-###
-
-POST http://localhost:5000/rents/647e1ea88507534f70eaae9e/images
-Authorization: eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImF2YXRhci10ZXN0QHRlc3QubmV0IiwiaWQiOiI2NDk2ZjJhNjJiY2YzMjA4ZGEwY2UxNDUiLCJpYXQiOjE2ODc2MjAwMjMsImV4cCI6MTY4Nzc5MjgyM30.qKmmVN7DWfiSon8Dc8tgGJHl6OaS7K1Qxg5mBBTQj_4
-Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
-Content-Length: 2115935
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-------WebKitFormBoundary7MA4YWxkTrZu0gW
-Content-Disposition: form-data; name="images"; filename="123.png"
-Content-Type: image/png
-
-< /Users/ekateric/Documents/screenshots/123.png
-------WebKitFormBoundary7MA4YWxkTrZu0gW--
-
-<> 2023-06-24T222636.400.json
-
-###
-
-POST http://localhost:5000/rents/647e1ea88507534f70eaae9e/images
-Authorization: eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImF2YXRhci10ZXN0QHRlc3QubmV0IiwiaWQiOiI2NDk2ZjJhNjJiY2YzMjA4ZGEwY2UxNDUiLCJpYXQiOjE2ODc2MjAwMjMsImV4cCI6MTY4Nzc5MjgyM30.qKmmVN7DWfiSon8Dc8tgGJHl6OaS7K1Qxg5mBBTQj_4
-Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
-Content-Length: 4231827
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-------WebKitFormBoundary7MA4YWxkTrZu0gW
-Content-Disposition: form-data; name="images"; filename="123.png"
-Content-Type: image/png
-
-< /Users/ekateric/Documents/screenshots/123.png
-------WebKitFormBoundary7MA4YWxkTrZu0gW
-Content-Disposition: form-data; name="images"; filename="123.png"
-Content-Type: image/png
-
-< /Users/ekateric/Documents/screenshots/123.png
-------WebKitFormBoundary7MA4YWxkTrZu0gW--
-
-<> 2023-06-24T222521.400.json
-
-###
-
-POST http://localhost:5000/rents/647e1ea88507534f70eaae9e/images
-Authorization: eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImF2YXRhci10ZXN0QHRlc3QubmV0IiwiaWQiOiI2NDk2ZjJhNjJiY2YzMjA4ZGEwY2UxNDUiLCJpYXQiOjE2ODc2MjAwMjMsImV4cCI6MTY4Nzc5MjgyM30.qKmmVN7DWfiSon8Dc8tgGJHl6OaS7K1Qxg5mBBTQj_4
-Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
-Content-Length: 4231827
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-------WebKitFormBoundary7MA4YWxkTrZu0gW
-Content-Disposition: form-data; name="images"; filename="123.png"
-Content-Type: image/png
-
-< /Users/ekateric/Documents/screenshots/123.png
-------WebKitFormBoundary7MA4YWxkTrZu0gW
-Content-Disposition: form-data; name="images"; filename="123.png"
-Content-Type: image/png
-
-< /Users/ekateric/Documents/screenshots/123.png
-------WebKitFormBoundary7MA4YWxkTrZu0gW--
-
-<> 2023-06-24T222423.400.json
-
-###
-
-POST http://localhost:5000/rents/647e1ea88507534f70eaae9e/images
-Authorization: eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImF2YXRhci10ZXN0QHRlc3QubmV0IiwiaWQiOiI2NDk2ZjJhNjJiY2YzMjA4ZGEwY2UxNDUiLCJpYXQiOjE2ODc2MjAwMjMsImV4cCI6MTY4Nzc5MjgyM30.qKmmVN7DWfiSon8Dc8tgGJHl6OaS7K1Qxg5mBBTQj_4
-Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
-Content-Length: 4231827
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-------WebKitFormBoundary7MA4YWxkTrZu0gW
-Content-Disposition: form-data; name="images"; filename="123.png"
-Content-Type: image/png
-
-< /Users/ekateric/Documents/screenshots/123.png
-------WebKitFormBoundary7MA4YWxkTrZu0gW
-Content-Disposition: form-data; name="images"; filename="123.png"
-Content-Type: image/png
-
-< /Users/ekateric/Documents/screenshots/123.png
-------WebKitFormBoundary7MA4YWxkTrZu0gW--
-
-<> 2023-06-24T222241.400.json
-
-###
-
-POST http://localhost:5000/rents/647e1ea88507534f70eaae9e/images
-Authorization: eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImF2YXRhci10ZXN0QHRlc3QubmV0IiwiaWQiOiI2NDk2ZjJhNjJiY2YzMjA4ZGEwY2UxNDUiLCJpYXQiOjE2ODc2MjAwMjMsImV4cCI6MTY4Nzc5MjgyM30.qKmmVN7DWfiSon8Dc8tgGJHl6OaS7K1Qxg5mBBTQj_4
-Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
-Content-Length: 4231827
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-------WebKitFormBoundary7MA4YWxkTrZu0gW
-Content-Disposition: form-data; name="images"; filename="123.png"
-Content-Type: image/png
-
-< /Users/ekateric/Documents/screenshots/123.png
-------WebKitFormBoundary7MA4YWxkTrZu0gW
-Content-Disposition: form-data; name="images"; filename="123.png"
-Content-Type: image/png
-
-< /Users/ekateric/Documents/screenshots/123.png
-------WebKitFormBoundary7MA4YWxkTrZu0gW--
-
-<> 2023-06-24T221622.400.json
-
-###
-
-POST http://localhost:5000/rents/647e1ea88507534f70eaae9e/images
-Authorization: eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImF2YXRhci10ZXN0QHRlc3QubmV0IiwiaWQiOiI2NDk2ZjJhNjJiY2YzMjA4ZGEwY2UxNDUiLCJpYXQiOjE2ODc2MjAwMjMsImV4cCI6MTY4Nzc5MjgyM30.qKmmVN7DWfiSon8Dc8tgGJHl6OaS7K1Qxg5mBBTQj_4
-Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
-Content-Length: 4231827
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-------WebKitFormBoundary7MA4YWxkTrZu0gW
-Content-Disposition: form-data; name="images"; filename="123.png"
-Content-Type: image/png
-
-< /Users/ekateric/Documents/screenshots/123.png
-------WebKitFormBoundary7MA4YWxkTrZu0gW
-Content-Disposition: form-data; name="images"; filename="123.png"
-Content-Type: image/png
-
-< /Users/ekateric/Documents/screenshots/123.png
-------WebKitFormBoundary7MA4YWxkTrZu0gW--
-
-<> 2023-06-24T221235.400.json
-
-###
-
-POST http://localhost:5000/rents/64971124555278e9e1ed61db/preview
-Authorization: eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImF2YXRhci10ZXN0QHRlc3QubmV0IiwiaWQiOiI2NDk2ZjJhNjJiY2YzMjA4ZGEwY2UxNDUiLCJpYXQiOjE2ODc2MjAwMjMsImV4cCI6MTY4Nzc5MjgyM30.qKmmVN7DWfiSon8Dc8tgGJHl6OaS7K1Qxg5mBBTQj_4
-Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
-Content-Length: 2115936
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-------WebKitFormBoundary7MA4YWxkTrZu0gW
-Content-Disposition: form-data; name="preview"; filename="123.png"
-Content-Type: image/png
-
-< /Users/ekateric/Documents/screenshots/123.png
-------WebKitFormBoundary7MA4YWxkTrZu0gW--
-
-<> 2023-06-24T221231.201.json
-
-###
-
-POST http://localhost:5000/rents/647e1ea88507534f70eaae9e/images
-Authorization: eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImF2YXRhci10ZXN0QHRlc3QubmV0IiwiaWQiOiI2NDk2ZjJhNjJiY2YzMjA4ZGEwY2UxNDUiLCJpYXQiOjE2ODc2MjAwMjMsImV4cCI6MTY4Nzc5MjgyM30.qKmmVN7DWfiSon8Dc8tgGJHl6OaS7K1Qxg5mBBTQj_4
-Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
-Content-Length: 4231827
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-------WebKitFormBoundary7MA4YWxkTrZu0gW
-Content-Disposition: form-data; name="images"; filename="123.png"
-Content-Type: image/png
-
-< /Users/ekateric/Documents/screenshots/123.png
-------WebKitFormBoundary7MA4YWxkTrZu0gW
-Content-Disposition: form-data; name="images"; filename="123.png"
-Content-Type: image/png
-
-< /Users/ekateric/Documents/screenshots/123.png
-------WebKitFormBoundary7MA4YWxkTrZu0gW--
-
-<> 2023-06-24T221136.400.json
-
-###
-
-POST http://localhost:5000/rents/647e1ea88507534f70eaae9e/images
-Authorization: eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImF2YXRhci10ZXN0QHRlc3QubmV0IiwiaWQiOiI2NDk2ZjJhNjJiY2YzMjA4ZGEwY2UxNDUiLCJpYXQiOjE2ODc2MjAwMjMsImV4cCI6MTY4Nzc5MjgyM30.qKmmVN7DWfiSon8Dc8tgGJHl6OaS7K1Qxg5mBBTQj_4
-Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
-Content-Length: 4231827
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-------WebKitFormBoundary7MA4YWxkTrZu0gW
-Content-Disposition: form-data; name="images"; filename="123.png"
-Content-Type: image/png
-
-< /Users/ekateric/Documents/screenshots/123.png
-------WebKitFormBoundary7MA4YWxkTrZu0gW
-Content-Disposition: form-data; name="images"; filename="123.png"
-Content-Type: image/png
-
-< /Users/ekateric/Documents/screenshots/123.png
-------WebKitFormBoundary7MA4YWxkTrZu0gW--
-
-<> 2023-06-24T221109.400.json
-
-###
-
-POST http://localhost:5000/rents/647e1ea88507534f70eaae9e/images
-Authorization: eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImF2YXRhci10ZXN0QHRlc3QubmV0IiwiaWQiOiI2NDk2ZjJhNjJiY2YzMjA4ZGEwY2UxNDUiLCJpYXQiOjE2ODc2MjAwMjMsImV4cCI6MTY4Nzc5MjgyM30.qKmmVN7DWfiSon8Dc8tgGJHl6OaS7K1Qxg5mBBTQj_4
-Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
-Content-Length: 4231827
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-------WebKitFormBoundary7MA4YWxkTrZu0gW
-Content-Disposition: form-data; name="images"; filename="123.png"
-Content-Type: image/png
-
-< /Users/ekateric/Documents/screenshots/123.png
-------WebKitFormBoundary7MA4YWxkTrZu0gW
-Content-Disposition: form-data; name="images"; filename="123.png"
-Content-Type: image/png
-
-< /Users/ekateric/Documents/screenshots/123.png
-------WebKitFormBoundary7MA4YWxkTrZu0gW--
-
-<> 2023-06-24T221000.400.json
 
 ###
 

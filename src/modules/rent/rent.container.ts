@@ -8,7 +8,7 @@ import { RentService } from '@modules/rent/rent.service.js';
 import RentController from '@modules/rent/rent.controller.js';
 import { AppComponent } from '@appTypes/app-component.enum.js';
 
-export function createRentContainer () {
+export function createRentContainer() {
   const container = new Container();
 
   container.bind<RentServiceInterface>(AppComponent.RentServiceInterface).to(RentService);

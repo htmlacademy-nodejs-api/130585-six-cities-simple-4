@@ -1,4 +1,4 @@
-import { Length,IsMongoId, IsInt, Max, Min } from 'class-validator';
+import { Length, IsMongoId, IsInt, Max, Min } from 'class-validator';
 import { Expose } from 'class-transformer';
 
 import { CommentTextValidation, RentRatingValidation } from '@const/validation.js';

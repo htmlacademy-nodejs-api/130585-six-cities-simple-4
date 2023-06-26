@@ -1,3 +1,3 @@
 export interface RentsGeneratorInterface {
-    generate(): string;
+  generate(): string;
 }

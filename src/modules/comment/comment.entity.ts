@@ -6,7 +6,8 @@ import { RentEntity } from '@modules/rent/rent.entity.js';
 import { UserEntity } from '@modules/user/user.entity.js';
 
 // for type merging of interface and class UserEntity
-export interface CommentEntity extends defaultClasses.Base {}
+export interface CommentEntity extends defaultClasses.Base {
+}
 
 @modelOptions({
   schemaOptions: {

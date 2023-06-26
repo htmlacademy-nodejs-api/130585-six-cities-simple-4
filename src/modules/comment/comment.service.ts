@@ -15,12 +15,13 @@ export default class CommentService implements CommentServiceInterface {
   constructor(
     @inject(AppComponent.LoggerInterface) private readonly logger: LoggerInterface,
     @inject(AppComponent.CommentModel) private readonly commentModel: types.ModelType<CommentEntity>
-  ) {}
+  ) {
+  }
 
   public async create(dto: CreateCommentDto): Promise<DocumentType<CommentEntity>> {
     const comment = await this.commentModel.create(dto);
 
-    this.logger.info(`Создан новый комментарий к объявлению: ${comment.rentId}`);
+    this.logger.info(`Создан новый комментарий к объявлению: ${ comment.rentId }`);
 
     return comment.populate('author');
   }
@@ -59,12 +60,12 @@ export default class CommentService implements CommentServiceInterface {
       },
       {
         $project: {
-          _id: '$_id' ,
-          rating: { $round: ['$avg', 1] },
+          _id: '$_id',
+          rating: { $round: [ '$avg', 1 ] },
         },
       },
       {
-        $merge:  {
+        $merge: {
           into: 'rents',
           on: '_id',
           whenMatched: 'merge',

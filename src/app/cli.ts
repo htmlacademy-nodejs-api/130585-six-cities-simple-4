@@ -31,7 +31,7 @@ export default class CLIApplication {
 
   public processCommand(argv: string[]): void {
     const parsedCommand = this.parseCommand(argv);
-    const [commandName] = Object.keys(parsedCommand);
+    const [ commandName ] = Object.keys(parsedCommand);
     const command = this.getCommand(commandName);
 
     command.execute(...parsedCommand[commandName] ?? []);

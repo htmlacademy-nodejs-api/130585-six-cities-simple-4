@@ -70,7 +70,7 @@ export default class ImportCommand implements CliCommandInterface {
   }
 
   private handleStart(file: string) {
-    this.logger.debug(`Начато чтение файла ${file}:`);
+    this.logger.debug(`Начато чтение файла ${ file }:`);
   }
 
   private async handleLine(line: string, resolve: () => void) {
@@ -87,7 +87,7 @@ export default class ImportCommand implements CliCommandInterface {
   }
 
   private handleEnd(count: number) {
-    this.logger.debug(`${count} строк прочитано`);
+    this.logger.debug(`${ count } строк прочитано`);
     this.DBService.disconnect();
   }
 

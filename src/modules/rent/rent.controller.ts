@@ -217,7 +217,7 @@ export default class RentController extends Controller {
     this.ok(res, fillDTO(RentRdo, popularRents));
   }
 
-  public async uploadPreview (
+  public async uploadPreview(
     { file, params }: Request<ParamsRentDetails, UnknownRecord, UnknownRecord>,
     res: Response
   ): Promise<void> {
@@ -238,7 +238,7 @@ export default class RentController extends Controller {
     this.created(res, fillDTO(UploadPreviewRdo, updateDto));
   }
 
-  public async uploadImages (
+  public async uploadImages(
     { files, params }: Request<ParamsRentDetails, UnknownRecord, UnknownRecord>,
     res: Response,
   ): Promise<void> {

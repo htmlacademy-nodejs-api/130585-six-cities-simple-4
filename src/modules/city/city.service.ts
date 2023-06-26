@@ -13,7 +13,8 @@ export default class CityService implements CityServiceInterface {
   constructor(
     @inject(AppComponent.LoggerInterface) private readonly logger: LoggerInterface,
     @inject(AppComponent.CityModel) private readonly cityModel: types.ModelType<CityEntity>
-  ) {}
+  ) {
+  }
 
   public async create(dto: CreateCityDto): Promise<DocumentType<CityEntity>> {
     const result = await this.cityModel.create(dto);
@@ -45,16 +46,16 @@ export default class CityService implements CityServiceInterface {
         {
           $lookup: {
             from: 'rents',
-            let: { cityId: '$_id'},
+            let: { cityId: '$_id' },
             pipeline: [
               {
                 $match: {
                   $expr: {
-                    $eq: ['$$cityId', '$city'],
+                    $eq: [ '$$cityId', '$city' ],
                   },
                 },
               },
-              { $project: { _id: 1 }}
+              { $project: { _id: 1 } }
             ],
             as: 'rents',
           }

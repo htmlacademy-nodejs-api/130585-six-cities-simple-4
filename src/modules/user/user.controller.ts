@@ -5,7 +5,6 @@ import { StatusCodes } from 'http-status-codes';
 import { Controller } from '@core/controller/controller.abstract.js';
 import CreateUserDto from '@modules/user/dto/create-user.dto.js';
 import LoginUserDto from '@modules/user/dto/login-user.dto.js';
-
 import UserRdo from '@modules/user/rdo/user.rdo.js';
 import LoginUserRdo from '@modules/user/rdo/login-user.rdo.js';
 import { UnknownRecord } from '@appTypes/unknown-record.type.js';
@@ -130,7 +129,7 @@ export default class UserController extends Controller {
     this.ok(res, fillDTO(UserRdo, existedUser));
   }
 
-  public async uploadAvatar ({ file, params }: Request, res: Response): Promise<void> {
+  public async uploadAvatar({ file, params }: Request, res: Response): Promise<void> {
     if (!file?.filename) {
       throw new HttpError(
         StatusCodes.BAD_REQUEST,

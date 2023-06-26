@@ -33,8 +33,8 @@ export abstract class Controller implements ControllerInterface {
 
     transformObjectStaticPaths(
       STATIC_FIELDS,
-      `${serverPath}/${this.config.get('STATIC_DIRECTORY')}`,
-      `${serverPath}/${this.config.get('UPLOAD_DIRECTORY')}`,
+      `${ serverPath }/${ this.config.get('STATIC_DIRECTORY') }`,
+      `${ serverPath }/${ this.config.get('UPLOAD_DIRECTORY') }`,
       data,
     );
   }
@@ -45,8 +45,8 @@ export abstract class Controller implements ControllerInterface {
       (middleware) => asyncHandler(middleware.execute.bind(middleware))
     ) || [];
 
-    this._router[route.method](route.path, [...middlewares, routeHandler]);
-    this.logger.info(`Зарегистрирован маршрут: ${route.method.toUpperCase()} ${route.path}`);
+    this._router[route.method](route.path, [ ...middlewares, routeHandler ]);
+    this.logger.info(`Зарегистрирован маршрут: ${ route.method.toUpperCase() } ${ route.path }`);
   }
 
   public send<T>(res: Response, statusCode: number, data: T): void {

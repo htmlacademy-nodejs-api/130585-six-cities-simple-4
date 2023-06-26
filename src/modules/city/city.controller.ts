@@ -33,7 +33,7 @@ export default class CityController extends Controller {
     @inject(AppComponent.LoggerInterface) protected readonly logger: LoggerInterface,
     @inject(AppComponent.CityServiceInterface) private readonly cityService: CityServiceInterface,
     @inject(AppComponent.RentServiceInterface) private readonly rentService: RentServiceInterface,
-    @inject(AppComponent.ConfigInterface) config: ConfigInterface<RestSchema>,
+    @inject(AppComponent.ConfigInterface) protected readonly config: ConfigInterface<RestSchema>,
   ) {
     super(logger, config);
 
