@@ -8,7 +8,7 @@ import CommentService from '@modules/comment/comment.service.js';
 import CommentController from '@modules/comment/comment.controller.js';
 import { AppComponent } from '@appTypes/app-component.enum.js';
 
-export function createCommentContainer () {
+export function createCommentContainer() {
   const container = new Container();
 
   container.bind<CommentServiceInterface>(AppComponent.CommentServiceInterface).to(CommentService).inSingletonScope();

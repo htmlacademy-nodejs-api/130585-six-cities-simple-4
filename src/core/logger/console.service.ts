@@ -7,7 +7,7 @@ export default class ConsoleLoggerService implements LoggerInterface {
     showInfo({
       text: message,
       icon: '→',
-      args: [...args],
+      args: [ ...args ],
       method: 'debug',
     });
   }
@@ -15,7 +15,7 @@ export default class ConsoleLoggerService implements LoggerInterface {
   public error(message: string, ...args: unknown[]): void {
     showError({
       text: message,
-      args: [...args],
+      args: [ ...args ],
       error: '',
     });
   }
@@ -23,7 +23,7 @@ export default class ConsoleLoggerService implements LoggerInterface {
   public info(message: string, ...args: unknown[]): void {
     showInfo({
       text: message,
-      args: [...args],
+      args: [ ...args ],
       method: 'info',
     });
   }
@@ -32,7 +32,7 @@ export default class ConsoleLoggerService implements LoggerInterface {
     showInfo({
       text: message,
       icon: '⚠',
-      args: [...args],
+      args: [ ...args ],
       method: 'warn',
     });
   }

@@ -5,6 +5,6 @@ export const cities = [ 'Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 
 export type CityName = typeof cities[number];
 
 export type City = {
-  name?: CityName,
+  name: CityName,
   coords?: Coords,
 };

@@ -13,7 +13,8 @@ class CityCoordsEntity {
 }
 
 // for type merging of interface and class UserEntity
-export interface CityEntity extends defaultClasses.Base {}
+export interface CityEntity extends defaultClasses.Base {
+}
 
 @modelOptions({
   schemaOptions: {

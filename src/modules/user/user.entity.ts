@@ -7,7 +7,8 @@ import { UserTypeError } from '@const/error-messages.js';
 import { createSHA256 } from '@utils/index.js';
 
 // for type merging of interface and class UserEntity
-export interface UserEntity extends defaultClasses.Base {}
+export interface UserEntity extends defaultClasses.Base {
+}
 
 @modelOptions({
   schemaOptions: {
@@ -32,6 +33,7 @@ export class UserEntity extends defaultClasses.TimeStamps implements User {
   public email!: string;
 
   @prop({
+    required: true,
     default: '',
   })
   public avatar?: string;

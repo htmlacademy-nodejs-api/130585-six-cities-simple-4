@@ -1,4 +1,5 @@
 import { WriteStream, createWriteStream } from 'node:fs';
+
 import { FileWriterInterface } from '@core/file-writer/file-writer.interface.js';
 import { ChunkSize, Encoding } from '@const/common.js';
 
@@ -15,7 +16,7 @@ export default class FileWriterTsv implements FileWriterInterface {
   }
 
   public async write(row: string): Promise<void> {
-    if (!this.stream.write(`${row}\n`)) {
+    if (!this.stream.write(`${ row }\n`)) {
       return new Promise((resolve) => {
         this.stream.once('drain', () => resolve());
       });

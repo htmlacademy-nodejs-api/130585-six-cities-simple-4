@@ -6,6 +6,7 @@ import { jwtVerify } from 'jose';
 import { MiddlewareInterface } from '@core/middleware/middleware.interface.js';
 import HttpError from '@core/errors/http-error.js';
 import { Encoding } from '@const/common.js';
+import { HttpErrorText } from '@const/error-messages.js';
 
 export class AuthenticateMiddleware implements MiddlewareInterface {
   constructor(private readonly jwtSecret: string) {
@@ -33,10 +34,12 @@ export class AuthenticateMiddleware implements MiddlewareInterface {
       return next();
 
     } catch {
-      throw new HttpError(
-        StatusCodes.UNAUTHORIZED,
-        'Не валидный токен',
-        'AuthenticateMiddleware',
+      return next(
+        new HttpError(
+          StatusCodes.UNAUTHORIZED,
+          HttpErrorText.NotValidToken,
+          'AuthenticateMiddleware',
+        ),
       );
     }
   }

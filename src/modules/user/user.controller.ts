@@ -14,23 +14,25 @@ import { ConfigInterface } from '@core/config/config.interface.js';
 import { AppComponent } from '@appTypes/app-component.enum.js';
 import { RestSchema } from '@core/config/rest.schema.js';
 import { HttpMethod } from '@appTypes/http-method.enum.js';
-import { fillDTO, createJWT } from '@utils/db.js';
+import { fillDTO, createJWT } from '@utils/index.js';
 import HttpError from '@core/errors/http-error.js';
 import UploadAvatarRdo from '@modules/user/rdo/upload-avatar.rdo.js';
 import { ValidateObjectIdMiddleware } from '@core/middleware/validate-objectid.middleware.js';
 import { DocumentExistsMiddleware } from '@core/middleware/document-exists.middleware.js';
 import { ValidateDtoMiddleware } from '@core/middleware/validate-dto.middleware.js';
-import { JWT_ALGORITHM } from '@const/db.js';
-import { UploadFilesMiddleware } from '@core/middleware/upload-files.middleware';
+import { JWT_ALGORITHM } from '@modules/user/user.const.js';
+import { UploadFilesMiddleware } from '@core/middleware/upload-files.middleware.js';
+import { PrivateRouteMiddleware } from '@core/middleware/private-route.middleware.js';
+import { UserAvatarError, HttpErrorText } from '@const/error-messages.js';
 
 @injectable()
 export default class UserController extends Controller {
   constructor(
     @inject(AppComponent.LoggerInterface) protected readonly logger: LoggerInterface,
     @inject(AppComponent.UserServiceInterface) private readonly userService: UserServiceInterface,
-    @inject(AppComponent.ConfigInterface) private readonly configService: ConfigInterface<RestSchema>,
+    @inject(AppComponent.ConfigInterface) protected readonly config: ConfigInterface<RestSchema>,
   ) {
-    super(logger);
+    super(logger, config);
 
     this.logger.info('Регистрация маршрутов для UserController…');
     this.addRoute({
@@ -55,9 +57,10 @@ export default class UserController extends Controller {
       method: HttpMethod.Post,
       handler: this.uploadAvatar,
       middlewares: [
+        new PrivateRouteMiddleware(),
         new ValidateObjectIdMiddleware('userId'),
         new DocumentExistsMiddleware(this.userService, 'Пользователя', 'userId'),
-        new UploadFilesMiddleware(this.configService.get('UPLOAD_DIRECTORY'), 'avatar'),
+        new UploadFilesMiddleware(this.config.get('UPLOAD_DIRECTORY'), 'avatar'),
       ],
     });
   }
@@ -76,7 +79,7 @@ export default class UserController extends Controller {
       );
     }
 
-    const result = await this.userService.create(body, this.configService.get('SALT'));
+    const result = await this.userService.create(body, this.config.get('SALT'));
 
     this.created(res, fillDTO(UserRdo, result));
   }
@@ -85,12 +88,12 @@ export default class UserController extends Controller {
     { body }: Request<Record<string, unknown>, Record<string, unknown>, LoginUserDto>,
     res: Response,
   ): Promise<void> {
-    const user = await this.userService.verifyUser(body, this.configService.get('SALT'));
+    const user = await this.userService.verifyUser(body, this.config.get('SALT'));
 
     if (!user) {
       throw new HttpError(
         StatusCodes.UNAUTHORIZED,
-        'Пользователь не авторизован',
+        HttpErrorText.Unauthorized,
         'UserController',
       );
     }
@@ -98,46 +101,49 @@ export default class UserController extends Controller {
     const { email, id } = user;
     const token = await createJWT(
       JWT_ALGORITHM,
-      this.configService.get('JWT_SECRET'),
+      this.config.get('JWT_SECRET'),
       {
         email,
         id,
       }
     );
 
-    this.ok(res, fillDTO(LoginUserRdo, {
-      email,
+    this.ok(res, {
+      ...fillDTO(LoginUserRdo, user),
       token,
-    }));
+    });
   }
 
-  public async checkAuthenticate({ user: { email }}: Request, res: Response): Promise<void> {
-    if (!email) {
+  public async checkAuthenticate({ user }: Request, res: Response): Promise<void> {
+    if (!user) {
       throw new HttpError(
         StatusCodes.UNAUTHORIZED,
-        'Пользователь не авторизован',
+        HttpErrorText.Unauthorized,
         'UserController'
       );
     }
 
+    const { email } = user;
     const existedUser = await this.userService.findByEmail(email);
-
-    if (!existedUser) {
-      throw new HttpError(
-        StatusCodes.UNAUTHORIZED,
-        'Пользователь не авторизован',
-        'UserController'
-      );
-    }
 
     this.ok(res, fillDTO(UserRdo, existedUser));
   }
 
-  public async uploadAvatar (req: Request, res: Response): Promise<void> {
-    const result = {
-      url: req?.file?.path,
+  public async uploadAvatar({ file, params }: Request, res: Response): Promise<void> {
+    if (!file?.filename) {
+      throw new HttpError(
+        StatusCodes.BAD_REQUEST,
+        UserAvatarError.IsRequired,
+        'UserController',
+      );
+    }
+
+    const { userId } = params;
+    const updateDto = {
+      avatar: file?.filename,
     };
 
-    this.created(res, fillDTO(UploadAvatarRdo, result));
+    await this.userService.updateById(userId, updateDto);
+    this.created(res, fillDTO(UploadAvatarRdo, updateDto));
   }
 }

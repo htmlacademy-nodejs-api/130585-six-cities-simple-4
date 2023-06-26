@@ -20,13 +20,14 @@ import CommentRdo from '@modules/comment/rdo/comment.rdo.js';
 import { UnknownRecord } from '@appTypes/unknown-record.type.js';
 import { AppComponent } from '@appTypes/app-component.enum.js';
 import { HttpMethod } from '@appTypes/http-method.enum.js';
-import { fillDTO } from '@utils/db.js';
+import { fillDTO } from '@utils/index.js';
 import { RequestQuery } from '@appTypes/request-query.type';
 import { ValidateObjectIdMiddleware } from '@core/middleware/validate-objectid.middleware.js';
 import { ValidateDtoMiddleware } from '@core/middleware/validate-dto.middleware.js';
 import { DocumentExistsMiddleware } from '@core/middleware/document-exists.middleware.js';
 import { PrivateRouteMiddleware } from '@core/middleware/private-route.middleware.js';
 import { UploadFilesMiddleware } from '@core/middleware/upload-files.middleware.js';
+import { RentOwnerCheckMiddleware } from '@core/middleware/rent-owner-check.middleware.js';
 import { RentImagesValidation } from '@const/validation.js';
 import HttpError from '@core/errors/http-error.js';
 import { RentImagesError, RentPreviewError } from '@const/error-messages.js';
@@ -44,9 +45,9 @@ export default class RentController extends Controller {
     @inject(AppComponent.UserServiceInterface) private readonly userService: UserServiceInterface,
     @inject(AppComponent.CommentServiceInterface) private readonly commentService: CommentServiceInterface,
     @inject(AppComponent.CityServiceInterface) private readonly cityService: CityServiceInterface,
-    @inject(AppComponent.ConfigInterface) private readonly configService: ConfigInterface<RestSchema>,
+    @inject(AppComponent.ConfigInterface) protected readonly config: ConfigInterface<RestSchema>,
   ) {
-    super(logger);
+    super(logger, config);
 
     this.logger.info('Регистрация маршрутов для RentController…');
 
@@ -82,7 +83,7 @@ export default class RentController extends Controller {
       middlewares: [
         new PrivateRouteMiddleware(),
         new ValidateObjectIdMiddleware('rentId'),
-        new DocumentExistsMiddleware(this.rentService, 'Предложения по аренде', 'rentId'),
+        new RentOwnerCheckMiddleware(this.rentService, this.userService),
       ],
     });
     this.addRoute({
@@ -93,7 +94,7 @@ export default class RentController extends Controller {
         new PrivateRouteMiddleware(),
         new ValidateObjectIdMiddleware('rentId'),
         new ValidateDtoMiddleware(UpdateRentDto),
-        new DocumentExistsMiddleware(this.rentService, 'Предложения по аренде', 'rentId'),
+        new RentOwnerCheckMiddleware(this.rentService, this.userService),
         new DocumentExistsMiddleware(this.cityService, 'Города', 'city'),
       ],
     });
@@ -121,9 +122,10 @@ export default class RentController extends Controller {
       method: HttpMethod.Post,
       handler: this.uploadPreview,
       middlewares: [
+        new PrivateRouteMiddleware(),
         new ValidateObjectIdMiddleware('rentId'),
-        new DocumentExistsMiddleware(this.rentService, 'Предложения по аренде', 'rentId'),
-        new UploadFilesMiddleware(this.configService.get('UPLOAD_DIRECTORY'), 'preview'),
+        new RentOwnerCheckMiddleware(this.rentService, this.userService),
+        new UploadFilesMiddleware(this.config.get('UPLOAD_DIRECTORY'), 'preview'),
       ],
     });
     this.addRoute({
@@ -131,9 +133,10 @@ export default class RentController extends Controller {
       method: HttpMethod.Post,
       handler: this.uploadImages,
       middlewares: [
+        new PrivateRouteMiddleware(),
         new ValidateObjectIdMiddleware('rentId'),
-        new DocumentExistsMiddleware(this.rentService, 'Предложения по аренде', 'rentId'),
-        new UploadFilesMiddleware(this.configService.get('UPLOAD_DIRECTORY'), 'images', RentImagesValidation.Max),
+        new RentOwnerCheckMiddleware(this.rentService, this.userService),
+        new UploadFilesMiddleware(this.config.get('UPLOAD_DIRECTORY'), 'images', RentImagesValidation.Max),
       ],
     });
   }
@@ -214,11 +217,11 @@ export default class RentController extends Controller {
     this.ok(res, fillDTO(RentRdo, popularRents));
   }
 
-  public async uploadPreview (
-    { file }: Request<ParamsRentDetails, UnknownRecord, UnknownRecord>,
+  public async uploadPreview(
+    { file, params }: Request<ParamsRentDetails, UnknownRecord, UnknownRecord>,
     res: Response
   ): Promise<void> {
-    if (!file?.path) {
+    if (!file?.filename) {
       throw new HttpError(
         StatusCodes.BAD_REQUEST,
         RentPreviewError.IsRequired,
@@ -226,13 +229,17 @@ export default class RentController extends Controller {
       );
     }
 
-    this.created(res, fillDTO(UploadPreviewRdo, {
-      preview: file.path,
-    }));
+    const { rentId } = params;
+    const updateDto = {
+      preview: file.filename,
+    };
+
+    await this.rentService.updateById(rentId, updateDto);
+    this.created(res, fillDTO(UploadPreviewRdo, updateDto));
   }
 
-  public async uploadImages (
-    { files }: Request<ParamsRentDetails, UnknownRecord, UnknownRecord>,
+  public async uploadImages(
+    { files, params }: Request<ParamsRentDetails, UnknownRecord, UnknownRecord>,
     res: Response,
   ): Promise<void> {
 
@@ -244,8 +251,12 @@ export default class RentController extends Controller {
       );
     }
 
-    this.created(res, fillDTO(UploadImagesRdo, {
-      images: files.filter((file) => file?.path).map((file) => file.path),
-    }));
+    const { rentId } = params;
+    const updateDto = {
+      images: files.filter((file) => file?.filename).map((file) => file.filename),
+    };
+
+    await this.rentService.updateById(rentId, updateDto);
+    this.created(res, fillDTO(UploadImagesRdo, updateDto));
   }
 }

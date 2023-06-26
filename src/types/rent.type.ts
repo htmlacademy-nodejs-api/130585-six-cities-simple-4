@@ -16,7 +16,7 @@ export type Rent = {
   images: string[],
   isPremium: boolean,
   rating: number,
-  type: RentType | undefined,
+  type: RentType,
   rooms: number,
   guests: number,
   price: number,

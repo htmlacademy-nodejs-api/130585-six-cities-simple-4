@@ -12,9 +12,15 @@ import {
   RentRoomsValidation,
   RentGuestsValidation,
   RentPriceValidation,
+  RentImagesValidation,
 } from '@const/validation.js';
-import { RentTypeError, RentFacilitiesError, RentRatingError } from '@const/error-messages.js';
-import { DEFAULT_RENT_COMMENTS_COUNT, DEFAULT_RENT_RATING } from '@const/db.js';
+import {
+  RentTypeError,
+  RentFacilitiesError,
+  RentRatingError,
+  RentImagesError,
+} from '@const/error-messages.js';
+import { DEFAULT_RENT_COMMENTS_COUNT, DEFAULT_RENT_RATING } from '@modules/rent/rent.const.js';
 
 // for type merging of interface and class UserEntity
 export interface RentEntity extends defaultClasses.Base {
@@ -51,13 +57,20 @@ export class RentEntity extends defaultClasses.TimeStamps implements RentEntityT
 
   @prop({
     required: true,
+    default: '',
   })
   public preview!: string;
 
   @prop({
     type: () => [ String ],
-    required: true,
     default: [],
+    required: true,
+    validate: {
+      validator: (images: string[]) => images.length
+        ? images.length >= RentImagesValidation.Min && images.length <= RentImagesValidation.Max
+        : true,
+      message: RentImagesError.ArrayLength,
+    }
   })
   public images!: string[];
 

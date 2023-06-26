@@ -8,7 +8,7 @@ import UserService from '@modules/user/user.service.js';
 import UserController from '@modules/user/user.controller.js';
 import { AppComponent } from '@appTypes/app-component.enum.js';
 
-export function createUserContainer () {
+export function createUserContainer() {
   const container = new Container();
 
   container.bind<UserServiceInterface>(AppComponent.UserServiceInterface).to(UserService).inSingletonScope();

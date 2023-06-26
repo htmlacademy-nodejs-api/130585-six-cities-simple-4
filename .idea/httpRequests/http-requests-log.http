@@ -1,888 +1,20 @@
-POST http://localhost:5000/users/signup
-Content-Type: application/json
-Content-Length: 131
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "name": "Michael Surname",
-  "email": "michae@test5.net",
-  "avatar": "avatar.png",
-  "pass": "pass3456",
-  "type": "general"
-}
-
-<> 2023-06-14T111751.201.json
-
-###
-
-POST http://localhost:5000/users/signup
-Content-Type: application/json
-Content-Length: 130
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "name": "Michael Surname",
-  "email": "michae@test.net",
-  "avatar": "avatar.png",
-  "pass": "pass3456",
-  "type": "general"
-}
-
-<> 2023-06-14T111743.409.json
-
-###
-
-POST http://localhost:5000/users/signup
-Content-Type: application/json
-Content-Length: 111
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "name": "",
-  "email": "michae@test.net",
-  "avatar": "avatar.png",
-  "pass": "pass",
-  "type": "general"
-}
-
-<> 2023-06-14T111732.400.json
-
-###
-
-POST http://localhost:5000/users/signup
-Content-Type: application/json
-Content-Length: 125
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "name": "Michael Surname",
-  "email": "michaetest.net",
-  "avatar": "avatar.png",
-  "pass": "pass",
-  "type": "general"
-}
-
-<> 2023-06-14T111702.400.json
-
-###
-
-POST http://localhost:5000/rents
-Content-Type: application/json
-Content-Length: 553
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "title": "Cute central flat with modern design",
-  "description": "Cute central flat with modern design",
-  "city": "647e1ea88507534f70eaae96",
-  "preview": "url/to/image-1.webp",
-  "images": [
-    "url/to/image-1.jpg",
-    "url/to/image-2.jpg",
-    "url/to/image-2.jpg",
-    "url/to/image-2.jpg",
-    "url/to/image-2.jpg",
-    "url/to/image-2.jpg"
-  ],
-  "isPremium": false,
-  "type": "room",
-  "rooms": 0,
-  "guests": 90,
-  "price": 1200,
-  "facilities": [
-    "Lapto friendly workspace",
-    "Washer"
-  ],
-  "author": "647e1ea88507534f70eaae93"
-}
-
-<> 2023-06-14T102641.400.json
-
-###
-
-POST http://localhost:5000/rents
-Content-Type: application/json
-Content-Length: 553
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "title": "Cute central flat with modern design",
-  "description": "Cute central flat with modern design",
-  "city": "647e1ea88507534f70eaae96",
-  "preview": "url/to/image-1.webp",
-  "images": [
-    "url/to/image-1.jpg",
-    "url/to/image-2.jpg",
-    "url/to/image-2.jpg",
-    "url/to/image-2.jpg",
-    "url/to/image-2.jpg",
-    "url/to/image-2.jpg"
-  ],
-  "isPremium": false,
-  "type": "room",
-  "rooms": 0,
-  "guests": 90,
-  "price": 1200,
-  "facilities": [
-    "Lapto friendly workspace",
-    "Washer"
-  ],
-  "author": "647e1ea88507534f70eaae93"
-}
-
-<> 2023-06-14T102639.400.json
-
-###
-
-POST http://localhost:5000/rents
-Content-Type: application/json
-Content-Length: 553
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "title": "Cute central flat with modern design",
-  "description": "Cute central flat with modern design",
-  "city": "647e1ea88507534f70eaae96",
-  "preview": "url/to/image-1.webp",
-  "images": [
-    "url/to/image-1.jpg",
-    "url/to/image-2.jpg",
-    "url/to/image-2.jpg",
-    "url/to/image-2.jpg",
-    "url/to/image-2.jpg",
-    "url/to/image-2.jpg"
-  ],
-  "isPremium": false,
-  "type": "room",
-  "rooms": 2,
-  "guests": 3,
-  "price": 1200,
-  "facilities": [
-    "Laptop friendly workspace",
-    "Washer"
-  ],
-  "author": "647e1ea88507534f70eaae93"
-}
-
-<> 2023-06-14T102606.201.json
-
-###
-
-POST http://localhost:5000/rents
-Content-Type: application/json
-Content-Length: 551
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "title": "Cute central flat with modern design",
-  "description": "Cute central flat with modern design",
-  "city": "647e1ea88507534f70eaae96",
-  "preview": "url/to/image-1.jp",
-  "images": [
-    "url/to/image-1.jpg",
-    "url/to/image-2.jpg",
-    "url/to/image-2.jpg",
-    "url/to/image-2.jpg",
-    "url/to/image-2.jpg",
-    "url/to/image-2.jpg"
-  ],
-  "isPremium": false,
-  "type": "room",
-  "rooms": 2,
-  "guests": 3,
-  "price": 1200,
-  "facilities": [
-    "Laptop friendly workspace",
-    "Washer"
-  ],
-  "author": "647e1ea88507534f70eaae93"
-}
-
-<> 2023-06-14T102555.400.json
-
-###
-
-POST http://localhost:5000/rents
-Content-Type: application/json
-Content-Length: 552
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "title": "Cute central flat with modern design",
-  "description": "Cute central flat with modern design",
-  "city": "647e1ea88507534f70eaae96",
-  "preview": "url/to/image-1.jp",
-  "images": [
-    "url/to/image-1.jpg",
-    "url/to/image-2.jpg",
-    "url/to/image-2.jpg",
-    "url/to/image-2.jpg",
-    "url/to/image-2.jpg",
-    "url/to/image-2.jpg",
-  ],
-  "isPremium": false,
-  "type": "room",
-  "rooms": 2,
-  "guests": 3,
-  "price": 1200,
-  "facilities": [
-    "Laptop friendly workspace",
-    "Washer"
-  ],
-  "author": "647e1ea88507534f70eaae93"
-}
-
-<> 2023-06-14T102548.500.json
-
-###
-
-POST http://localhost:5000/rents
-Content-Type: application/json
-Content-Length: 448
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "title": "Cute central flat with modern design",
-  "description": "Cute central flat with modern design",
-  "city": "647e1ea88507534f70eaae96",
-  "preview": "url/to/image-1.jp",
-  "images": [
-    "url/to/image-1.jpgf",
-    "url/to/image-2.jpg"
-  ],
-  "isPremium": false,
-  "type": "room",
-  "rooms": 2,
-  "guests": 3,
-  "price": 1200,
-  "facilities": [
-    "Laptop friendly workspace",
-    "Washer"
-  ],
-  "author": "647e1ea88507534f70eaae93"
-}
-
-<> 2023-06-14T102534.400.json
-
-###
-
-POST http://localhost:5000/rents
-Content-Type: application/json
-Content-Length: 447
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "title": "Cute central flat with modern design",
-  "description": "Cute central flat with modern design",
-  "city": "647e1ea88507534f70eaae96",
-  "preview": "url/to/image-1.jp",
-  "images": [
-    "url/to/image-1.jpg",
-    "url/to/image-2.jpg"
-  ],
-  "isPremium": false,
-  "type": "room",
-  "rooms": 2,
-  "guests": 3,
-  "price": 1200,
-  "facilities": [
-    "Laptop friendly workspace",
-    "Washer"
-  ],
-  "author": "647e1ea88507534f70eaae93"
-}
-
-<> 2023-06-14T102125.400.json
-
-###
-
-POST http://localhost:5000/rents
-Content-Type: application/json
-Content-Length: 452
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "title": "Cute central flat with modern design",
-  "description": "Cute central flat with modern design",
-  "city": "647e1ea88507534f70eaae96",
-  "preview": "url/to/image-1.jpg?23=",
-  "images": [
-    "url/to/image-1.jpg",
-    "url/to/image-2.jpg"
-  ],
-  "isPremium": false,
-  "type": "room",
-  "rooms": 2,
-  "guests": 3,
-  "price": 1200,
-  "facilities": [
-    "Laptop friendly workspace",
-    "Washer"
-  ],
-  "author": "647e1ea88507534f70eaae93"
-}
-
-<> 2023-06-14T102114.400.json
-
-###
-
-POST http://localhost:5000/rents
-Content-Type: application/json
-Content-Length: 423
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "title": "design",
-  "description": "Cute central flat with modern design",
-  "city": "647e1ea88507534f70eaae96",
-  "preview": "./url/to/image-1.jpg",
-  "images": [
-    "./url/to/image-1.jpg",
-    "./url/to/image-2.jpg"
-  ],
-  "isPremium": false,
-  "type": "rom",
-  "rooms": 2,
-  "guests": 3,
-  "price": 1200,
-  "facilities": [
-    "Laptop friendly workspace",
-    "Washer"
-  ],
-  "author": "647e1ea88507534f70eaae93"
-}
-
-<> 2023-06-14T101939.400.json
-
-###
-
-POST http://localhost:5000/rents
-Content-Type: application/json
-Content-Length: 423
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "title": "design",
-  "description": "Cute central flat with modern design",
-  "city": "647e1ea88507534f70eaae96",
-  "preview": "./url/to/image-1.jpg",
-  "images": [
-    "./url/to/image-1.jpg",
-    "./url/to/image-2.jpg"
-  ],
-  "isPremium": false,
-  "type": "rom",
-  "rooms": 2,
-  "guests": 3,
-  "price": 1200,
-  "facilities": [
-    "Laptop friendly workspace",
-    "Washer"
-  ],
-  "author": "647e1ea88507534f70eaae93"
-}
-
-<> 2023-06-14T100617.400.json
-
-###
-
-POST http://localhost:5000/rents
-Content-Type: application/json
-Content-Length: 417
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "title": "design",
-  "description": "Cute central flat with modern design",
-  "city": "647e1ea88507534f70eaae96",
-  "preview": "url/to/image-1.jpg",
-  "images": [
-    "url/to/image-1.jpg",
-    "url/to/image-2.jpg"
-  ],
-  "isPremium": false,
-  "type": "rom",
-  "rooms": 2,
-  "guests": 3,
-  "price": 1200,
-  "facilities": [
-    "Laptop friendly workspace",
-    "Washer"
-  ],
-  "author": "647e1ea88507534f70eaae93"
-}
-
-<> 2023-06-14T100536.400.json
-
-###
-
-POST http://localhost:5000/rents
-Content-Type: application/json
-Content-Length: 418
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "title": "design",
-  "description": "Cute central flat with modern design",
-  "city": "647e1ea88507534f70eaae96",
-  "preview": "url/to/image-1.jpg",
-  "images": [
-    "url/to/image-1.jpg",
-    "url/to/image-2.jpg"
-  ],
-  "isPremium": false,
-  "type": "room",
-  "rooms": 2,
-  "guests": 3,
-  "price": 1200,
-  "facilities": [
-    "Laptop friendly workspace",
-    "Washer"
-  ],
-  "author": "647e1ea88507534f70eaae93"
-}
-
-<> 2023-06-14T095556.400.json
-
-###
-
-POST http://localhost:5000/rents
-Content-Type: application/json
-Content-Length: 418
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "title": "design",
-  "description": "Cute central flat with modern design",
-  "city": "647e1ea88507534f70eaae96",
-  "preview": "url/to/image-1.jpg",
-  "images": [
-    "url/to/image-1.jpg",
-    "url/to/image-2.jpg"
-  ],
-  "isPremium": false,
-  "type": "room",
-  "rooms": 2,
-  "guests": 3,
-  "price": 1200,
-  "facilities": [
-    "Laptop friendly workspace",
-    "Washer"
-  ],
-  "author": "647e1ea88507534f70eaae93"
-}
-
-<> 2023-06-14T095553.400.json
-
-###
-
-POST http://localhost:5000/rents
-Content-Type: application/json
-Content-Length: 418
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "title": "design",
-  "description": "Cute central flat with modern design",
-  "city": "647e1ea88507534f70eaae96",
-  "preview": "url/to/image-1.jpg",
-  "images": [
-    "url/to/image-1.jpg",
-    "url/to/image-2.jpg"
-  ],
-  "isPremium": false,
-  "type": "room",
-  "rooms": 2,
-  "guests": 3,
-  "price": 1200,
-  "facilities": [
-    "Laptop friendly workspace",
-    "Washer"
-  ],
-  "author": "647e1ea88507534f70eaae93"
-}
-
-<> 2023-06-14T095538.400.json
-
-###
-
-POST http://localhost:5000/rents
-Content-Type: application/json
-Content-Length: 429
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "title": "Cute odern design",
-  "description": "Cute central flat with modern design",
-  "city": "647e1ea88507534f70eaae96",
-  "preview": "url/to/image-1.jpg",
-  "images": [
-    "url/to/image-1.jpg",
-    "url/to/image-2.jpg"
-  ],
-  "isPremium": false,
-  "type": "room",
-  "rooms": 2,
-  "guests": 3,
-  "price": 1200,
-  "facilities": [
-    "Laptop friendly workspace",
-    "Washer"
-  ],
-  "author": "647e1ea88507534f70eaae93"
-}
-
-<> 2023-06-14T095151.400.json
-
-###
-
-GET http://localhost:5000/rents
-Content-Type: application/json
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-<> 2023-06-13T103040.200.json
-
-###
-
-GET http://localhost:5000/rents
-Content-Type: application/json
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-<> 2023-06-13T103022.200.json
-
-###
-
-GET http://localhost:5000/rents
-Content-Type: application/json
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-<> 2023-06-13T102923.200.json
-
-###
-
-GET http://localhost:5000/rents/sort/popular
-Content-Type: application/json
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-<> 2023-06-13T102831.200.json
-
-###
-
 GET http://localhost:5000/rents/sort/top-rated
 Content-Type: application/json
 Connection: Keep-Alive
 User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
 Accept-Encoding: br,deflate,gzip,x-gzip
 
-<> 2023-06-13T102804.200.json
+<> 2023-06-26T091707.200.json
 
 ###
 
-POST http://localhost:5000/comments
-Content-Type: application/json
-Content-Length: 168
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "text": "Очень ценный новый комментарий",
-  "rentId": "647e1ea88507534f70eaaeba",
-  "author": "647e1ea88507534f70eaae9b",
-  "rating": 5
-}
-
-<> 2023-06-13T102755.201.json
-
-###
-
-POST http://localhost:5000/comments
-Content-Type: application/json
-Content-Length: 168
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "text": "Очень ценный новый комментарий",
-  "rentId": "647e1ea88507534f70eaaeba",
-  "author": "647e1ea88507534f70eaae9b",
-  "rating": 5
-}
-
-<> 2023-06-13T102754-1.201.json
-
-###
-
-POST http://localhost:5000/comments
-Content-Type: application/json
-Content-Length: 168
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "text": "Очень ценный новый комментарий",
-  "rentId": "647e1ea88507534f70eaaeba",
-  "author": "647e1ea88507534f70eaae9b",
-  "rating": 5
-}
-
-<> 2023-06-13T102754.201.json
-
-###
-
-POST http://localhost:5000/comments
-Content-Type: application/json
-Content-Length: 168
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "text": "Очень ценный новый комментарий",
-  "rentId": "647e1ea88507534f70eaaeba",
-  "author": "647e1ea88507534f70eaae9b",
-  "rating": 4
-}
-
-<> 2023-06-13T102751.201.json
-
-###
-
-POST http://localhost:5000/comments
-Content-Type: application/json
-Content-Length: 168
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "text": "Очень ценный новый комментарий",
-  "rentId": "647e1ea88507534f70eaaeba",
-  "author": "647e1ea88507534f70eaae9b",
-  "rating": 4
-}
-
-<> 2023-06-13T102748.201.json
-
-###
-
-POST http://localhost:5000/comments
-Content-Type: application/json
-Content-Length: 168
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "text": "Очень ценный новый комментарий",
-  "rentId": "647e1ea88507534f70eaae9e",
-  "author": "647e1ea88507534f70eaae9b",
-  "rating": 4
-}
-
-<> 2023-06-13T102732.201.json
-
-###
-
-POST http://localhost:5000/comments
-Content-Type: application/json
-Content-Length: 168
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "text": "Очень ценный новый комментарий",
-  "rentId": "647e1ea88507534f70eaae9e",
-  "author": "647e1ea88507534f70eaae9b",
-  "rating": 4
-}
-
-<> 2023-06-13T102729.201.json
-
-###
-
-POST http://localhost:5000/comments
-Content-Type: application/json
-Content-Length: 168
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "text": "Очень ценный новый комментарий",
-  "rentId": "647e1ea88507534f70eaae9e",
-  "author": "647e1ea88507534f70eaae9b",
-  "rating": 1
-}
-
-<> 2023-06-13T102722.201.json
-
-###
-
-GET http://localhost:5000/rents/sort/popular
+GET http://localhost:5000/rents/649889b86cd21c5a45a8e934/comments
 Content-Type: application/json
 Connection: Keep-Alive
 User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
 Accept-Encoding: br,deflate,gzip,x-gzip
 
-<> 2023-06-13T102638.200.json
-
-###
-
-GET http://localhost:5000/rents/sort/popular
-Content-Type: application/json
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-<> 2023-06-13T102541.200.json
-
-###
-
-GET http://localhost:5000/rents/sort/popular
-Content-Type: application/json
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-<> 2023-06-13T102412.200.json
-
-###
-
-GET http://localhost:5000/rents/sort/popular
-Content-Type: application/json
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-<> 2023-06-13T102321.404.html
-
-###
-
-GET http://localhost:5000/rents/sort/popular
-Content-Type: application/json
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-<> 2023-06-13T102259.404.html
-
-###
-
-GET http://localhost:5000/rents/sort/top-rated
-Content-Type: application/json
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-<> 2023-06-13T102235.404.html
-
-###
-
-GET http://localhost:5000/cities/6471ea88507534f70eaae96/rents?limit=2
-Content-Type: application/json
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-<> 2023-06-13T092652.400.json
-
-###
-
-DELETE http://localhost:5000/rents/6471ea88507534f70eaae8a
-Content-Type: application/json
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-<> 2023-06-13T092522.400.json
-
-###
-
-GET http://localhost:5000/rents/648196cf1ca25c81b7bbf621
-Content-Type: application/json
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-<> 2023-06-13T092354.200.json
-
-###
-
-GET http://localhost:5000/rents/64816cf1ca25c81b7bbf621
-Content-Type: application/json
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-<> 2023-06-13T092345.400.json
-
-###
-
-GET http://localhost:5000/rents/648196cf1ca25c81b7bbf621
-Content-Type: application/json
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-<> 2023-06-13T092330.200.json
-
-###
-
-DELETE http://localhost:5000/rents/647e1ea88507534f70eaae8a
-Content-Type: application/json
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
-Accept-Encoding: br,deflate,gzip,x-gzip
+<> 2023-06-26T091655.200.json
 
 ###
 
@@ -892,55 +24,906 @@ Connection: Keep-Alive
 User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
 Accept-Encoding: br,deflate,gzip,x-gzip
 
-<> 2023-06-12T230534.200.json
+<> 2023-06-26T091641.404.json
 
 ###
 
-DELETE http://localhost:5000/rents/647e1ea88507534f70eaae90
+GET http://localhost:5000/rents
 Content-Type: application/json
 Connection: Keep-Alive
 User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
 Accept-Encoding: br,deflate,gzip,x-gzip
 
-<> 2023-06-12T230508.404.json
+<> 2023-06-26T091554.200.json
 
 ###
 
-DELETE http://localhost:5000/rents/647e1ea88507534f70eaae98
+POST http://localhost:5000/comments
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5uZXQiLCJpZCI6IjY0OTg5NzZjOWYxZGVhNGU4YzMzYzFhMSIsImlhdCI6MTY4Nzc1OTQ0NCwiZXhwIjoxNjg3OTMyMjQ0fQ.Umx4ysZF2CdZt6Jm9zJAOzVm__WZz-Ywj7PkUZecRHE
+Content-Length: 128
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "text": "Очень ценный новый комментарий",
+  "rentId": "649889b86cd21c5a45a8e934",
+  "rating": 5
+}
+
+<> 2023-06-26T091049.201.json
+
+###
+
+POST http://localhost:5000/comments
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5uZXQiLCJpZCI6IjY0OTg5NzZjOWYxZGVhNGU4YzMzYzFhMSIsImlhdCI6MTY4Nzc1OTQ0NCwiZXhwIjoxNjg3OTMyMjQ0fQ.Umx4ysZF2CdZt6Jm9zJAOzVm__WZz-Ywj7PkUZecRHE
+Content-Length: 128
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "text": "Очень ценный новый комментарий",
+  "rentId": "649889b86cd21c5a45a8e934",
+  "rating": 6
+}
+
+<> 2023-06-26T091037.400.json
+
+###
+
+POST http://localhost:5000/comments
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5uZXQiLCJpZCI6IjY0OTg5NzZjOWYxZGVhNGU4YzMzYzFhMSIsImlhdCI6MTY4Nzc1OTQ0NCwiZXhwIjoxNjg3OTMyMjQ0fQ.Umx4ysZF2CdZt6Jm9zJAOzVm__WZz-Ywj7PkUZecRHE
+Content-Length: 128
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "text": "Очень ценный новый комментарий",
+  "rentId": "649889b86cd21c5a45a8e934",
+  "rating": 5
+}
+
+<> 2023-06-26T091032.201.json
+
+###
+
+POST http://localhost:5000/comments
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5uZXQiLCJpZCI6IjY0OTg5NzZjOWYxZGVhNGU4YzMzYzFhMSIsImlhdCI6MTY4Nzc1OTQ0NCwiZXhwIjoxNjg3OTMyMjQ0fQ.Umx4ysZF2CdZt6Jm9zJAOzVm__WZz-Ywj7PkUZecRHE
+Content-Length: 128
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "text": "Очень ценный новый комментарий",
+  "rentId": "649889b86cd21c5a45a8e934",
+  "rating": 1
+}
+
+<> 2023-06-26T091003.201.json
+
+###
+
+POST http://localhost:5000/comments
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5uZXQiLCJpZCI6IjY0OTg5NzZjOWYxZGVhNGU4YzMzYzFhMSIsImlhdCI6MTY4Nzc1OTQ0NCwiZXhwIjoxNjg3OTMyMjQ0fQ.Umx4ysZF2CdZt6Jm9zJAOzVm__WZz-Ywj7PkUZecRHE
+Content-Length: 128
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "text": "Очень ценный новый комментарий",
+  "rentId": "647e1ea88507534f70eaae9e",
+  "rating": 1
+}
+
+<> 2023-06-26T090943.404.json
+
+###
+
+POST http://localhost:5000/comments
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5uZXQiLCJpZCI6IjY0OTg5NzZjOWYxZGVhNGU4YzMzYzFhMSIsImlhdCI6MTY4Nzc1OTQ0NCwiZXhwIjoxNjg3OTMyMjQ0fQ.Umx4ysZF2CdZt6Jm9zJAOzVm__WZz-Ywj7PkUZecRHE
+Content-Length: 128
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "text": "Очень ценный новый комментарий",
+  "rentId": "647e1ea88507534f70eaae9e",
+  "rating": 1
+}
+
+<> 2023-06-26T090713.400.json
+
+###
+
+POST http://localhost:5000/comments
+Content-Type: application/json
+Content-Length: 128
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "text": "Очень ценный новый комментарий",
+  "rentId": "647e1ea88507534f70eaae9e",
+  "rating": 1
+}
+
+<> 2023-06-26T090645.401.json
+
+###
+
+POST http://localhost:5000/cities
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5uZXQiLCJpZCI6IjY0OTg5NzZjOWYxZGVhNGU4YzMzYzFhMSIsImlhdCI6MTY4Nzc1OTQ0NCwiZXhwIjoxNjg3OTMyMjQ0fQ.Umx4ysZF2CdZt6Jm9zJAOzVm__WZz-Ywj7PkUZecRHE
+Content-Length: 82
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "name": "Hamburg",
+  "coords": {
+    "lat": 55.7558,
+    "long": 37.6173
+  }
+}
+
+<> 2023-06-26T090556.201.json
+
+###
+
+POST http://localhost:5000/cities
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5uZXQiLCJpZCI6IjY0OTg5NzZjOWYxZGVhNGU4YzMzYzFhMSIsImlhdCI6MTY4Nzc1OTQ0NCwiZXhwIjoxNjg3OTMyMjQ0fQ.Umx4ysZF2CdZt6Jm9zJAOzVm__WZz-Ywj7PkUZecRHE
+Content-Length: 81
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "name": "Moscow",
+  "coords": {
+    "lat": 55.7558,
+    "long": 37.6173
+  }
+}
+
+<> 2023-06-26T090425.400.json
+
+###
+
+POST http://localhost:5000/users/login
+Content-Type: application/json
+Content-Length: 50
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "email": "test@test.net",
+  "pass": "123456"
+}
+
+<> 2023-06-26T090404.200.json
+
+###
+
+GET http://localhost:5000/cities/6498275b75ec77769d21cd96/rents?limit=2
 Content-Type: application/json
 Connection: Keep-Alive
 User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
 Accept-Encoding: br,deflate,gzip,x-gzip
 
+<> 2023-06-26T090300.200.json
+
 ###
 
-GET http://localhost:5000/rents/647e1ea88507534f70eaae98/comments
+GET http://localhost:5000/cities/647e1ea88507534f70eaae96/rents?limit=2
 Content-Type: application/json
 Connection: Keep-Alive
 User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
 Accept-Encoding: br,deflate,gzip,x-gzip
 
-<> 2023-06-12T230235.200.json
+<> 2023-06-26T090236.404.json
 
 ###
 
-GET http://localhost:5000/rents/647e1ea88507534f70eaae98/comments
+POST http://localhost:5000/cities
+Content-Type: application/json
+Content-Length: 81
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "name": "Moscow",
+  "coords": {
+    "lat": 55.7558,
+    "long": 37.6173
+  }
+}
+
+<> 2023-06-26T090214.401.json
+
+###
+
+GET http://localhost:5000/cities
 Content-Type: application/json
 Connection: Keep-Alive
 User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
 Accept-Encoding: br,deflate,gzip,x-gzip
 
-<> 2023-06-12T230145.404.html
+<> 2023-06-26T090206.200.json
 
 ###
 
-GET http://localhost:5000/rents/647e1ea88507534f70eaae98/comments
+POST http://localhost:5000/users/647e1ea88507534f70eaae84/avatar
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImF2YXRhci10ZXN0QHRlc3QubmV0IiwiaWQiOiI2NDk2ZjJhNjJiY2YzMjA4ZGEwY2UxNDUiLCJpYXQiOjE2ODc2Mzg4NzgsImV4cCI6MTY4NzgxMTY3OH0.jMThUoqv3wJC9W9tWVMwt-Ax0lME9GIkeJFPeiXTiGY
+Content-Length: 2115933
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="avatar"; filename="1.png"
+Content-Type: image/png
+
+< /Users/ekateric/Documents/screenshots/1.png
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+<> 2023-06-24T233617.201.json
+
+###
+
+POST http://localhost:5000/users/647e1ea88507534f70eaae84/avatar
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImF2YXRhci10ZXN0QHRlc3QubmV0IiwiaWQiOiI2NDk2ZjJhNjJiY2YzMjA4ZGEwY2UxNDUiLCJpYXQiOjE2ODc2Mzg4NzgsImV4cCI6MTY4NzgxMTY3OH0.jMThUoqv3wJC9W9tWVMwt-Ax0lME9GIkeJFPeiXTiGY
+Content-Length: 2115933
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="avatar"; filename="1.png"
+Content-Type: image/png
+
+< /Users/ekateric/Documents/screenshots/1.png
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+<> 2023-06-24T233615.400.json
+
+###
+
+POST http://localhost:5000/users/647e1ea88507534f70eaae84/avatar
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImF2YXRhci10ZXN0QHRlc3QubmV0IiwiaWQiOiI2NDk2ZjJhNjJiY2YzMjA4ZGEwY2UxNDUiLCJpYXQiOjE2ODc2Mzg4NzgsImV4cCI6MTY4NzgxMTY3OH0.jMThUoqv3wJC9W9tWVMwt-Ax0lME9GIkeJFPeiXTiGY
+Content-Length: 2115933
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="avatar"; filename="1.png"
+Content-Type: image/png
+
+< /Users/ekateric/Documents/screenshots/1.png
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+<> 2023-06-24T233612.201.json
+
+###
+
+POST http://localhost:5000/users/647e1ea88507534f70eaae84/avatar
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImF2YXRhci10ZXN0QHRlc3QubmV0IiwiaWQiOiI2NDk2ZjJhNjJiY2YzMjA4ZGEwY2UxNDUiLCJpYXQiOjE2ODc2Mzg4NzgsImV4cCI6MTY4NzgxMTY3OH0.jMThUoqv3wJC9W9tWVMwt-Ax0lME9GIkeJFPeiXTiGY
+Content-Length: 2115933
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="avatar"; filename="1.png"
+Content-Type: image/png
+
+< /Users/ekateric/Documents/screenshots/1.png
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+<> 2023-06-24T233605.400.json
+
+###
+
+POST http://localhost:5000/users/647e1ea88507534f70eaae84/avatar
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImF2YXRhci10ZXN0QHRlc3QubmV0IiwiaWQiOiI2NDk2ZjJhNjJiY2YzMjA4ZGEwY2UxNDUiLCJpYXQiOjE2ODc2Mzg4NzgsImV4cCI6MTY4NzgxMTY3OH0.jMThUoqv3wJC9W9tWVMwt-Ax0lME9GIkeJFPeiXTiGY
+Content-Length: 2115933
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="avatar"; filename="1.png"
+Content-Type: image/png
+
+< /Users/ekateric/Documents/screenshots/1.png
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+<> 2023-06-24T233457.201.json
+
+###
+
+POST http://localhost:5000/users/login
+Content-Type: application/json
+Content-Length: 57
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "email": "avatar-test@test.net",
+  "pass": "123456"
+}
+
+<> 2023-06-24T233438.200.json
+
+###
+
+POST http://localhost:5000/users/login
+Content-Type: application/json
+Content-Length: 58
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "email": "avatar-test@test.nett",
+  "pass": "123456"
+}
+
+<> 2023-06-24T233427.500.json
+
+###
+
+POST http://localhost:5000/users/login
+Content-Type: application/json
+Content-Length: 58
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "email": "avatar-test@test.nett",
+  "pass": "123456"
+}
+
+<> 2023-06-24T233424.500.json
+
+###
+
+GET http://localhost:5000/rents/647e1ea88507534f70eaae9e
 Content-Type: application/json
 Connection: Keep-Alive
 User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
 Accept-Encoding: br,deflate,gzip,x-gzip
 
-<> 2023-06-12T230143.404.html
+<> 2023-06-24T231636.200.json
+
+###
+
+POST http://localhost:5000/rents/647e1ea88507534f70eaae9e/preview
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImF2YXRhci10ZXN0QHRlc3QubmV0IiwiaWQiOiI2NDk2ZjJhNjJiY2YzMjA4ZGEwY2UxNDUiLCJpYXQiOjE2ODc2MjAwMjMsImV4cCI6MTY4Nzc5MjgyM30.qKmmVN7DWfiSon8Dc8tgGJHl6OaS7K1Qxg5mBBTQj_4
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Length: 2115934
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="preview"; filename="1.png"
+Content-Type: image/png
+
+< /Users/ekateric/Documents/screenshots/1.png
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+<> 2023-06-24T231625.201.json
+
+###
+
+GET http://localhost:5000/rents/647e1ea88507534f70eaae9e
+Content-Type: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-06-24T231534.200.json
+
+###
+
+GET http://localhost:5000/rents/647e1ea88507534f70eaae9e
+Content-Type: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-06-24T231132.200.json
+
+###
+
+GET http://localhost:5000/rents/647e1ea88507534f70eaae9e
+Content-Type: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-06-24T230931.200.json
+
+###
+
+GET http://localhost:5000/rents/647e1ea88507534f70eaae9e
+Content-Type: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-06-24T230541.200.json
+
+###
+
+GET http://localhost:5000/rents/647e1ea88507534f70eaae9e
+Content-Type: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-06-24T230437.200.json
+
+###
+
+POST http://localhost:5000/rents
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImF2YXRhci10ZXN0QHRlc3QubmV0IiwiaWQiOiI2NDk2ZjJhNjJiY2YzMjA4ZGEwY2UxNDUiLCJpYXQiOjE2ODc2MjAwMjMsImV4cCI6MTY4Nzc5MjgyM30.qKmmVN7DWfiSon8Dc8tgGJHl6OaS7K1Qxg5mBBTQj_4
+Content-Length: 303
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "title": "Cute central flat with modern design",
+  "description": "Cute central flat with modern design",
+  "city": "6482338ebd19612260152a87",
+  "isPremium": false,
+  "type": "room",
+  "rooms": 2,
+  "guests": 3,
+  "price": 1200,
+  "facilities": [
+    "Laptop friendly workspace",
+    "Washer"
+  ]
+}
+
+<> 2023-06-24T230432.201.json
+
+###
+
+POST http://localhost:5000/rents
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImF2YXRhci10ZXN0QHRlc3QubmV0IiwiaWQiOiI2NDk2ZjJhNjJiY2YzMjA4ZGEwY2UxNDUiLCJpYXQiOjE2ODc2MjAwMjMsImV4cCI6MTY4Nzc5MjgyM30.qKmmVN7DWfiSon8Dc8tgGJHl6OaS7K1Qxg5mBBTQj_4
+Content-Length: 303
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "title": "Cute central flat with modern design",
+  "description": "Cute central flat with modern design",
+  "city": "6482338ebd19612260152a87",
+  "isPremium": false,
+  "type": "room",
+  "rooms": 2,
+  "guests": 3,
+  "price": 1200,
+  "facilities": [
+    "Laptop friendly workspace",
+    "Washer"
+  ]
+}
+
+<> 2023-06-24T230311.201.json
+
+###
+
+POST http://localhost:5000/rents
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImF2YXRhci10ZXN0QHRlc3QubmV0IiwiaWQiOiI2NDk2ZjJhNjJiY2YzMjA4ZGEwY2UxNDUiLCJpYXQiOjE2ODc2MjAwMjMsImV4cCI6MTY4Nzc5MjgyM30.qKmmVN7DWfiSon8Dc8tgGJHl6OaS7K1Qxg5mBBTQj_4
+Content-Length: 303
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "title": "Cute central flat with modern design",
+  "description": "Cute central flat with modern design",
+  "city": "6482338ebd19612260152a87",
+  "isPremium": false,
+  "type": "room",
+  "rooms": 2,
+  "guests": 3,
+  "price": 1200,
+  "facilities": [
+    "Laptop friendly workspace",
+    "Washer"
+  ]
+}
+
+<> 2023-06-24T230225.201.json
+
+###
+
+POST http://localhost:5000/rents
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImF2YXRhci10ZXN0QHRlc3QubmV0IiwiaWQiOiI2NDk2ZjJhNjJiY2YzMjA4ZGEwY2UxNDUiLCJpYXQiOjE2ODc2MjAwMjMsImV4cCI6MTY4Nzc5MjgyM30.qKmmVN7DWfiSon8Dc8tgGJHl6OaS7K1Qxg5mBBTQj_4
+Content-Length: 303
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "title": "Cute central flat with modern design",
+  "description": "Cute central flat with modern design",
+  "city": "6482338ebd19612260152a87",
+  "isPremium": false,
+  "type": "room",
+  "rooms": 2,
+  "guests": 3,
+  "price": 1200,
+  "facilities": [
+    "Laptop friendly workspace",
+    "Washer"
+  ]
+}
+
+<> 2023-06-24T230120.201.json
+
+###
+
+GET http://localhost:5000/rents/647e1ea88507534f70eaae9e
+Content-Type: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-06-24T230036.200.json
+
+###
+
+GET http://localhost:5000/rents/647e1ea88507534f70eaae9e
+Content-Type: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-06-24T225210.200.json
+
+###
+
+POST http://localhost:5000/rents/647e1ea88507534f70eaae9e/images
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImF2YXRhci10ZXN0QHRlc3QubmV0IiwiaWQiOiI2NDk2ZjJhNjJiY2YzMjA4ZGEwY2UxNDUiLCJpYXQiOjE2ODc2MjAwMjMsImV4cCI6MTY4Nzc5MjgyM30.qKmmVN7DWfiSon8Dc8tgGJHl6OaS7K1Qxg5mBBTQj_4
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Length: 7015136
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="images"; filename="1.png"
+Content-Type: image/png
+
+< /Users/ekateric/Documents/screenshots/1.png
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="images"; filename="2.png"
+Content-Type: image/png
+
+< /Users/ekateric/Documents/screenshots/2.png
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="images"; filename="3.png"
+Content-Type: image/png
+
+< /Users/ekateric/Documents/screenshots/3.png
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="images"; filename="4.png"
+Content-Type: image/png
+
+< /Users/ekateric/Documents/screenshots/4.png
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="images"; filename="5.png"
+Content-Type: image/png
+
+< /Users/ekateric/Documents/screenshots/5.png
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="images"; filename="6.png"
+Content-Type: image/png
+
+< /Users/ekateric/Documents/screenshots/6.png
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+<> 2023-06-24T225136.201.json
+
+###
+
+POST http://localhost:5000/rents/647e1ea88507534f70eaae9e/images
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImF2YXRhci10ZXN0QHRlc3QubmV0IiwiaWQiOiI2NDk2ZjJhNjJiY2YzMjA4ZGEwY2UxNDUiLCJpYXQiOjE2ODc2MjAwMjMsImV4cCI6MTY4Nzc5MjgyM30.qKmmVN7DWfiSon8Dc8tgGJHl6OaS7K1Qxg5mBBTQj_4
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Length: 7015136
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="images"; filename="1.png"
+Content-Type: image/png
+
+< /Users/ekateric/Documents/screenshots/1.png
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="images"; filename="2.png"
+Content-Type: image/png
+
+< /Users/ekateric/Documents/screenshots/2.png
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="images"; filename="3.png"
+Content-Type: image/png
+
+< /Users/ekateric/Documents/screenshots/3.png
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="images"; filename="4.png"
+Content-Type: image/png
+
+< /Users/ekateric/Documents/screenshots/4.png
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="images"; filename="5.png"
+Content-Type: image/png
+
+< /Users/ekateric/Documents/screenshots/5.png
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="images"; filename="6.png"
+Content-Type: image/png
+
+< /Users/ekateric/Documents/screenshots/6.png
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+<> 2023-06-24T225036.400.json
+
+###
+
+POST http://localhost:5000/rents/647e1ea88507534f70eaae9e/images
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImF2YXRhci10ZXN0QHRlc3QubmV0IiwiaWQiOiI2NDk2ZjJhNjJiY2YzMjA4ZGEwY2UxNDUiLCJpYXQiOjE2ODc2MjAwMjMsImV4cCI6MTY4Nzc5MjgyM30.qKmmVN7DWfiSon8Dc8tgGJHl6OaS7K1Qxg5mBBTQj_4
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Length: 7015136
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="images"; filename="1.png"
+Content-Type: image/png
+
+< /Users/ekateric/Documents/screenshots/1.png
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="images"; filename="2.png"
+Content-Type: image/png
+
+< /Users/ekateric/Documents/screenshots/2.png
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="images"; filename="3.png"
+Content-Type: image/png
+
+< /Users/ekateric/Documents/screenshots/3.png
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="images"; filename="4.png"
+Content-Type: image/png
+
+< /Users/ekateric/Documents/screenshots/4.png
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="images"; filename="5.png"
+Content-Type: image/png
+
+< /Users/ekateric/Documents/screenshots/5.png
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="images"; filename="6.png"
+Content-Type: image/png
+
+< /Users/ekateric/Documents/screenshots/6.png
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+<> 2023-06-24T225032.400.json
+
+###
+
+POST http://localhost:5000/rents/647e1ea88507534f70eaae9e/images
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImF2YXRhci10ZXN0QHRlc3QubmV0IiwiaWQiOiI2NDk2ZjJhNjJiY2YzMjA4ZGEwY2UxNDUiLCJpYXQiOjE2ODc2MjAwMjMsImV4cCI6MTY4Nzc5MjgyM30.qKmmVN7DWfiSon8Dc8tgGJHl6OaS7K1Qxg5mBBTQj_4
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Length: 7015136
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="images"; filename="1.png"
+Content-Type: image/png
+
+< /Users/ekateric/Documents/screenshots/1.png
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="images"; filename="2.png"
+Content-Type: image/png
+
+< /Users/ekateric/Documents/screenshots/2.png
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="images"; filename="3.png"
+Content-Type: image/png
+
+< /Users/ekateric/Documents/screenshots/3.png
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="images"; filename="4.png"
+Content-Type: image/png
+
+< /Users/ekateric/Documents/screenshots/4.png
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="images"; filename="5.png"
+Content-Type: image/png
+
+< /Users/ekateric/Documents/screenshots/5.png
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="images"; filename="6.png"
+Content-Type: image/png
+
+< /Users/ekateric/Documents/screenshots/6.png
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+<> 2023-06-24T225028.400.json
+
+###
+
+POST http://localhost:5000/rents/647e1ea88507534f70eaae9e/images
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImF2YXRhci10ZXN0QHRlc3QubmV0IiwiaWQiOiI2NDk2ZjJhNjJiY2YzMjA4ZGEwY2UxNDUiLCJpYXQiOjE2ODc2MjAwMjMsImV4cCI6MTY4Nzc5MjgyM30.qKmmVN7DWfiSon8Dc8tgGJHl6OaS7K1Qxg5mBBTQj_4
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Length: 2115935
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="images"; filename="123.png"
+Content-Type: image/png
+
+< /Users/ekateric/Documents/screenshots/123.png
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+<> 2023-06-24T224451.400.json
+
+###
+
+POST http://localhost:5000/rents/647e1ea88507534f70eaae9e/images
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImF2YXRhci10ZXN0QHRlc3QubmV0IiwiaWQiOiI2NDk2ZjJhNjJiY2YzMjA4ZGEwY2UxNDUiLCJpYXQiOjE2ODc2MjAwMjMsImV4cCI6MTY4Nzc5MjgyM30.qKmmVN7DWfiSon8Dc8tgGJHl6OaS7K1Qxg5mBBTQj_4
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Length: 2115935
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="images"; filename="123.png"
+Content-Type: image/png
+
+< /Users/ekateric/Documents/screenshots/123.png
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+<> 2023-06-24T224450.201.json
+
+###
+
+POST http://localhost:5000/rents/647e1ea88507534f70eaae9e/images
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImF2YXRhci10ZXN0QHRlc3QubmV0IiwiaWQiOiI2NDk2ZjJhNjJiY2YzMjA4ZGEwY2UxNDUiLCJpYXQiOjE2ODc2MjAwMjMsImV4cCI6MTY4Nzc5MjgyM30.qKmmVN7DWfiSon8Dc8tgGJHl6OaS7K1Qxg5mBBTQj_4
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Length: 2115935
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="images"; filename="123.png"
+Content-Type: image/png
+
+< /Users/ekateric/Documents/screenshots/123.png
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+<> 2023-06-24T224448.400.json
+
+###
+
+POST http://localhost:5000/rents/647e1ea88507534f70eaae9e/images
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImF2YXRhci10ZXN0QHRlc3QubmV0IiwiaWQiOiI2NDk2ZjJhNjJiY2YzMjA4ZGEwY2UxNDUiLCJpYXQiOjE2ODc2MjAwMjMsImV4cCI6MTY4Nzc5MjgyM30.qKmmVN7DWfiSon8Dc8tgGJHl6OaS7K1Qxg5mBBTQj_4
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Length: 2115935
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="images"; filename="123.png"
+Content-Type: image/png
+
+< /Users/ekateric/Documents/screenshots/123.png
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+<> 2023-06-24T224447.201.json
+
+###
+
+POST http://localhost:5000/rents/647e1ea88507534f70eaae9e/images
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImF2YXRhci10ZXN0QHRlc3QubmV0IiwiaWQiOiI2NDk2ZjJhNjJiY2YzMjA4ZGEwY2UxNDUiLCJpYXQiOjE2ODc2MjAwMjMsImV4cCI6MTY4Nzc5MjgyM30.qKmmVN7DWfiSon8Dc8tgGJHl6OaS7K1Qxg5mBBTQj_4
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Length: 2115935
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="images"; filename="123.png"
+Content-Type: image/png
+
+< /Users/ekateric/Documents/screenshots/123.png
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+<> 2023-06-24T224445.400.json
+
+###
+
+POST http://localhost:5000/rents/647e1ea88507534f70eaae9e/images
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImF2YXRhci10ZXN0QHRlc3QubmV0IiwiaWQiOiI2NDk2ZjJhNjJiY2YzMjA4ZGEwY2UxNDUiLCJpYXQiOjE2ODc2MjAwMjMsImV4cCI6MTY4Nzc5MjgyM30.qKmmVN7DWfiSon8Dc8tgGJHl6OaS7K1Qxg5mBBTQj_4
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Length: 2115935
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="images"; filename="123.png"
+Content-Type: image/png
+
+< /Users/ekateric/Documents/screenshots/123.png
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+<> 2023-06-24T224442.201.json
+
+###
+
+POST http://localhost:5000/rents/647e1ea88507534f70eaae9e/images
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImF2YXRhci10ZXN0QHRlc3QubmV0IiwiaWQiOiI2NDk2ZjJhNjJiY2YzMjA4ZGEwY2UxNDUiLCJpYXQiOjE2ODc2MjAwMjMsImV4cCI6MTY4Nzc5MjgyM30.qKmmVN7DWfiSon8Dc8tgGJHl6OaS7K1Qxg5mBBTQj_4
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Length: 2115935
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="images"; filename="123.png"
+Content-Type: image/png
+
+< /Users/ekateric/Documents/screenshots/123.png
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+<> 2023-06-24T224345.400.json
 
 ###
 

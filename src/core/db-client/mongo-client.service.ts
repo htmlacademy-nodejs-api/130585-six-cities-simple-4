@@ -13,7 +13,8 @@ export default class MongoClientService implements DBClientInterface {
     @inject(AppComponent.LoggerInterface) private readonly logger: LoggerInterface,
     private isConnected = false,
     private mongooseInstance: Mongoose | null = null,
-  ) {}
+  ) {
+  }
 
   private async connectWithRetry(uri: string): Promise<Mongoose> {
     let attempt = 0;
@@ -24,12 +25,12 @@ export default class MongoClientService implements DBClientInterface {
 
       } catch (error) {
         attempt++;
-        this.logger.error(`Неуспешная попытка соединения с БД. Попыток: ${attempt}`);
+        this.logger.error(`Неуспешная попытка соединения с БД. Попыток: ${ attempt }`);
         await setTimeout(DBRetry.Timeout);
       }
     }
 
-    this.logger.error(`Невозможно установить соединение с БД. Попыток: ${attempt}`);
+    this.logger.error(`Невозможно установить соединение с БД. Попыток: ${ attempt }`);
     throw new Error('Невозможно установить соединение с БД');
   }
 

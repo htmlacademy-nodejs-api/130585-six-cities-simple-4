@@ -8,9 +8,7 @@ import {
   IsArray,
   IsBoolean,
   ArrayMinSize,
-  ArrayMaxSize,
   IsIn,
-  Matches,
   ArrayUnique,
 } from 'class-validator';
 import { Expose } from 'class-transformer';
@@ -23,9 +21,7 @@ import {
   RentRoomsValidation,
   RentGuestsValidation,
   RentPriceValidation,
-  RentImagesValidation,
   RentFacilitiesValidation,
-  IMAGE_URL_MATCH_PATTERN,
 } from '@const/validation.js';
 import {
   RentTitleError,
@@ -34,8 +30,6 @@ import {
   RentGuestsError,
   RentPriceError,
   RentCityError,
-  RentPreviewError,
-  RentImagesError,
   RentPremiumError,
   RentTypeError,
   RentFacilitiesError,
@@ -55,18 +49,6 @@ export default class CreateRentDto {
   @Expose()
   @IsMongoId({ message: RentCityError.IsMongoId })
   public city!: string;
-
-  @Expose()
-  @Matches(IMAGE_URL_MATCH_PATTERN, { message: RentPreviewError.IsImg })
-  public preview!: string;
-
-  @Expose()
-  @IsArray({ message: RentImagesError.IsArray })
-  @ArrayMinSize(RentImagesValidation.Min, { message: RentImagesError.ArrayLength })
-  @ArrayMaxSize(RentImagesValidation.Max, { message: RentImagesError.ArrayLength })
-  @Matches(IMAGE_URL_MATCH_PATTERN, { each: true, message: RentImagesError.IsImg })
-  @ArrayUnique({ message: RentImagesError.ArrayUnique })
-  public images!: string[];
 
   @Expose()
   @IsBoolean({ message: RentPremiumError.IsBoolean })

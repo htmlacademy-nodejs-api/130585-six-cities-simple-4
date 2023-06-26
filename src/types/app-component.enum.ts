@@ -3,7 +3,10 @@ export const AppComponent = {
   LoggerInterface: Symbol.for('LoggerInterface'),
   ConfigInterface: Symbol.for('ConfigInterface'),
   DBClientInterface: Symbol.for('DBClientInterface'),
-  ExceptionFilterInterface: Symbol.for('ExceptionFilterInterface'),
+
+  HttpErrorExceptionFilter: Symbol.for('HttpErrorExceptionFilter'),
+  ValidationExceptionFilter: Symbol.for('ValidationExceptionFilter'),
+  BaseExceptionFilter: Symbol.for('BaseExceptionFilter'),
 
   UserServiceInterface: Symbol.for('UserServiceInterface'),
   UserModel: Symbol.for('UserModel'),

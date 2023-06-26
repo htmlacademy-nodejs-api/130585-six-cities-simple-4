@@ -7,6 +7,7 @@ import { StatusCodes } from 'http-status-codes';
 import { MiddlewareInterface } from '@core/middleware/middleware.interface.js';
 import HttpError from '@core/errors/http-error.js';
 import { IMAGE_MAX_SIZE, IMAGE_EXT_MATCH_PATTERN } from '@const/validation.js';
+import { HttpErrorText } from '@const/error-messages.js';
 
 export class UploadFilesMiddleware implements MiddlewareInterface {
   constructor(
@@ -38,7 +39,7 @@ export class UploadFilesMiddleware implements MiddlewareInterface {
         if (!ext || !IMAGE_EXT_MATCH_PATTERN.test(ext)) {
           return callback(new HttpError(
             StatusCodes.UNSUPPORTED_MEDIA_TYPE,
-            'Неподдерживаемый формат изображений (jpg, png)',
+            HttpErrorText.UnsupportedMediaType,
             'UploadFileMiddleware',
           ));
         }

@@ -4,16 +4,20 @@ export const getRandomNumberFromInterval = (min: number, max: number, toFixed = 
   Number((min + Math.random() * (max - min)).toFixed(toFixed))
 );
 
-export const getRandomItems = <T>(items: T[]):T[] => {
-  const startItemIndex = getRandomNumberFromInterval(0, items.length - 1);
-  const endItemIndex = startItemIndex + getRandomNumberFromInterval(startItemIndex, items.length);
-
-  return items.slice(startItemIndex, endItemIndex);
-};
-
-export const getRandomItem = <T>(items: T[]):T => (
+export const getRandomItem = <T>(items: T[]): T => (
   items[getRandomNumberFromInterval(0, items.length - 1)]
 );
+
+export const getRandomItems = <T>(items: T[], count?: number): T[] => {
+  const itemsCount = count || getRandomNumberFromInterval(0, items.length - 1);
+  const resultItems: T[] = [];
+
+  for (let itemIndex = 0; itemIndex < itemsCount; itemIndex++) {
+    resultItems.push(getRandomItem<T>(items));
+  }
+
+  return resultItems;
+};
 
 export const getRandomDate = (daysBefore: number) => {
   const from = dayjs().subtract(daysBefore, 'day').valueOf();

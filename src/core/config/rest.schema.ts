@@ -12,7 +12,9 @@ export type RestSchema = {
   DB_PORT: string;
   DB_NAME: string;
   UPLOAD_DIRECTORY: string;
+  STATIC_DIRECTORY: string;
   JWT_SECRET: string;
+  HOST: string;
 }
 
 export const configRestSchema = convict<RestSchema>({
@@ -64,10 +66,22 @@ export const configRestSchema = convict<RestSchema>({
     env: 'UPLOAD_DIRECTORY',
     default: null,
   },
+  STATIC_DIRECTORY: {
+    doc: 'Директория для статических файлов',
+    format: String,
+    env: 'STATIC_DIRECTORY',
+    default: null,
+  },
   JWT_SECRET: {
     doc: 'Секрет для создания JWT токена',
     format: String,
     env: 'JWT_SECRET',
     default: null,
+  },
+  HOST: {
+    doc: 'Имя хоста для запуска приложения',
+    format: String,
+    env: 'HOST',
+    default: 'localhost',
   },
 });

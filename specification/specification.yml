@@ -443,10 +443,6 @@ components:
           required: true
           example: keks@htmlacademy.ru
 
-        avatar:
-          type: string
-          example: path/to/avatar.jpg
-
         type:
           type: string
           enum: [ general, pro ]
@@ -530,18 +526,6 @@ components:
 
         city:
           $ref: '#/components/schemas/City/properties/id'
-
-        preview:
-          type: string
-          required: true
-          example: url/to/preview-1.jpg
-
-        images:
-          type: array
-          items:
-            type: string
-          required: true
-          example: ['url/to/image-1.jpg', 'url/to/image-2.jpg', 'url/to/image-3.jpg',]
 
         isPremium:
           type: boolean

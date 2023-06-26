@@ -5,12 +5,18 @@ import { rentFacilities, RentFacility } from '@appTypes/rent-facility.type.js';
 import { rentTypes, RentType } from '@appTypes/rent-type.type.js';
 import { userTypes, UserType } from '@appTypes/user-type.type.js';
 
-export const parseRent = (rentString: string): Rent => {
+export const parseRent = (rentString: string): Rent | null => {
   const [
     title, description, createdAt, cityString, preview, images, isPremium, rating, type, rooms, guests, price, facilities, name, email, avatar, userType
   ] = rentString.replace('\n', '').split('\t');
 
   const cityName = getTypedServerField<CityName>(cityString, cities);
+  const rentType = getTypedServerField<RentType>(type, rentTypes);
+  const authorType = getTypedServerField<UserType>(userType, userTypes);
+
+  if (cityName === undefined || rentType === undefined || authorType === undefined) {
+    return null;
+  }
 
   return {
     title,
@@ -24,7 +30,7 @@ export const parseRent = (rentString: string): Rent => {
     images: images.length ? images.split(';') : [],
     isPremium: Boolean(Number(isPremium)),
     rating: Number(Number(rating).toFixed(1)),
-    type: getTypedServerField<RentType>(type, rentTypes),
+    type: rentType,
     rooms: Number(rooms),
     guests: Number(guests),
     price: Number(price),
@@ -37,7 +43,7 @@ export const parseRent = (rentString: string): Rent => {
       name,
       email,
       avatar,
-      type: getTypedServerField<UserType>(userType, userTypes) || userTypes[0],
+      type: authorType,
     },
     commentCount: 0,
   };
