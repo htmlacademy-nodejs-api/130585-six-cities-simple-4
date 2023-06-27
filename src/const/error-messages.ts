@@ -124,6 +124,7 @@ export const CommentRentIdError = {
 
 export const HttpErrorText = {
   Unauthorized: 'Пользователь не авторизован',
+  AlreadyAuthorized: 'Пользователь уже авторизован',
   Forbidden: 'Доступ запрещен',
   NotValidToken: 'Не валидный токен',
   UnsupportedMediaType: 'Неподдерживаемый формат изображений (jpg, png)',

@@ -17,7 +17,7 @@ export class ValidateDtoMiddleware implements MiddlewareInterface {
     });
     const errors = await validate(dtoInstance);
 
-    if (!errors.length) {
+    if (errors.length) {
       throw new ValidationError(`Ошибки валидации: «${ path }»`, transformErrors(errors));
     }
 
