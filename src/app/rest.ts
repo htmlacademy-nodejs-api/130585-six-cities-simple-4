@@ -2,6 +2,7 @@ import 'reflect-metadata';
 import { injectable, inject } from 'inversify';
 import express, { Express } from 'express';
 import cors from 'cors';
+import { StatusCodes } from 'http-status-codes';
 
 import { LoggerInterface } from '@core/logger/logger.interface.js';
 import { ConfigInterface } from '@core/config/config.interface.js';
@@ -12,6 +13,8 @@ import { RestSchema } from '@core/config/rest.schema.js';
 import { AppComponent } from '@appTypes/app-component.enum.js';
 import { getMongoURI, getServerPath } from '@utils/index.js';
 import { AuthenticateMiddleware } from '@core/middleware/authenticate.middleware.js';
+import HttpError from '@core/errors/http-error.js';
+import { HttpErrorText } from '@const/error-messages.js';
 
 @injectable()
 export default class RESTApplication {
@@ -66,6 +69,12 @@ export default class RESTApplication {
     this.expressApp.use('/users', this.userController.router);
     this.expressApp.use('/rents', this.rentController.router);
     this.expressApp.use('/comments', this.commentController.router);
+    this.expressApp.all('*', (_req, _res) => {
+      throw new HttpError(
+        StatusCodes.NOT_FOUND,
+        HttpErrorText.NotFoundUrl,
+      );
+    });
     this.logger.info('Инициализация маршрутов завершена!');
   }
 

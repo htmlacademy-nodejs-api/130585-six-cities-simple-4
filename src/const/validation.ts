@@ -60,6 +60,8 @@ export const enum CityNameValidation {
   Min = 1,
 }
 
-export const IMAGE_URL_MATCH_PATTERN = /\.(jpg|jpeg|png)(\?(.*))?$/gmi;
-export const IMAGE_EXT_MATCH_PATTERN = /^(jpeg|png)$/;
-export const IMAGE_MAX_SIZE = 5 * 1024 * 1024;
+export const ImageValidation = {
+  UrlPattern: /\.(jpg|jpeg|png)(\?(.*))?$/gmi,
+  ExtPattern: /^(jpeg|png)$/,
+  MaxSize: 5 * 1024 * 1024,
+} as const;

@@ -1,4 +1,9 @@
-export const DEFAULT_USER_PASSWORD = 'default123';
-export const DEFAULT_USER_AVATAR_FILENAME = 'default-avatar.png';
-export const JWT_EXP_TIME = '2d';
-export const JWT_ALGORITHM = 'HS256';
+export const enum UserDefault {
+  Password = 'default123',
+  Avatar = 'default-avatar.png',
+}
+
+export const enum JwtParam {
+  ExpTime = '2d',
+  Algorithm = 'HS256',
+}

@@ -8,7 +8,7 @@ import LoginUserDto from '@modules/user/dto/login-user.dto.js';
 import { UserServiceInterface } from '@modules/user/user-service.interface.js';
 import { LoggerInterface } from '@core/logger/logger.interface.js';
 import { AppComponent } from '@appTypes/app-component.enum.js';
-import { DEFAULT_USER_AVATAR_FILENAME } from '@modules/user/user.const.js';
+import { UserDefault } from '@modules/user/user.const.js';
 
 @injectable()
 export default class UserService implements UserServiceInterface {
@@ -19,7 +19,7 @@ export default class UserService implements UserServiceInterface {
   }
 
   public async create(dto: CreateUserDto, salt: string): Promise<DocumentType<UserEntity>> {
-    const user = new UserEntity({ ...dto, avatar: DEFAULT_USER_AVATAR_FILENAME });
+    const user = new UserEntity({ ...dto, avatar: UserDefault.Avatar });
     user.setPassword(dto.pass, salt);
 
     const createdUser = await this.userModel.create(user);

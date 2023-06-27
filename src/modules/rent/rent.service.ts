@@ -8,12 +8,7 @@ import { LoggerInterface } from '@core/logger/logger.interface.js';
 import CreateRentDto from '@modules/rent/dto/create-rent.dto.js';
 import UpdateRentDto from '@modules/rent/dto/update-rent.dto.js';
 import { Sort } from '@appTypes/sort.enum.js';
-import {
-  DEFAULT_RENTS_COUNT,
-  DEFAULT_POPULAR_RENTS_COUNT,
-  DEFAULT_TOP_RATED_RENTS_COUNT,
-  DEFAULT_RENT_PREVIEW_FILENAME,
-} from '@modules/rent/rent.const.js';
+import { RentDefault } from '@modules/rent/rent.const.js';
 
 @injectable()
 export class RentService implements RentServiceInterface {
@@ -24,7 +19,7 @@ export class RentService implements RentServiceInterface {
   }
 
   public async create(dto: CreateRentDto): Promise<DocumentType<RentEntity>> {
-    const createdRent = await this.rentModel.create({ ...dto, preview: DEFAULT_RENT_PREVIEW_FILENAME });
+    const createdRent = await this.rentModel.create({ ...dto, preview: RentDefault.Preview });
 
     this.logger.info(`Создано новое объявление: ${ createdRent.title }`);
 
@@ -63,7 +58,7 @@ export class RentService implements RentServiceInterface {
   }
 
   public async findByCityId(citId: string, count?: number): Promise<DocumentType<RentEntity>[]> {
-    const limit = count ?? DEFAULT_RENTS_COUNT;
+    const limit = count ?? RentDefault.Count;
 
     return this.rentModel
       .find({ city: citId }, {}, { limit })
@@ -82,7 +77,7 @@ export class RentService implements RentServiceInterface {
   }
 
   public async findTopRated(count?: number): Promise<DocumentType<RentEntity>[]> {
-    const limit = count ?? DEFAULT_TOP_RATED_RENTS_COUNT;
+    const limit = count ?? RentDefault.TopRatedCount;
 
     return this.rentModel
       .find()
@@ -93,7 +88,7 @@ export class RentService implements RentServiceInterface {
   }
 
   public async findPopular(count?: number): Promise<DocumentType<RentEntity>[]> {
-    const limit = count ?? DEFAULT_POPULAR_RENTS_COUNT;
+    const limit = count ?? RentDefault.PopularCount;
 
     return this.rentModel
       .find()

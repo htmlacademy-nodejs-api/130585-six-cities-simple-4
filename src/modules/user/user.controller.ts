@@ -18,11 +18,12 @@ import { fillDTO, createJWT } from '@utils/index.js';
 import HttpError from '@core/errors/http-error.js';
 import UploadAvatarRdo from '@modules/user/rdo/upload-avatar.rdo.js';
 import { ValidateObjectIdMiddleware } from '@core/middleware/validate-objectid.middleware.js';
-import { DocumentExistsMiddleware } from '@core/middleware/document-exists.middleware.js';
 import { ValidateDtoMiddleware } from '@core/middleware/validate-dto.middleware.js';
-import { JWT_ALGORITHM } from '@modules/user/user.const.js';
+import { JwtParam } from '@modules/user/user.const.js';
 import { UploadFilesMiddleware } from '@core/middleware/upload-files.middleware.js';
 import { PrivateRouteMiddleware } from '@core/middleware/private-route.middleware.js';
+import { AlreadyAuthorizedMiddleware } from '@core/middleware/already-authorized.middleware.js';
+import { UserOwnerCheckMiddleware } from '@core/middleware/user-owner-check.middleware.js';
 import { UserAvatarError, HttpErrorText } from '@const/error-messages.js';
 
 @injectable()
@@ -39,13 +40,19 @@ export default class UserController extends Controller {
       path: '/signup',
       method: HttpMethod.Post,
       handler: this.create,
-      middlewares: [ new ValidateDtoMiddleware(CreateUserDto) ],
+      middlewares: [
+        new AlreadyAuthorizedMiddleware(),
+        new ValidateDtoMiddleware(CreateUserDto),
+      ],
     });
     this.addRoute({
       path: '/login',
       method: HttpMethod.Post,
       handler: this.login,
-      middlewares: [ new ValidateDtoMiddleware(LoginUserDto) ],
+      middlewares: [
+        new AlreadyAuthorizedMiddleware(),
+        new ValidateDtoMiddleware(LoginUserDto),
+      ],
     });
     this.addRoute({
       path: '/login',
@@ -59,7 +66,7 @@ export default class UserController extends Controller {
       middlewares: [
         new PrivateRouteMiddleware(),
         new ValidateObjectIdMiddleware('userId'),
-        new DocumentExistsMiddleware(this.userService, 'Пользователя', 'userId'),
+        new UserOwnerCheckMiddleware(this.userService),
         new UploadFilesMiddleware(this.config.get('UPLOAD_DIRECTORY'), 'avatar'),
       ],
     });
@@ -100,7 +107,7 @@ export default class UserController extends Controller {
 
     const { email, id } = user;
     const token = await createJWT(
-      JWT_ALGORITHM,
+      JwtParam.Algorithm,
       this.config.get('JWT_SECRET'),
       {
         email,
