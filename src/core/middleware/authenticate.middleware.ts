@@ -7,6 +7,7 @@ import { MiddlewareInterface } from '@core/middleware/middleware.interface.js';
 import HttpError from '@core/errors/http-error.js';
 import { Encoding } from '@const/common.js';
 import { HttpErrorText } from '@const/error-messages.js';
+import { JwtParam } from '@modules/user/user.const.js';
 
 export class AuthenticateMiddleware implements MiddlewareInterface {
   constructor(private readonly jwtSecret: string) {
@@ -14,7 +15,7 @@ export class AuthenticateMiddleware implements MiddlewareInterface {
 
   public async execute(req: Request, _res: Response, next: NextFunction): Promise<void> {
     const { headers } = req;
-    const token = headers?.authorization?.replace('Bearer ', '');
+    const token = headers?.authorization?.replace(JwtParam.TokenName, '')?.trim();
 
     if (!token) {
       return next();
