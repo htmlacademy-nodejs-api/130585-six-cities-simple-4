@@ -96,6 +96,8 @@ export default class UserController extends Controller {
     res: Response,
   ): Promise<void> {
     const user = await this.userService.verifyUser(body, this.config.get('SALT'));
+    const email = String(user?.email);
+    const id = String(user?.id);
 
     if (!user) {
       throw new HttpError(
@@ -105,7 +107,6 @@ export default class UserController extends Controller {
       );
     }
 
-    const { email, id } = user;
     const token = await createJWT(
       JwtParam.Algorithm,
       this.config.get('JWT_SECRET'),
@@ -122,6 +123,8 @@ export default class UserController extends Controller {
   }
 
   public async checkAuthenticate({ user }: Request, res: Response): Promise<void> {
+    const { email } = user;
+
     if (!user) {
       throw new HttpError(
         StatusCodes.UNAUTHORIZED,
@@ -130,13 +133,16 @@ export default class UserController extends Controller {
       );
     }
 
-    const { email } = user;
     const existedUser = await this.userService.findByEmail(email);
-
     this.ok(res, fillDTO(UserRdo, existedUser));
   }
 
   public async uploadAvatar({ file, params }: Request, res: Response): Promise<void> {
+    const { userId } = params;
+    const updateDto = {
+      avatar: file?.filename,
+    };
+
     if (!file?.filename) {
       throw new HttpError(
         StatusCodes.BAD_REQUEST,
@@ -144,11 +150,6 @@ export default class UserController extends Controller {
         'UserController',
       );
     }
-
-    const { userId } = params;
-    const updateDto = {
-      avatar: file?.filename,
-    };
 
     await this.userService.updateById(userId, updateDto);
     this.created(res, fillDTO(UploadAvatarRdo, updateDto));
