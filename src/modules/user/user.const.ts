@@ -6,4 +6,5 @@ export const enum UserDefault {
 export const enum JwtParam {
   ExpTime = '2d',
   Algorithm = 'HS256',
+  TokenName = 'Bearer',
 }
